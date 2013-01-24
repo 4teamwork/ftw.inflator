@@ -25,6 +25,7 @@
   - [ ] implement bundle API function
   - [ ] document base profile option
   - [ ] document standard bundle option
+  - [ ] implement and document a plone default content cleanup import step
 
 - setup wizard [0/9]
   - [ ] add button to manage_main

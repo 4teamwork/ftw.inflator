@@ -39,10 +39,6 @@ the addons since the bundle system is meant to be used for a full already
 configured product which.
 The various bundles may install additional addons.
 
-**TODO**: Add a screenshot.
-
-**TODO**: Document how to configure the product-title and -logo.
-
 
 Bundle system
 -------------
@@ -72,8 +68,6 @@ Add a list of bundles to the ``__init__.py`` of your package, e.g. at
                 'my.package:theme',
                 ]}]
 
-
-**TODO**: Document base profile and standard profile options.
 
 *Registering the bundles*
 
