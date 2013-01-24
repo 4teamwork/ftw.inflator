@@ -3,6 +3,7 @@
 *.pyc
 .installed.cfg
 .mr.developer.cfg
+README.html
 bin/
 build/
 buildout.cfg

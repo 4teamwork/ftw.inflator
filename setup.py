@@ -17,7 +17,8 @@ extras_require = {
 
 setup(name='ftw.inflator',
       version=version,
-      description='',
+      description='Plone site setup wizard with content creation and ' + \
+          'bundle system for predefined configurations.',
 
       long_description=open('README.rst').read() + '\n' + \
           open(os.path.join('docs', 'HISTORY.txt')).read(),
