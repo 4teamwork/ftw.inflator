@@ -6,11 +6,11 @@
     - [X] add buildouts for plone 4.1 and 4.2
     - [ ] add test-buildout for plone 4.3
 
-- content creation [7/11]
+- content creation [8/11]
   - [X] add generic setup import step
   - [X] implement feature "construct instances of any archetypes FTIs"
   - [X] implement feature "add file- and image-fields"
-  - [ ] implement feature "create topic criterions"
+  - [X] implement feature "create topic criterions"
   - [X] implement feature "execute workflow transition on creation"
   - [ ] implement feature "create placeful workflow policies"
   - [X] implement feature "set properties"
