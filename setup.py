@@ -7,8 +7,10 @@ version = '1.0.dev0'
 
 tests_require = [
     'unittest2',
-    'plone.app.testing',
     'ftw.testing',
+    'zope.configuration',
+    'plone.testing',
+    'plone.app.testing',
     'Products.CMFPlacefulWorkflow',
     ]
 
@@ -45,6 +47,14 @@ setup(name='ftw.inflator',
 
       install_requires=[
         'setuptools',
+        'Zope2',
+        'zope.dottedname',
+        'zope.interface',
+
+        'Products.ATContentTypes',
+        'Products.CMFCore',
+        'Products.CMFPlone',
+
         'plone.app.transmogrifier',
         'collective.transmogrifier',
         ],
