@@ -6,6 +6,7 @@ from ftw.testing import MockTestCase
 class TestConstraintypesUpdater(MockTestCase):
 
     def setUp(self):
+        super(TestConstraintypesUpdater, self).setUp()
         transmogrifier = self.create_dummy(context=None)
         options = {'blueprint': ''}
         self.updater = constraintypes.ConstraintypesUpdater(

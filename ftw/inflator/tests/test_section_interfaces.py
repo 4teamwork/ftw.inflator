@@ -6,6 +6,7 @@ from ftw.testing import MockTestCase
 class TestInterfacesUpdater(MockTestCase):
 
     def setUp(self):
+        super(TestInterfacesUpdater, self).setUp()
         transmogrifier = self.create_dummy(context=None)
         options = {'blueprint': ''}
         self.updater = interfaces.InterfacesUpdater(

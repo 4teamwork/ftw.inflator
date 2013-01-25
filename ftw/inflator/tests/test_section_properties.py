@@ -5,6 +5,7 @@ from ftw.testing import MockTestCase
 class TestPropertiesUpdater(MockTestCase):
 
     def setUp(self):
+        super(TestPropertiesUpdater, self).setUp()
         transmogrifier = self.create_dummy(context=None)
         options = {'blueprint': ''}
         self.updater = properties.PropertiesUpdater(
