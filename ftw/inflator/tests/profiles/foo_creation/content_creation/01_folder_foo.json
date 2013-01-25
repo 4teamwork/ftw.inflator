@@ -7,6 +7,10 @@
         "_transitions": "publish",
         "_properties": {
             "füü": ["string", "bär"]
+        },
+        "_constrain_types": {
+            "locally": ["Folder", "Document"],
+            "immediately": ["Folder"]
         }
     }
 

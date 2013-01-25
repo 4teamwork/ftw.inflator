@@ -1,3 +1,4 @@
+from Products.ATContentTypes.lib import constraintypes
 from Products.CMFCore.utils import getToolByName
 from ftw.inflator.testing import INFLATOR_FIXTURE
 from plone.app.testing import IntegrationTesting
@@ -69,3 +70,18 @@ class TestContentCreation(TestCase):
     def test_foo_folder_properties(self):
         foo = self.portal.get('foo')
         self.assertEqual(foo.getProperty('f\xc3\xbc\xc3\xbc'), 'b\xc3\xa4r')
+
+    def test_foo_folder_constraintypes(self):
+        foo = self.portal.get('foo')
+
+        self.assertEqual(foo.getConstrainTypesMode(),
+                         constraintypes.ENABLED,
+                         'Constraint types are not enabled on folder foo')
+
+        self.assertEqual(foo.getImmediatelyAddableTypes(),
+                         ('Folder',),
+                         'Immediately addable types are not configured well')
+
+        self.assertEqual(foo.getLocallyAllowedTypes(),
+                         ('Folder', 'Document'),
+                         'Locally addable types are not configured well')

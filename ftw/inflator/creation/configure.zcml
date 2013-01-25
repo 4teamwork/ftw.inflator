@@ -37,4 +37,9 @@
         component=".sections.properties.PropertiesUpdater"
         />
 
+    <utility
+        name="ftw.inflator.creation.constraintypesupdater"
+        component=".sections.constraintypes.ConstraintypesUpdater"
+        />
+
 </configure>
