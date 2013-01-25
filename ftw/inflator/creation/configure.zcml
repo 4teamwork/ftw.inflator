@@ -1,7 +1,30 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:transmogrifier="http://namespaces.plone.org/transmogrifier"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="ftw.inflator">
+
+    <include package="collective.transmogrifier" file="meta.zcml" />
+    <include package="collective.transmogrifier" />
+    <include package="plone.app.transmogrifier" />
+
+
+    <genericsetup:importStep
+        name="ftw.inflator.content_creation"
+        title="ftw.inflator: content creation"
+        description="Generic content creation from content_creation/*.json files."
+        handler="ftw.inflator.creation.setuphandler.content_creation">
+        <depends name="workflow"/>
+    </genericsetup:importStep>
+
+    <transmogrifier:registerConfig
+        name="ftw.inflator.creation.content_creation_config"
+        title="ftw.inflator: content creation"
+        description=""
+        configuration="content_creation.cfg"
+        />
+
 
     <!-- transmogrifier sections -->
     <utility

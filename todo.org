@@ -6,9 +6,9 @@
     - [X] add buildouts for plone 4.1 and 4.2
     - [ ] add test-buildout for plone 4.3
 
-- content creation [0/11]
-  - [ ] add generic setup import step
-  - [ ] implement feature "construct instances of any archetypes FTIs"
+- content creation [2/11]
+  - [X] add generic setup import step
+  - [X] implement feature "construct instances of any archetypes FTIs"
   - [ ] implement feature "add file- and image-fields"
   - [ ] implement feature "create topic criterions"
   - [ ] implement feature "execute workflow transition on creation"
@@ -19,7 +19,7 @@
   - [ ] implement feature "reindexing the catalog"
   - [ ] document the features and functionality with examples
 
-- bundle system [0/5]
+- bundle system [0/6]
   - [ ] add entry point reader
   - [ ] implement bundle validation
   - [ ] implement bundle API function
