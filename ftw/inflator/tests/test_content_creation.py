@@ -92,3 +92,16 @@ class TestContentCreation(TestCase):
 
         self.assertTrue(IFoo.providedBy(foo),
                         'IFoo interface not provided by Folder foo')
+
+    def test_file_inserted(self):
+        foo = self.portal.get('foo')
+        files = foo.get('files')
+        example_file = files.get('example-file')
+
+        self.assertTrue(example_file)
+        self.assertEqual(example_file.Title(), 'example file')
+
+        data = example_file.getField('file').get(example_file)
+        self.assertEqual(data.getFilename(), 'examplefile.txt')
+        self.assertEqual(data.getContentType(), 'text/plain')
+        self.assertEqual(data.data, 'a simple text file')

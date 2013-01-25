@@ -33,6 +33,11 @@
         />
 
     <utility
+        name="ftw.inflator.creation.fileinserter"
+        component=".sections.files.FileInserter"
+        />
+
+    <utility
         name="ftw.inflator.creation.propertiesupdater"
         component=".sections.properties.PropertiesUpdater"
         />

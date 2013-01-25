@@ -1,0 +1,15 @@
+[
+
+    {
+        "_path": "foo/files",
+        "_type": "Folder",
+        "title": "Files"
+    },
+
+    {
+        "_path": "foo/files/example-file",
+        "_type": "File",
+        "title": "example file",
+        "file:file": "files/examplefile.txt"
+    }
+]
