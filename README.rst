@@ -104,6 +104,130 @@ content to create.
 - set per-object provided interfaces
 - reindexing the catalog
 
+*Structure*
+
+Add a ``content_creation`` folder to your generic setup profile. All content
+creation configurations are within this folder.
+You can add as many ``*.json``-files as you want - they will be read
+and executed in order of the sorted filename
+(use integer prefixes for sorting them easily).
+
+*Folder creation example*
+
+For creating content create a JSON file (
+e.g. ``profiles/default/content_creation/01-foo-folder.json``) and insert a
+JSON syntax list of hashes (dicts).
+Each hash creates a new object.
+Example creating a folder with title "Foo" at ``/Plone/foo``::
+
+    [
+        {
+            "_path": "foo",
+            "_type": "Folder",
+            "title": "Foo"
+        }
+    ]
+
+
+*Creating / setting properties*
+
+Properties can easily be created.
+If there already is a property (because the object already did exist), it is
+updated.
+
+Example::
+
+    [
+        {
+            "_path": "foo",
+            "_type": "Folder",
+            "title": "Foo",
+            "_properties": {
+                "layout": ["string", "folder_listing_view"]
+            }
+        }
+    ]
+
+
+*Configuring constrain types*
+
+For configuring the addable types on a folder, use the ``_constrain_types``
+keyword::
+
+    [
+        {
+            "_path": "foo",
+            "_type": "Folder",
+            "title": "Foo",
+            "_constrain_types": {
+                "locally": ["Folder", "Document"],
+                "immediately": ["Folder"]
+            }
+        }
+    ]
+
+
+
+*Provide additional interfaces*
+
+By passing a list of dottednames as ``_interfaces`` those interfaces will
+automatically be provided (``alsoProvides``) by the created object::
+
+    [
+        {
+            "_path": "foo",
+            "_type": "Folder",
+            "title": "Foo",
+            "_interfaces": [
+                "ftw.inflator.tests.interfaces.IFoo"
+            ]
+        }
+    ]
+
+
+*Files and images*
+
+File- and image-fields can easily be filled by using the ``:file`` postfix,
+providing a relative path to the file to "upload"::
+
+    [
+        {
+            "_path": "files/example-file",
+            "_type": "File",
+            "title": "example file",
+            "file:file": "files/examplefile.txt"
+        }
+    ]
+
+
+*Workflow transitions*
+
+With the ``_transitions`` keyword it is possible to execute a workflow
+transition upon content creation::
+
+    [
+        {
+            "_path": "foo",
+            "_type": "Folder",
+            "title": "Foo",
+            "_transitions": "publish"
+        }
+    ]
+
+*Placeful workflow policies*
+
+When placeful workflow policies are installed it is possible to activate them
+on a folder using the ``_placefulworkflow`` keyword::
+
+      [
+          {
+              "_path": "intranet",
+              "_type": "Folder",
+              "title": "Intranet",
+              "_placefulworkflow": ["intranet", "intranet"]
+          }
+      ]
+
 
 
 Links
