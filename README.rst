@@ -5,6 +5,10 @@ This packages helps predefining a Plone site setup including content
 creation (using generic setup), defining multiple bundles and a wizard
 for installing a new site with a bundle.
 
+
+.. contents:: Table of Contents
+
+
 Features
 --------
 
@@ -46,7 +50,8 @@ Bundle system
 A bundle defines a list of profiles which are automatically applied when
 creating a new Plone site with this bundle.
 
-**Defining bundles**
+Defining bundles
+~~~~~~~~~~~~~~~~
 
 Add a list of bundles to the ``__init__.py`` of your package, e.g. at
 ``my/package/__init__.py``::
@@ -69,7 +74,8 @@ Add a list of bundles to the ``__init__.py`` of your package, e.g. at
                 ]}]
 
 
-**Registering the bundles**
+Registering the bundles
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Registering the bundles list is done by defining an entry-point in the
 ``setup.py``, pointing to a module with a variable ``BUNDLES`` containing
@@ -91,7 +97,8 @@ The content creation allows to define a ``content_creation`` folder in any
 generic setup profile folder, containing JSON-files with definitions of the
 content to create.
 
-**Content creation features**
+Content creation features
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - JSON based definition
 - construct instances of any archetypes FTIs
@@ -104,7 +111,8 @@ content to create.
 - set per-object provided interfaces
 - reindexing the catalog
 
-**Structure**
+Structure
+~~~~~~~~~
 
 Add a ``content_creation`` folder to your generic setup profile. All content
 creation configurations are within this folder.
@@ -112,7 +120,8 @@ You can add as many ``*.json``-files as you want - they will be read
 and executed in order of the sorted filename
 (use integer prefixes for sorting them easily).
 
-**Folder creation example**
+Folder creation example
+~~~~~~~~~~~~~~~~~~~~~~~
 
 For creating content create a JSON file (
 e.g. ``profiles/default/content_creation/01-foo-folder.json``) and insert a
@@ -129,7 +138,8 @@ Example creating a folder with title "Foo" at ``/Plone/foo``::
     ]
 
 
-**Creating / setting properties**
+Creating / setting properties
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Properties can easily be created.
 If there already is a property (because the object already did exist), it is
@@ -149,7 +159,8 @@ Example::
     ]
 
 
-**Configuring constrain types**
+Configuring constrain types
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For configuring the addable types on a folder, use the ``_constrain_types``
 keyword::
@@ -168,7 +179,8 @@ keyword::
 
 
 
-**Provide additional interfaces**
+Provide additional interfaces
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By passing a list of dottednames as ``_interfaces`` those interfaces will
 automatically be provided (``alsoProvides``) by the created object::
@@ -185,7 +197,8 @@ automatically be provided (``alsoProvides``) by the created object::
     ]
 
 
-**Files and images**
+Files and images
+~~~~~~~~~~~~~~~~
 
 File- and image-fields can easily be filled by using the ``:file`` postfix,
 providing a relative path to the file to "upload"::
@@ -200,7 +213,8 @@ providing a relative path to the file to "upload"::
     ]
 
 
-**Workflow transitions**
+Workflow transitions
+~~~~~~~~~~~~~~~~~~~~
 
 With the ``_transitions`` keyword it is possible to execute a workflow
 transition upon content creation::
@@ -214,7 +228,8 @@ transition upon content creation::
         }
     ]
 
-**Placeful workflow policies**
+Placeful workflow policies
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When placeful workflow policies are installed it is possible to activate them
 on a folder using the ``_placefulworkflow`` keyword::
