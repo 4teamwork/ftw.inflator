@@ -11,7 +11,10 @@
         "_constrain_types": {
             "locally": ["Folder", "Document"],
             "immediately": ["Folder"]
-        }
+        },
+        "_interfaces": [
+            "ftw.inflator.tests.interfaces.IFoo"
+        ]
     }
 
 ]

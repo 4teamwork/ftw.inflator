@@ -6,7 +6,7 @@
     - [X] add buildouts for plone 4.1 and 4.2
     - [ ] add test-buildout for plone 4.3
 
-- content creation [6/11]
+- content creation [7/11]
   - [X] add generic setup import step
   - [X] implement feature "construct instances of any archetypes FTIs"
   - [ ] implement feature "add file- and image-fields"
@@ -15,7 +15,7 @@
   - [ ] implement feature "create placeful workflow policies"
   - [X] implement feature "set properties"
   - [X] implement feature "set constraint types"
-  - [ ] implement feature "set per-object provided interfaces"
+  - [X] implement feature "set per-object provided interfaces"
   - [X] implement feature "reindexing the catalog"
   - [ ] document the features and functionality with examples
 

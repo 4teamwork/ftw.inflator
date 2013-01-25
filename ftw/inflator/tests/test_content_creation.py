@@ -1,6 +1,7 @@
 from Products.ATContentTypes.lib import constraintypes
 from Products.CMFCore.utils import getToolByName
 from ftw.inflator.testing import INFLATOR_FIXTURE
+from ftw.inflator.tests.interfaces import IFoo
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import applyProfile
@@ -85,3 +86,9 @@ class TestContentCreation(TestCase):
         self.assertEqual(foo.getLocallyAllowedTypes(),
                          ('Folder', 'Document'),
                          'Locally addable types are not configured well')
+
+    def test_foo_folder_interfaces(self):
+        foo = self.portal.get('foo')
+
+        self.assertTrue(IFoo.providedBy(foo),
+                        'IFoo interface not provided by Folder foo')

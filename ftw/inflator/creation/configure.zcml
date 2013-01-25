@@ -42,4 +42,9 @@
         component=".sections.constraintypes.ConstraintypesUpdater"
         />
 
+    <utility
+        name="ftw.inflator.creation.interfacesupdater"
+        component=".sections.interfaces.InterfacesUpdater"
+        />
+
 </configure>
