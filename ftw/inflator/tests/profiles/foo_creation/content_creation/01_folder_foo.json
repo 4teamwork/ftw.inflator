@@ -3,7 +3,8 @@
     {
         "_path": "foo",
         "_type": "Folder",
-        "title": "Foo"
+        "title": "Foo",
+        "_transitions": "publish"
     }
 
 ]

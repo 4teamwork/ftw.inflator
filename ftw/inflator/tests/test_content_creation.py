@@ -10,6 +10,10 @@ class FooCreationLayer(PloneSandboxLayer):
 
     defaultBases = (INFLATOR_FIXTURE, )
     def setUpPloneSite(self, portal):
+        wftool = getToolByName(portal, 'portal_workflow')
+        wftool.setChainForPortalTypes(['Folder'],
+                                      'simple_publication_workflow')
+
         applyProfile(portal, 'ftw.inflator.tests:foo_creation')
 
 
@@ -55,3 +59,9 @@ class TestContentCreation(TestCase):
         foo_brain = brains[0]
         self.assertEqual(foo_brain.portal_type, 'Folder')
         self.assertEqual(foo_brain.Title, 'Foo')
+
+    def test_foo_folder_workflow_state(self):
+        foo = self.portal.get('foo')
+        context_state = foo.unrestrictedTraverse('@@plone_context_state')
+        review_state = context_state.workflow_state()
+        self.assertEqual(review_state, 'published')
