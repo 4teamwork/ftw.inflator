@@ -44,6 +44,8 @@ setup(name='ftw.inflator',
 
       install_requires=[
         'setuptools',
+        'plone.app.transmogrifier',
+        'collective.transmogrifier',
         ],
 
       tests_require=tests_require,
