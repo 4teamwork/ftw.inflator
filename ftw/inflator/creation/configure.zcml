@@ -32,4 +32,9 @@
         component=".sections.jsonsource.JSONSource"
         />
 
+    <utility
+        name="ftw.inflator.creation.propertiesupdater"
+        component=".sections.properties.PropertiesUpdater"
+        />
+
 </configure>

@@ -4,7 +4,10 @@
         "_path": "foo",
         "_type": "Folder",
         "title": "Foo",
-        "_transitions": "publish"
+        "_transitions": "publish",
+        "_properties": {
+            "füü": ["string", "bär"]
+        }
     }
 
 ]

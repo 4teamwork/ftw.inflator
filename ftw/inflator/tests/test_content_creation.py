@@ -65,3 +65,7 @@ class TestContentCreation(TestCase):
         context_state = foo.unrestrictedTraverse('@@plone_context_state')
         review_state = context_state.workflow_state()
         self.assertEqual(review_state, 'published')
+
+    def test_foo_folder_properties(self):
+        foo = self.portal.get('foo')
+        self.assertEqual(foo.getProperty('f\xc3\xbc\xc3\xbc'), 'b\xc3\xa4r')
