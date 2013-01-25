@@ -15,6 +15,13 @@
         "_interfaces": [
             "ftw.inflator.tests.interfaces.IFoo"
         ]
+    },
+
+    {
+        "_path": "foo/intranet",
+        "_type": "Folder",
+        "title": "Intranet",
+        "_placefulworkflow": ["intranet", "intranet"]
     }
 
 ]

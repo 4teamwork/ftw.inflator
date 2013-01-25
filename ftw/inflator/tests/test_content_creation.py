@@ -105,3 +105,12 @@ class TestContentCreation(TestCase):
         self.assertEqual(data.getFilename(), 'examplefile.txt')
         self.assertEqual(data.getContentType(), 'text/plain')
         self.assertEqual(data.data, 'a simple text file')
+
+    def test_intranet_placeful_workflow(self):
+        intranet = self.portal.get('foo').get('intranet')
+
+        wftool = getToolByName(self.portal, 'portal_workflow')
+        workflows = wftool.getWorkflowsFor(intranet)
+        self.assertEqual(len(workflows), 1)
+        wfid = workflows[0].id
+        self.assertEqual(wfid, 'intranet_folder_workflow')

@@ -9,6 +9,7 @@ tests_require = [
     'unittest2',
     'plone.app.testing',
     'ftw.testing',
+    'Products.CMFPlacefulWorkflow',
     ]
 
 extras_require = {

@@ -2,6 +2,8 @@ from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import applyProfile
+from plone.testing import z2
 from zope.configuration import xmlconfig
 
 
@@ -10,6 +12,12 @@ class InflatorLayer(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE, )
 
     def setUpZope(self, app, configurationContext):
+        import Products.CMFPlacefulWorkflow
+        xmlconfig.file('configure.zcml', Products.CMFPlacefulWorkflow,
+                       context=configurationContext)
+
+        z2.installProduct(app, 'Products.CMFPlacefulWorkflow')
+
         import ftw.inflator
         xmlconfig.file('configure.zcml', ftw.inflator,
                        context=configurationContext)
@@ -18,7 +26,8 @@ class InflatorLayer(PloneSandboxLayer):
                        context=configurationContext)
 
     def setUpPloneSite(self, portal):
-        pass
+        applyProfile(
+            portal, 'Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow')
 
 
 INFLATOR_FIXTURE = InflatorLayer()

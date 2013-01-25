@@ -52,4 +52,9 @@
         component=".sections.interfaces.InterfacesUpdater"
         />
 
+    <utility
+        name="ftw.inflator.creation.placefulworkflowupdater"
+        component=".sections.placefulworkflow.PlacefulworkflowUpdater"
+        />
+
 </configure>
