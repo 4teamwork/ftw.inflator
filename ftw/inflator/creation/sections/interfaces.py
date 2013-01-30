@@ -3,6 +3,7 @@ from ftw.inflator.creation.sections.base import ObjectUpdater
 from zope.dottedname.resolve import resolve
 from zope.interface import alsoProvides
 from zope.interface import classProvides
+from zope.interface import noLongerProvides
 
 
 class InterfacesUpdater(ObjectUpdater):
@@ -14,7 +15,16 @@ class InterfacesUpdater(ObjectUpdater):
     def update(self, obj, interfaces):
         for iface in interfaces:
             iface = iface.encode('utf-8')
+            remove = False
+
+            if iface.startswith('remove:'):
+                remove = True
+                iface = iface[len('remove:'):]
+
             resolved_iface = resolve(iface)
 
-            if not resolved_iface.providedBy(obj):
+            if not remove and not resolved_iface.providedBy(obj):
                 alsoProvides(obj, resolved_iface)
+
+            elif remove and resolved_iface.providedBy(obj):
+                noLongerProvides(obj, resolved_iface)

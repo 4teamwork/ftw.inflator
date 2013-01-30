@@ -191,10 +191,14 @@ automatically be provided (``alsoProvides``) by the created object::
             "_type": "Folder",
             "title": "Foo",
             "_interfaces": [
-                "ftw.inflator.tests.interfaces.IFoo"
+                "ftw.inflator.tests.interfaces.IFoo",
+                "remove:foo.bar.interfaces.IBar"
             ]
         }
     ]
+
+By prefixing the dotted name with ``remove:``, directly provided interfaces
+can be removed (``noLongerProvides``).
 
 
 Files and images

@@ -1,6 +1,7 @@
 from ftw.inflator.creation.sections import interfaces
 from ftw.inflator.tests.interfaces import IFoo
 from ftw.testing import MockTestCase
+from zope.interface import alsoProvides
 
 
 class TestInterfacesUpdater(MockTestCase):
@@ -26,3 +27,12 @@ class TestInterfacesUpdater(MockTestCase):
 
         data = ['ftw.inflator.tests.interfaces.IFoo']
         self.updater.update(obj, data)
+
+    def test_remove_interface(self):
+        obj = self.create_dummy()
+        alsoProvides(obj, IFoo)
+        self.assertTrue(IFoo.providedBy(obj))
+
+        data = ['remove:ftw.inflator.tests.interfaces.IFoo']
+        self.updater.update(obj, data)
+        self.assertFalse(IFoo.providedBy(obj))
