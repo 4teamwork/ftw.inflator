@@ -2,10 +2,13 @@ from Products.ATContentTypes.lib import constraintypes
 from Products.CMFCore.utils import getToolByName
 from ftw.inflator.testing import INFLATOR_FIXTURE
 from ftw.inflator.tests.interfaces import IFoo
+from persistent.list import PersistentList
+from persistent.mapping import PersistentMapping
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import applyProfile
 from unittest2 import TestCase
+from zope.annotation.interfaces import IAnnotations
 
 
 class FooCreationLayer(PloneSandboxLayer):
@@ -114,3 +117,20 @@ class TestContentCreation(TestCase):
         self.assertEqual(len(workflows), 1)
         wfid = workflows[0].id
         self.assertEqual(wfid, 'intranet_folder_workflow')
+
+    def test_annotations(self):
+        foo = self.portal.get('foo')
+        intranet = foo.get('intranet')
+
+        annotations = IAnnotations(intranet)
+        self.assertEqual(annotations.get('foo'), {
+                'bar': [1, 2, 'three'],
+                'baz': True})
+
+        self.assertFalse(isinstance({}, PersistentMapping))
+        self.assertTrue(isinstance(annotations.get('foo'),
+                                   PersistentMapping))
+
+        self.assertFalse(isinstance({}, PersistentList))
+        self.assertTrue(isinstance(annotations.get('foo').get('bar'),
+                                   PersistentList))

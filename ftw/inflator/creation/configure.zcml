@@ -53,6 +53,11 @@
         />
 
     <utility
+        name="ftw.inflator.creation.annotationsupdater"
+        component=".sections.annotations.AnnotationsUpdater"
+        />
+
+    <utility
         name="ftw.inflator.creation.placefulworkflowupdater"
         component=".sections.placefulworkflow.PlacefulworkflowUpdater"
         />

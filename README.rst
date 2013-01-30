@@ -244,6 +244,25 @@ on a folder using the ``_placefulworkflow`` keyword::
       ]
 
 
+Annotations
+~~~~~~~~~~~
+
+With the ``_annotations`` it is possible to set simple annotations on the
+object.
+Values of type ``dict`` are converted to ``PersistentMapping``, those of
+type ``list`` are converted to ``PersistentList`` recursively.
+Example::
+
+      [
+          {
+              "_path": "intranet",
+              "_type": "Folder",
+              "title": "Intranet",
+              "_annotations": {"foo": {"bar": [1, 2, 3]}}
+          }
+      ]
+
+
 
 Links
 -----
