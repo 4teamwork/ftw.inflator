@@ -9,4 +9,11 @@
         handler=".meta.registerBundle"
         />
 
+    <meta:directive
+        namespace="http://namespaces.zope.org/inflator"
+        name="customize"
+        schema=".meta.IRegisterCustomizationDirective"
+        handler=".meta.registerCustomization"
+        />
+
 </configure>
