@@ -41,6 +41,28 @@ configured product which.
 The various bundles may install additional addons.
 
 
+Wizard custmizations
+~~~~~~~~~~~~~~~~~~~~
+
+The product name and logo can easily be customized through ZCML:
+
+.. code:: xml
+
+    <configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:inflator="http://namespaces.zope.org/inflator"
+        i18n_domain="my.package">
+
+        <include package="ftw.inflator" file="meta.zcml" />
+
+        <inflator:customize
+            product="Product Name"
+            image="resources/product-logo.png"
+            />
+
+    </configure>
+
+
 Bundle system
 -------------
 
