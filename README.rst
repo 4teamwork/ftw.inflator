@@ -1,6 +1,3 @@
-ftw.inflator
-============
-
 This packages helps predefining a Plone site setup including content
 creation (using generic setup), defining multiple bundles and a wizard
 for installing a new site with a bundle.
