@@ -72,3 +72,8 @@ class TestCustomizationZCML(TestCase):
         customizations = get_merged_customizations()
         self.assertEquals(customizations.image, '++resource++inflator-plone-logo-4.png')
         self.assertEquals(customizations.product, 'bar')
+
+    def test_defaults(self):
+        customizations = get_merged_customizations()
+        self.assertEquals(customizations.image, '++resource++inflator-plone-logo-0.png')
+        self.assertEquals(customizations.product, 'Plone')
