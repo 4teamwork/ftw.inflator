@@ -39,7 +39,8 @@ class ZopeLayer(Layer):
             self.get('configurationContext'))
 
         import ftw.inflator
-        xmlconfig.file('configure.zcml', ftw.inflator, context=self['configurationContext'])
+        xmlconfig.file('configure.zcml', ftw.inflator,
+                       context=self['configurationContext'])
 
     def tearDown(self):
         zca.popGlobalRegistry()

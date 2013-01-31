@@ -38,14 +38,15 @@ class IRegisterBundleDirective(Interface):
 
     base = TextLine(
         title=u'Generic Setup base profile',
-        description=u'Used as base profile when creating the site. ' + \
-            u'Defaults to %s' % _DEFAULT_PROFILE,
+        description=u'Used as base profile when creating the site.'
+        u' Defaults to %s' % _DEFAULT_PROFILE,
         default=_DEFAULT_PROFILE.decode('utf-8'),
         required=False)
 
     standard = Bool(
         title=u'Standard profile',
-        description=u'Standard profiles are listed below non-standard profiles.',
+        description=u'Standard profiles are listed below'
+        u' non-standard profiles.',
         default=False,
         required=False)
 
@@ -63,7 +64,6 @@ def registerBundle(_context, **kwargs):
         callable=handler,
         args=('registerUtility', component, provides, name),
         kw={'factory': None})
-
 
 
 class IRegisterCustomizationDirective(Interface):

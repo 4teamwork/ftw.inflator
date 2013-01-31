@@ -1,3 +1,7 @@
+# pylint: disable=E0211, E0213
+# E0211: Method has no argument
+# E0213: Method should have "self" as first argument
+
 from Products.CMFPlone.factory import _DEFAULT_PROFILE
 from zope.interface import Interface
 from zope.schema import Bool
@@ -29,12 +33,13 @@ class IInflatorBundle(Interface):
 
     base = TextLine(
         title=u'Generic Setup base profile',
-        description=u'Used as base profile when creating the site. ' + \
-            u'Defaults to %s' % _DEFAULT_PROFILE)
+        description=u'Used as base profile when creating the site.'
+            u' Defaults to %s' % _DEFAULT_PROFILE)
 
     standard = Bool(
         title=u'Standard profile',
-        description=u'Standard profiles are listed below non-standard profiles.')
+        description=u'Standard profiles are listed below'
+        u' non-standard profiles.')
 
 
 class IInflatorCustomization(Interface):
