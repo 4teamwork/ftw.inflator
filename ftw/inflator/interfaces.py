@@ -35,3 +35,20 @@ class IInflatorBundle(Interface):
     standard = Bool(
         title=u'Standard profile',
         description=u'Standard profiles are listed below non-standard profiles.')
+
+
+class IInflatorCustomization(Interface):
+    """Adapter interface for inflator customizations adapter.
+    """
+
+    def __init__(product=None, image=None, order=10):
+        """Adapts the zope application.
+        """
+
+    product = TextLine(
+        title=u'Product title',
+        description=u'The title of the product to be used for the wizard.')
+
+    image = TextLine(
+        title=u'The resource name of the image',
+        description=u'e.g. ++resources++the-image-1.jpg')
