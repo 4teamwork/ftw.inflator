@@ -24,7 +24,7 @@ Installation
 
 - Add ``ftw.inflator`` to your buildout configuration:
 
-::
+.. code:: ini
 
     [instance]
     eggs +=
@@ -56,7 +56,9 @@ default content).
 Defining bundles
 ~~~~~~~~~~~~~~~~
 
-The bundles are defined in ZCML::
+The bundles are defined in ZCML:
+
+.. code:: xml
 
     <configure
         xmlns="http://namespaces.zope.org/zope"
@@ -99,7 +101,9 @@ standard (optional)
     will appear above the standard bundles in the setup wizard and top is selected.
 
 
-Full ZCML example::
+Full ZCML example:
+
+.. code:: xml
 
     <configure
         xmlns="http://namespaces.zope.org/zope"
@@ -157,7 +161,9 @@ For creating content create a JSON file (
 e.g. ``profiles/default/content_creation/01-foo-folder.json``) and insert a
 JSON syntax list of hashes (dicts).
 Each hash creates a new object.
-Example creating a folder with title "Foo" at ``/Plone/foo``::
+Example creating a folder with title "Foo" at ``/Plone/foo``:
+
+.. code:: json
 
     [
         {
@@ -175,7 +181,9 @@ Properties can easily be created.
 If there already is a property (because the object already did exist), it is
 updated.
 
-Example::
+Example:
+
+.. code:: json
 
     [
         {
@@ -193,7 +201,9 @@ Configuring constrain types
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For configuring the addable types on a folder, use the ``_constrain_types``
-keyword::
+keyword:
+
+.. code:: json
 
     [
         {
@@ -213,7 +223,9 @@ Provide additional interfaces
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By passing a list of dottednames as ``_interfaces`` those interfaces will
-automatically be provided (``alsoProvides``) by the created object::
+automatically be provided (``alsoProvides``) by the created object:
+
+.. code:: json
 
     [
         {
@@ -235,7 +247,9 @@ Files and images
 ~~~~~~~~~~~~~~~~
 
 File- and image-fields can easily be filled by using the ``:file`` postfix,
-providing a relative path to the file to "upload"::
+providing a relative path to the file to "upload":
+
+.. code:: json
 
     [
         {
@@ -251,7 +265,9 @@ Workflow transitions
 ~~~~~~~~~~~~~~~~~~~~
 
 With the ``_transitions`` keyword it is possible to execute a workflow
-transition upon content creation::
+transition upon content creation:
+
+.. code:: json
 
     [
         {
@@ -266,7 +282,9 @@ Placeful workflow policies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When placeful workflow policies are installed it is possible to activate them
-on a folder using the ``_placefulworkflow`` keyword::
+on a folder using the ``_placefulworkflow`` keyword:
+
+.. code:: json
 
       [
           {
@@ -285,7 +303,9 @@ With the ``_annotations`` it is possible to set simple annotations on the
 object.
 Values of type ``dict`` are converted to ``PersistentMapping``, those of
 type ``list`` are converted to ``PersistentList`` recursively.
-Example::
+Example:
+
+.. code:: json
 
       [
           {
