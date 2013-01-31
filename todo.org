@@ -19,13 +19,10 @@
   - [X] implement feature "reindexing the catalog"
   - [X] document the features and functionality with examples
 
-- bundle system [0/6]
-  - [ ] add entry point reader
-  - [ ] implement bundle validation
-  - [ ] implement bundle API function
-  - [ ] document base profile option
-  - [ ] document standard bundle option
-  - [ ] implement and document a plone default content cleanup import step
+- bundle system [3/3]
+  - [X] implement ZCML bundle directive
+  - [X] implement bundle system with z3c registry
+  - [X] document bundle system
 
 - setup wizard [0/9]
   - [ ] add button to manage_main

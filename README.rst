@@ -50,44 +50,74 @@ Bundle system
 A bundle defines a list of profiles which are automatically applied when
 creating a new Plone site with this bundle.
 
+It has a base-profile (defaults to the Plone default base profile without
+default content).
+
 Defining bundles
 ~~~~~~~~~~~~~~~~
 
-Add a list of bundles to the ``__init__.py`` of your package, e.g. at
-``my/package/__init__.py``::
+The bundles are defined in ZCML::
+
+    <configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:inflator="http://namespaces.zope.org/inflator"
+        i18n_domain="my.package">
+
+        <include package="ftw.inflator" file="meta.zcml" />
+
+        <inflator:bundle
+            title="ftw.inflator example bundle one"
+            profiles="plonetheme.sunburst:default
+                      my.policy:default
+                      my.policy:init-content"
+            />
+
+    </configure>
+
+ZCML-Attributes
+~~~~~~~~~~~~~~~
+
+title
+    The (translatable) title of the bundle, shown in the setup wizard.
+
+profiles
+    One or multiple Generic Setup profiles (without ``profile-``-prefix).
+
+description (optional)
+    The description of the bundle, shown in the setup wizard.
+
+base (optional)
+    The Generic Setup base profile for creating the plone site.
+    This defaults to ``Products.CMFPlone:plone``, the default plone base
+    profile without content creation.
+    Using ``Products.CMFPlone:plone-content`` will generate the default
+    example content.
+
+standard (optional)
+    By using the standard flag (``standard="True"``) you can define product bundles.
+    When registering custom bundles later without flagging them as standard, they
+    will appear above the standard bundles in the setup wizard and top is selected.
 
 
-    BUNDLES = [
-        {'title': 'my.package: unthemed',
-         'description': 'Install the my.package product without '
-                        'installing the default theme.',
-         'profiles': [
-                'my.package:default',
-                ]},
+Full ZCML example::
 
-        {'title': 'my.package: themed',
-         'description': 'Install the my.package product with the'
-                        'default theme.',
-         'profiles': [
-                'my.package:default',
-                'my.package:theme',
-                ]}]
+    <configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:inflator="http://namespaces.zope.org/inflator"
+        i18n_domain="ftw.inflator">
 
+        <include package="ftw.inflator" file="meta.zcml" />
 
-Registering the bundles
-~~~~~~~~~~~~~~~~~~~~~~~
+        <inflator:bundle
+            title="MyProduct with sunburst"
+            description="Installs MyProduct with the sunburst theme and plone default content"
+            profiles="plonetheme.sunburst:default
+                      my.product:default"
+            base="Products.CMFPlone:plone-content"
+            standard="True"
+            />
 
-Registering the bundles list is done by defining an entry-point in the
-``setup.py``, pointing to a module with a variable ``BUNDLES`` containing
-the bundles list::
-
-    from setuptools import setup
-    setup(name='my.package',
-          entry_points="""
-          [ftw.inflator]
-          bundles = my.package
-          """,
-          )
+    </configure>
 
 
 Content creation
