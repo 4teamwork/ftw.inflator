@@ -2,7 +2,10 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:inflator="http://namespaces.zope.org/inflator"
     i18n_domain="ftw.inflator">
+
+    <include package="ftw.inflator" file="meta.zcml" />
 
     <genericsetup:registerProfile
         name="foo_creation"
@@ -10,6 +13,15 @@
         directory="profiles/foo_creation"
         description=""
         provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <inflator:bundle
+        title="ftw.inflator example bundle one"
+        description="an example bundle"
+        profiles="plonetheme.sunburst:default
+                  ftw.inflator.tests:foo_creation"
+        base="Products.CMFPlone.factory._DEFAULT_PROFILE"
+        standard="True"
         />
 
 </configure>
