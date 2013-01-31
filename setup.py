@@ -48,9 +48,15 @@ setup(name='ftw.inflator',
 
       install_requires=[
         'setuptools',
-        'Zope2',
+
+        'zope.annotation',
+        'zope.component',
+        'zope.configuration',
         'zope.dottedname',
         'zope.interface',
+        'zope.schema',
+        'ZODB3',
+        'Zope2',
 
         'Products.ATContentTypes',
         'Products.CMFCore',
