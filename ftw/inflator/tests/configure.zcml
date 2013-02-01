@@ -18,9 +18,9 @@
     <inflator:bundle
         title="ftw.inflator example bundle one"
         description="an example bundle"
-        profiles="plonetheme.sunburst:default
+        profiles="Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow
                   ftw.inflator.tests:foo_creation"
-        base="Products.CMFPlone.factory._DEFAULT_PROFILE"
+        base="Products.CMFPlone:plone"
         standard="True"
         />
 
