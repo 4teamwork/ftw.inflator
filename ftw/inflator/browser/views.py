@@ -1,5 +1,7 @@
 from Products.CMFPlone.browser.admin import AddPloneSite
+from Products.CMFPlone.browser.admin import Overview
 from Products.CMFPlone.factory import addPloneSite
+from ftw.inflator import _
 from ftw.inflator.bundle import get_bundles
 from ftw.inflator.customization import get_merged_customizations
 
@@ -77,3 +79,14 @@ class InflateView(AddPloneSite):
             raise ValueError('Too many bundles found with name %s' % name)
 
         return matches[0]
+
+
+class InflateOverview(Overview):
+
+    def get_bundle_title(self):
+        customization = get_merged_customizations()
+        return _(u'Create a new ${product} site',
+                 mapping={'product': customization.product})
+
+    def get_customization(self):
+        return get_merged_customizations()
