@@ -315,6 +315,9 @@ on a folder using the ``_placefulworkflow`` keyword:
           }
       ]
 
+You need to install the Generic Setup profile
+``Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow`` for using placeful workflow policies.
+
 
 Annotations
 ~~~~~~~~~~~
