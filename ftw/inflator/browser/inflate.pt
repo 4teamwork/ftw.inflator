@@ -137,7 +137,10 @@
         <label i18n:translate="">Bundle</label>
 
         <div class="formHelp" i18n:translate="">
-            Select a product bundle.
+            Select a
+            <tal:product i18n:name="product"
+                         tal:content="customization/product" />
+            bundle.
         </div>
 
         <div tal:repeat="bundle bundles"

@@ -4,6 +4,8 @@
     xmlns:inflator="http://namespaces.zope.org/inflator"
     i18n_domain="ftw.inflator">
 
+    <i18n:registerTranslations directory="locales" />
+
     <include file="meta.zcml" />
 
     <include package=".browser" />
