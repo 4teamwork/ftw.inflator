@@ -22,9 +22,7 @@
 <body tal:define="sites view/sites">
 
 <div id="box">
-    <img width="215" height="56"
-         tal:attributes="src customization/image"
-         />
+    <img tal:attributes="src customization/image" />
     <div id="text">
         <h1 i18n:translate=""
             i18n:domain="ftw.inflator">
