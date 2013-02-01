@@ -41,8 +41,9 @@ configured product which.
 The various bundles may install additional addons.
 
 
-Wizard custmizations
-~~~~~~~~~~~~~~~~~~~~
+Wizard customizations
+~~~~~~~~~~~~~~~~~~~~~
+
 
 The product name and logo can easily be customized through ZCML:
 
