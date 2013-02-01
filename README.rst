@@ -35,15 +35,14 @@ On the `manage_main` view of the Zope app there is an additional button
 for installing your product.
 It leads to the site setup wizard where an ID and a bundle can be selected.
 
-Unlike the plone default setup wizard this wizard does not allow to select
-the addons since the bundle system is meant to be used for a full already
-configured product which.
-The various bundles may install additional addons.
+The setup wizard allows to select one of a set of predefined bundles.
+See the bundle section for details on how to define bundles.
+
+.. image:: docs/inflate.png
 
 
 Wizard customizations
 ~~~~~~~~~~~~~~~~~~~~~
-
 
 The product name and logo can easily be customized through ZCML:
 
