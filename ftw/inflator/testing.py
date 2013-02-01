@@ -1,13 +1,14 @@
 from collective.transmogrifier import transmogrifier
+from ftw.inflator.patches import apply_patches
 from ftw.testing import ComponentRegistryLayer
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import SITE_OWNER_NAME, SITE_OWNER_PASSWORD
 from plone.app.testing import applyProfile
-from plone.testing import Layer
+from plone.app.testing.layers import PloneFixture
 from plone.testing import z2
-from plone.testing import zca
 from zope.configuration import xmlconfig
 
 
@@ -28,33 +29,49 @@ class MetaZCMLLayer(ComponentRegistryLayer):
 META_ZCML = MetaZCMLLayer()
 
 
-class ZopeLayer(Layer):
+class ZopeLayer(PloneFixture):
+    # we use the PloneFixture but do not create the plone site.
 
     defaultBases = (z2.STARTUP, )
 
-    def setUp(self):
-        zca.pushGlobalRegistry()
+    def setUpProducts(self, app):
+        super(ZopeLayer, self).setUpProducts(app)
 
-        self['configurationContext'] = zca.stackConfigurationContext(
-            self.get('configurationContext'))
+        configurationContext = self['configurationContext']
 
         # Plone < 4.3
         import Products.GenericSetup
         xmlconfig.file('meta.zcml', Products.GenericSetup,
-                       context=self['configurationContext'])
+                       context=configurationContext)
+
+        import Products.Five
+        xmlconfig.file('meta.zcml', Products.Five,
+                       context=configurationContext)
 
         import ftw.inflator
         xmlconfig.file('configure.zcml', ftw.inflator,
-                       context=self['configurationContext'])
+                       context=configurationContext)
+
+        apply_patches()
+
+    def setUpDefaultContent(self, app):
+        # do not create plone site
+        with z2.zopeApp() as app:
+            app['acl_users'].userFolderAddUser(
+                    SITE_OWNER_NAME,
+                    SITE_OWNER_PASSWORD,
+                    ['Manager'],
+                    []
+                )
 
     def tearDown(self):
-        zca.popGlobalRegistry()
-        del self['configurationContext']
+        super(ZopeLayer, self).tearDown()
         clear_transmogrifier_registry()
 
 
 ZOPE_LAYER = ZopeLayer()
-
+ZOPE_FUNCTIONAL_TESTING = z2.FunctionalTesting(bases=(ZOPE_LAYER, ),
+                                               name='ftw.inflator:ZOPE_FUNCTIONAL_TESTING')
 
 class InflatorLayer(PloneSandboxLayer):
 

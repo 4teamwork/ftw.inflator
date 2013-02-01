@@ -24,8 +24,8 @@
   - [X] implement bundle system with z3c registry
   - [X] document bundle system
 
-- setup wizard [4/9]
-  - [ ] add button to manage_main
+- setup wizard [5/9]
+  - [X] add button to manage_main
   - [ ] add button to plone index page
   - [ ] implement wizard view
   - [ ] implement inflator
