@@ -5,7 +5,15 @@
     i18n_domain="ftw.inflator">
 
     <browser:page
-        for="*"
+        for="OFS.interfaces.IApplication"
+        name="inflate"
+        class=".views.InflateView"
+        permission="zope2.ViewManagementScreens"
+        template="inflate.pt"
+        />
+
+    <browser:page
+        for="OFS.Folder.Folder"
         name="inflate"
         class=".views.InflateView"
         permission="zope2.ViewManagementScreens"
