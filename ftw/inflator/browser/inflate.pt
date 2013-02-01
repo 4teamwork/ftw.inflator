@@ -6,7 +6,8 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       i18n:domain="plone"
-      tal:define="customization view/get_customization">
+      tal:define="customization view/get_customization;
+                  bundles view/get_bundle_options">
 
   <head>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -57,6 +58,14 @@
 
       .bundle .discreet {
       padding-left: 1.5em;
+      }
+
+      .error {
+      margin-top: 1em;
+      background-color: #fdc;
+      padding: 0.5em 0.5em;
+      line-height: 1.25em;
+      border: 1px solid red;
       }
 
     </style>
@@ -132,8 +141,7 @@
       </div>
 
       <div class="field"
-           i18n:domain="ftw.inflator"
-           tal:define="bundles view/get_bundle_options">
+           i18n:domain="ftw.inflator">
         <label i18n:translate="">Bundle</label>
 
         <div class="formHelp" i18n:translate="">
@@ -158,12 +166,26 @@
         </div>
       </div>
 
-      <div class="formControls"
-           i18n:domain="ftw.inflate">
-        <input type="hidden" name="form.submitted:boolean" value="True" />
-        <input type="submit" name="submit" value="Install"
-               i18n:attributes="value;" />
-      </div>
+      <tal:HAS_NO_BUNDLES tal:condition="not:bundles">
+          <div class="error"
+               i18n:domain="ftw.inflator"
+               i18n:translate="">
+              There are no bundles defined.
+              Please consult the
+              <a href="https://github.com/4teamwork/ftw.inflator#defining-bundles"
+                 i18n:name="documentation"
+                 i18n:translate="">ftw.inflator documentation</a>.
+          </div>
+      </tal:HAS_NO_BUNDLES>
+
+      <tal:HAS_BUNDLES tal:condition="bundles">
+          <div class="formControls"
+               i18n:domain="ftw.inflate">
+              <input type="hidden" name="form.submitted:boolean" value="True" />
+              <input type="submit" name="submit" value="Install"
+                     i18n:attributes="value;" />
+          </div>
+      </tal:HAS_BUNDLES>
 
     </form>
   </body>

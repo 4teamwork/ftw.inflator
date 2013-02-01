@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-02-01 16:17+0000\n"
+"POT-Creation-Date: 2013-02-01 16:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 msgid "${product} is up and running."
 msgstr "${product} läuft."
 
-#: ./ftw/inflator/browser/inflate.pt:137
+#: ./ftw/inflator/browser/inflate.pt:145
 msgid "Bundle"
 msgstr "Bundle"
 
@@ -24,13 +24,17 @@ msgstr "Bundle"
 msgid "Create a new ${product} site"
 msgstr "${product} installieren"
 
-#: ./ftw/inflator/browser/inflate.pt:17
+#: ./ftw/inflator/browser/inflate.pt:18
 msgid "Install ${product}"
 msgstr "${product} installieren"
 
-#: ./ftw/inflator/browser/inflate.pt:141
+#: ./ftw/inflator/browser/inflate.pt:149
 msgid "Select a ${product} bundle."
 msgstr "Wählen Sie ein ${product} bundle aus."
+
+#: ./ftw/inflator/browser/inflate.pt:175
+msgid "There are no bundles defined. Please consult the ${documentation}."
+msgstr "Es konnten keine Bundle-Definitionen gefunden werden. Bitte konsultieren Sie die ${documentation}."
 
 #: ./ftw/inflator/browser/overview.pt:47
 msgid "View your ${product} site"
@@ -43,3 +47,7 @@ msgstr "Sie haben mehrere ${product} installationen:"
 #: ./ftw/inflator/browser/overview.pt:122
 msgid "Your ${product} site has not been added yet:"
 msgstr "Sie haben noch keine ${product} installation:"
+
+#: ./ftw/inflator/browser/inflate.pt:175
+msgid "ftw.inflator documentation"
+msgstr "ftw.inflator Dokumentation"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-02-01 16:17+0000\n"
+"POT-Creation-Date: 2013-02-01 16:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "${product} is up and running."
 msgstr ""
 
-#: ./ftw/inflator/browser/inflate.pt:137
+#: ./ftw/inflator/browser/inflate.pt:145
 msgid "Bundle"
 msgstr ""
 
@@ -29,12 +29,16 @@ msgstr ""
 msgid "Create a new ${product} site"
 msgstr ""
 
-#: ./ftw/inflator/browser/inflate.pt:17
+#: ./ftw/inflator/browser/inflate.pt:18
 msgid "Install ${product}"
 msgstr ""
 
-#: ./ftw/inflator/browser/inflate.pt:141
+#: ./ftw/inflator/browser/inflate.pt:149
 msgid "Select a ${product} bundle."
+msgstr ""
+
+#: ./ftw/inflator/browser/inflate.pt:175
+msgid "There are no bundles defined. Please consult the ${documentation}."
 msgstr ""
 
 #: ./ftw/inflator/browser/overview.pt:47
@@ -47,5 +51,9 @@ msgstr ""
 
 #: ./ftw/inflator/browser/overview.pt:122
 msgid "Your ${product} site has not been added yet:"
+msgstr ""
+
+#: ./ftw/inflator/browser/inflate.pt:175
+msgid "ftw.inflator documentation"
 msgstr ""
 
