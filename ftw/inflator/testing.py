@@ -38,6 +38,11 @@ class ZopeLayer(Layer):
         self['configurationContext'] = zca.stackConfigurationContext(
             self.get('configurationContext'))
 
+        # Plone < 4.3
+        import Products.GenericSetup
+        xmlconfig.file('meta.zcml', Products.GenericSetup,
+                       context=self['configurationContext'])
+
         import ftw.inflator
         xmlconfig.file('configure.zcml', ftw.inflator,
                        context=self['configurationContext'])
