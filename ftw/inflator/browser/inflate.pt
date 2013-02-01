@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="plone"
+      tal:define="customization view/get_customization">
+
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+    <title i18n:translate=""
+        i18n:domain="ftw.inflator">
+        Install
+        <tal:product i18n:name="product" tal:replace="customization/product"/>
+    </title>
+
+    <link rel="stylesheet" type="text/css"
+          href="/++resource++plone-admin-ui.css" />
+
+    <style type="text/css">
+      html {
+      background-image: -webkit-gradient(linear, 50% 0%, 50% 93, color-stop(0%, #ffffff), color-stop(95.699%, #f0f0f0), color-stop(97.849%, #ffffff), color-stop(98.925%, #aaaaaa), color-stop(98.925%, #ffffff), color-stop(100%, #ffffff));
+      background-image: -webkit-linear-gradient(#ffffff 0%,#f0f0f0 89px,#ffffff 91px,#aaaaaa 92px,#ffffff 92px,#ffffff 93px);
+      background-image: -moz-linear-gradient(#ffffff 0%,#f0f0f0 89px,#ffffff 91px,#aaaaaa 92px,#ffffff 92px,#ffffff 93px);
+      background-image: -o-linear-gradient(#ffffff 0%,#f0f0f0 89px,#ffffff 91px,#aaaaaa 92px,#ffffff 92px,#ffffff 93px);
+      background-image: -ms-linear-gradient(#ffffff 0%,#f0f0f0 89px,#ffffff 91px,#aaaaaa 92px,#ffffff 92px,#ffffff 93px);
+      background-image: linear-gradient(#ffffff 0%,#f0f0f0 89px,#ffffff 91px,#aaaaaa 92px,#ffffff 92px,#ffffff 93px);
+      background-repeat: no-repeat;
+      }
+
+      div.header {
+      position: absolute;
+      top: 0;
+      padding: 1em 0em;
+      }
+
+      div.header img {
+      margin: 0;
+      }
+
+      body {
+      padding: 70px;
+      }
+
+      .bundle {
+      padding-bottom: 1em;
+      }
+
+      .discreet {
+      color: #666;
+      font-size: 91.6667%;
+      font-weight: normal;
+      }
+
+      .bundle .discreet {
+      padding-left: 1.5em;
+      }
+
+    </style>
+
+    <script type="text/javascript">
+      function siteid_focus() {
+      siteid = document.getElementById('site_id')
+      siteid.focus()
+      }
+      window.onload = siteid_focus;
+    </script>
+
+  </head>
+  <body>
+    <div class="header">
+        <img tal:attributes="src customization/image" />
+    </div>
+
+    <h1 i18n:translate=""
+        i18n:domain="ftw.inflator">
+        Install
+        <tal:product i18n:name="product" tal:replace="customization/product"/>
+    </h1>
+
+    <form action="#"
+          method="post"
+          tal:attributes="action string:${context/absolute_url}/@@inflate">
+
+      <div class="field">
+        <label for="site_id" i18n:translate="">
+          Path identifier
+        </label>
+
+        <div class="formHelp" i18n:translate="">
+          The id of the site. This ends up as part of the URL.<br />
+          No special characters are allowed.
+        </div>
+
+        <input type="text" name="site_id" size="20" id="site_id"
+               tal:attributes="value view/get_site_id|nothing" />
+      </div>
+
+      <div class="field">
+          <label for="title" i18n:translate="label_title">Title</label>
+
+          <div class="formHelp" i18n:translate="">
+              A short title for the site. This will be shown in the title of the
+              browser window on each page.
+          </div>
+
+          <input type="text" name="title" size="30"
+                 tal:attributes="value customization/product;" />
+      </div>
+
+      <div class="field">
+        <label for="default_language" i18n:translate="">Language</label>
+
+        <div class="formHelp" i18n:translate="">
+          The main language of the site.
+        </div>
+
+      <select name="default_language"
+              tal:define="browser_language view/browser_language;
+                          languages python:view.languages(browser_language)">
+          <option value="en"
+                  tal:repeat="lang languages"
+                  tal:attributes="value python:lang[0];
+                                  selected python:lang[0]==browser_language"
+                  tal:content="python: lang[1]">
+              English
+          </option>
+      </select>
+      </div>
+
+      <div class="field"
+           i18n:domain="ftw.inflator"
+           tal:define="bundles view/get_bundle_options">
+        <label i18n:translate="">Bundle</label>
+
+        <div class="formHelp" i18n:translate="">
+            Select a product bundle.
+        </div>
+
+        <div tal:repeat="bundle bundles"
+             class="bundle">
+            <input name="bundle"
+                   type="radio"
+                   tal:attributes="value bundle/name;
+                                   id string:bundle-${bundle/index};
+                                   checked python:bundle['index'] == 0" />
+
+            <label tal:attributes="for string:bundle-${bundle/index}">
+                   <span tal:content="bundle/title" />
+                   <div class="discreet" tal:content="bundle/description" />
+            </label>
+        </div>
+      </div>
+
+      <div class="formControls"
+           i18n:domain="ftw.inflate">
+        <input type="hidden" name="form.submitted:boolean" value="True" />
+        <input type="submit" name="submit" value="Install"
+               i18n:attributes="value;" />
+      </div>
+
+    </form>
+  </body>
+</html>

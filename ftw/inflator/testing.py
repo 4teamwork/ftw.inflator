@@ -44,12 +44,20 @@ class ZopeLayer(PloneFixture):
         xmlconfig.file('meta.zcml', Products.GenericSetup,
                        context=configurationContext)
 
+        import Products.CMFPlacefulWorkflow
+        xmlconfig.file('configure.zcml', Products.CMFPlacefulWorkflow,
+                       context=configurationContext)
+
+        z2.installProduct(app, 'Products.CMFPlacefulWorkflow')
+
         import Products.Five
         xmlconfig.file('meta.zcml', Products.Five,
                        context=configurationContext)
 
         import ftw.inflator
         xmlconfig.file('configure.zcml', ftw.inflator,
+                       context=configurationContext)
+        xmlconfig.file('configure.zcml', ftw.inflator.tests,
                        context=configurationContext)
 
         apply_patches()

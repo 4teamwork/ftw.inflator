@@ -24,11 +24,11 @@
   - [X] implement bundle system with z3c registry
   - [X] document bundle system
 
-- setup wizard [5/9]
+- setup wizard [7/9]
   - [X] add button to manage_main
   - [ ] add button to plone index page
-  - [ ] implement wizard view
-  - [ ] implement inflator
+  - [X] implement wizard view
+  - [X] implement inflator
   - [X] add customization entry point for product title
   - [X] document customization entry point for product title
   - [X] add customization entry point for product logo

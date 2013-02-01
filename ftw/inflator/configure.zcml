@@ -6,6 +6,7 @@
 
     <include file="meta.zcml" />
 
+    <include package=".browser" />
     <include package=".creation" />
 
     <inflator:customize
