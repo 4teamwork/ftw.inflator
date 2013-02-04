@@ -1,3 +1,4 @@
+from Products.CMFCore.utils import getToolByName
 from ftw.inflator.testing import ZOPE_FUNCTIONAL_TESTING
 from plone.app.testing import SITE_OWNER_NAME, SITE_OWNER_PASSWORD
 from plone.testing.z2 import Browser
@@ -43,8 +44,13 @@ class TestInflateView(TestCase):
 
     def test_install_test_profile(self):
         self.browser.open('http://localhost/@@inflate')
+
+        self.browser.getControl(name='default_language').value = ['de']
         self.browser.getControl('Install').click()
         self.assertEqual(self.browser.url, 'http://localhost/platform')
 
         site = self.app.get('platform')
         self.assertTrue(site)
+
+        language_tool = getToolByName(site, 'portal_languages')
+        self.assertEqual(language_tool.getDefaultLanguage(), 'de')

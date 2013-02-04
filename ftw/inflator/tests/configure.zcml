@@ -18,7 +18,8 @@
     <inflator:bundle
         title="ftw.inflator example bundle one"
         description="an example bundle"
-        profiles="Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow
+        profiles="ftw.inflator:setup-language
+                  Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow
                   ftw.inflator.tests:foo_creation"
         base="Products.CMFPlone:plone"
         standard="True"

@@ -149,6 +149,39 @@ Full ZCML example:
     </configure>
 
 
+Setting the language
+~~~~~~~~~~~~~~~~~~~~
+
+When installing a Plone site with the default add-site view, the language
+is set in the ``Products.CMFPlone:plone-content``, which also creates example content.
+This makes it hard to not create example content but setup the language correctly.
+
+To solve this issue ``ftw.inflator`` provides a ``ftw.inflator:setup-language`` generic
+setup profile, meant to be used while setting up a bundle.
+You can add it to the list of bundle profiles.
+Using it as a dependency (in ``metadata.xml``) is not recommended, since it is not meant
+to be used on a existing plone site.
+
+Example usage in bundle definition:
+
+.. code:: xml
+
+    <configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:inflator="http://namespaces.zope.org/inflator"
+        i18n_domain="my.package">
+
+        <include package="ftw.inflator" file="meta.zcml" />
+
+        <inflator:bundle
+            title="ftw.inflator example bundle one"
+            profiles="ftw.inflator:setup-language
+                      my.policy:default"
+            />
+
+    </configure>
+
+
 Content creation
 ----------------
 

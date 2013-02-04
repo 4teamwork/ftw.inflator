@@ -1,5 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:inflator="http://namespaces.zope.org/inflator"
     i18n_domain="ftw.inflator">
@@ -10,6 +11,21 @@
 
     <include package=".browser" />
     <include package=".creation" />
+
+    <genericsetup:registerProfile
+        name="setup-language"
+        title="ftw.inflator:setup-language"
+        directory="profiles/setup-language"
+        description="Sets the language seletected in the inflate wizard."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:importStep
+        name="ftw.inflator.setuphandlers.inflator_setup_handlers"
+        title="ftw.inflator setup handlers"
+        description="ftw.inflator tasks such as setting up the language"
+        handler="ftw.inflator.setuphandlers.inflator_setup_handlers"
+        />
 
     <inflator:customize
         product="Plone"
