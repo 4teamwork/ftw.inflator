@@ -1,0 +1,2 @@
+Marker file for telling ftw.inflator to setup the language selected in the
+@@inflate view.
