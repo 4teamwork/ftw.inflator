@@ -147,7 +147,7 @@
                    title="Plone Community Home"
                    target="_new"
                    i18n:attributes="title label_plone_org_title;"
-                   tal:content="plone.org" />.
+                   tal:content="string:plone.org" />.
             </li>
         </ul>
     </div>
