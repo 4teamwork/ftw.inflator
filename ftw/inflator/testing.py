@@ -78,8 +78,10 @@ class ZopeLayer(PloneFixture):
 
 
 ZOPE_LAYER = ZopeLayer()
-ZOPE_FUNCTIONAL_TESTING = z2.FunctionalTesting(bases=(ZOPE_LAYER, ),
-                                               name='ftw.inflator:ZOPE_FUNCTIONAL_TESTING')
+ZOPE_FUNCTIONAL_TESTING = z2.FunctionalTesting(
+    bases=(ZOPE_LAYER, ),
+    name='ftw.inflator:ZOPE_FUNCTIONAL_TESTING')
+
 
 class InflatorLayer(PloneSandboxLayer):
 
