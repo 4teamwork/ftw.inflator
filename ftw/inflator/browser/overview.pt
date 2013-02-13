@@ -84,7 +84,7 @@
                                    tal:attributes="href site/absolute_url;
                                                    title site/Title;"
                                    tal:content="site/Title">
-                                    Site title
+                                    <!-- Site title -->
                                 </a>
                                 <span class="discreet"
                                       tal:content="string:(${site/getId})"/>
@@ -146,7 +146,8 @@
                 <a href="http://plone.org"
                    title="Plone Community Home"
                    target="_new"
-                   i18n:attributes="title label_plone_org_title;">plone.org</a>.
+                   i18n:attributes="title label_plone_org_title;"
+                   tal:content="plone.org" />.
             </li>
         </ul>
     </div>

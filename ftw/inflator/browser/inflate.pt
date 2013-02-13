@@ -134,9 +134,8 @@
                   tal:repeat="lang languages"
                   tal:attributes="value python:lang[0];
                                   selected python:lang[0]==browser_language"
-                  tal:content="python: lang[1]">
-              English
-          </option>
+                  tal:content="python: lang[1]"
+                  />
       </select>
       </div>
 
