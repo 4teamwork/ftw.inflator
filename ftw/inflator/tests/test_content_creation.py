@@ -19,6 +19,7 @@ class FooCreationLayer(PloneSandboxLayer):
         wftool.setChainForPortalTypes(['Folder'],
                                       'simple_publication_workflow')
 
+        applyProfile(portal, 'ftw.inflator:setup-language')
         applyProfile(portal, 'ftw.inflator.tests:foo_creation')
 
 
@@ -134,3 +135,7 @@ class TestContentCreation(TestCase):
         self.assertFalse(isinstance({}, PersistentList))
         self.assertTrue(isinstance(annotations.get('foo').get('bar'),
                                    PersistentList))
+
+    def test_intranet_translated_title(self):
+        intranet = self.portal.get('foo').get('intranet')
+        self.assertEqual(intranet.Title(), 'Intranet')

@@ -198,6 +198,7 @@ Content creation features
 
 - JSON based definition
 - support for tree structure
+- internationalization of strings
 - construct instances of any archetypes FTIs
 - add file- and image-fields
 - create topic criterions
@@ -265,6 +266,38 @@ Using the tree structure it is not necessary to repeat the path of the parent:
 Be sure that the root node has a `_path` and all nodes in a `_children` list
 have `_id` instead of `_path`.
 The path will then be automatically concatenated.
+
+
+Internationalization
+~~~~~~~~~~~~~~~~~~~~
+
+Using the `key:translate(domain)` syntax in keys, the respective string value is
+translated to the current default language of the Plone site.
+When creating content while installing a bundle with inflator, be sure to install
+the generic setup profile ``ftw.inflator:setup-language`` before creating the
+content.
+This will make sure the language is properly configured.
+
+Example:
+
+.. code:: json
+
+    [
+        {
+            "_path": "foo",
+            "_type": "Folder",
+            "title:translate(my.domain)": "Foo",
+            "_children": [
+
+                {
+                    "_id:translate(my.domain)": "bar",
+                    "_type": "Folder",
+                    "title": "Bar"
+                }
+
+            ]
+        }
+    ]
 
 
 

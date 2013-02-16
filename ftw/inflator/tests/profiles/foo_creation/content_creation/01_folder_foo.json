@@ -19,9 +19,9 @@
         "_children": [
 
             {
-                "_id": "intranet",
+                "_id:translate(ftw.inflator.tests)": "intranet-id",
                 "_type": "Folder",
-                "title": "Intranet",
+                "title:translate(ftw.inflator.tests)": "intranet-title",
                 "_placefulworkflow": ["intranet", "intranet"],
                 "_annotations": {
                     "foo": {

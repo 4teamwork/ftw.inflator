@@ -5,8 +5,10 @@
     xmlns:inflator="http://namespaces.zope.org/inflator"
     i18n_domain="ftw.inflator">
 
-    <include package="ftw.inflator" file="meta.zcml" />
+    <include package="zope.i18n" file="meta.zcml" />
+    <i18n:registerTranslations directory="locales" />
 
+    <include package="Products.GenericSetup" file="meta.zcml" />
     <genericsetup:registerProfile
         name="foo_creation"
         title="ftw.inflator.tests:foo_creation"
@@ -15,6 +17,7 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <include package="ftw.inflator" file="meta.zcml" />
     <inflator:bundle
         title="ftw.inflator example bundle one"
         description="an example bundle"

@@ -29,6 +29,18 @@ class MetaZCMLLayer(ComponentRegistryLayer):
 META_ZCML = MetaZCMLLayer()
 
 
+class ZCMLLayer(ComponentRegistryLayer):
+
+    def setUp(self):
+        super(ZCMLLayer, self).setUp()
+
+        import ftw.inflator.tests
+        self.load_zcml_file('configure.zcml', ftw.inflator.tests)
+
+
+ZCML = ZCMLLayer()
+
+
 class ZopeLayer(PloneFixture):
     # we use the PloneFixture but do not create the plone site.
 

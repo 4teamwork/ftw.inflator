@@ -5,6 +5,10 @@ Changelog
 1.1 (unreleased)
 ----------------
 
+- Support internationalization with `key:translate(domain)`
+  key syntax.
+  [jone]
+
 - Add support for nested tree structures.
   [jone]
 

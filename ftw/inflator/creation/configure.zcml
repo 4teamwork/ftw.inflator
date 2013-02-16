@@ -33,6 +33,11 @@
         />
 
     <utility
+        name="ftw.inflator.creation.translate"
+        component=".sections.translate.Translate"
+        />
+
+    <utility
         name="ftw.inflator.creation.resolvetree"
         component=".sections.resolvetree.ResolveTree"
         />
