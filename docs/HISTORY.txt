@@ -5,6 +5,11 @@ Changelog
 1.1 (unreleased)
 ----------------
 
+- Move site creation into bundle class, so that a site with a
+  bundle can be created without using the view.
+  This is useful for tests or automated setups.
+  [jone]
+
 - Support internationalization with `key:translate(domain)`
   key syntax.
   [jone]

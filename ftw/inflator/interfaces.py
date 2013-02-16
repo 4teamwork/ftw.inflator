@@ -9,6 +9,13 @@ from zope.schema import List
 from zope.schema import TextLine
 
 
+# these profiles will be installed automatically
+EXTENSION_PROFILES = (
+    'plonetheme.classic:default',
+    'plonetheme.sunburst:default',
+    )
+
+
 class IInflatorBundle(Interface):
     """Marker interface for inflator bundle utilties.
     """
@@ -16,6 +23,12 @@ class IInflatorBundle(Interface):
     def __init__(title, profiles, description=u'', base=_DEFAULT_PROFILE,
                  standard=False):
         """Stores the arguments as attributes.
+        """
+
+
+    def install(app, site_id, title=None, language='en',
+                extension_profiles=None):
+        """Installs a new plone site and returns it.
         """
 
     title = TextLine(
