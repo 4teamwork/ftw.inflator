@@ -33,6 +33,11 @@
         />
 
     <utility
+        name="ftw.inflator.creation.resolvetree"
+        component=".sections.resolvetree.ResolveTree"
+        />
+
+    <utility
         name="ftw.inflator.creation.fileinserter"
         component=".sections.files.FileInserter"
         />

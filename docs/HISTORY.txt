@@ -5,7 +5,8 @@ Changelog
 1.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Add support for nested tree structures.
+  [jone]
 
 
 1.0.1 (2013-02-13)

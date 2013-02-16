@@ -197,6 +197,7 @@ Content creation features
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - JSON based definition
+- support for tree structure
 - construct instances of any archetypes FTIs
 - add file- and image-fields
 - create topic criterions
@@ -234,6 +235,37 @@ Example creating a folder with title "Foo" at ``/Plone/foo``:
             "title": "Foo"
         }
     ]
+
+
+Tree structure example
+~~~~~~~~~~~~~~~~~~~~~~
+
+For nested structures it sometimes useful to define the JSON as tree.
+Using the tree structure it is not necessary to repeat the path of the parent:
+
+.. code:: json
+
+    [
+        {
+            "_path": "foo",
+            "_type": "Folder",
+            "title": "Foo",
+            "_children": [
+
+                {
+                    "_id": "bar",
+                    "_type": "Folder",
+                    "title": "Bar"
+                }
+
+            ]
+        }
+    ]
+
+Be sure that the root node has a `_path` and all nodes in a `_children` list
+have `_id` instead of `_path`.
+The path will then be automatically concatenated.
+
 
 
 Creating / setting properties

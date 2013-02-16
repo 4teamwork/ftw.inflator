@@ -14,18 +14,23 @@
         },
         "_interfaces": [
             "ftw.inflator.tests.interfaces.IFoo"
-        ]
-    },
+        ],
 
-    {
-        "_path": "foo/intranet",
-        "_type": "Folder",
-        "title": "Intranet",
-        "_placefulworkflow": ["intranet", "intranet"],
-        "_annotations": {
-            "foo": {
-                "bar": [1, 2, "three"],
-                "baz": true}}
+        "_children": [
+
+            {
+                "_id": "intranet",
+                "_type": "Folder",
+                "title": "Intranet",
+                "_placefulworkflow": ["intranet", "intranet"],
+                "_annotations": {
+                    "foo": {
+                        "bar": [1, 2, "three"],
+                        "baz": true}}
+            }
+
+        ]
+
     }
 
 ]
