@@ -158,11 +158,12 @@ Setting the language
 
 When installing a Plone site with the default add-site view, the language
 is set in the ``Products.CMFPlone:plone-content``, which also creates example content.
-This makes it hard to not create example content but setup the language correctly.
+This makes it hard to setup the language without creating the example content.
 
 To solve this issue ``ftw.inflator`` provides a ``ftw.inflator:setup-language`` generic
 setup profile, meant to be used while setting up a bundle.
-You can add it to the list of bundle profiles.
+You can add it to the list of bundle profiles. This sets the language of the Plone site
+to the one selected in the setup wizard.
 Using it as a dependency (in ``metadata.xml``) is not recommended, since it is not meant
 to be used on a existing plone site.
 
@@ -191,7 +192,8 @@ Content creation
 
 The content creation allows to define a ``content_creation`` folder in any
 generic setup profile folder, containing JSON-files with definitions of the
-content to create.
+content to create. The content is created when the generic setup profile is
+applied.
 
 Content creation features
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -305,7 +307,7 @@ Creating / setting properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Properties can easily be created.
-If there already is a property (because the object already did exist), it is
+If there already is a property (because the object exists already), it is
 updated.
 
 Example:
