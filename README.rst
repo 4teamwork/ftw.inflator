@@ -192,7 +192,8 @@ Content creation
 
 The content creation allows to define a ``content_creation`` folder in any
 generic setup profile folder, containing JSON-files with definitions of the
-content to create.
+content to create. The content is created when the generic setup profile is
+applied.
 
 Content creation features
 ~~~~~~~~~~~~~~~~~~~~~~~~~
