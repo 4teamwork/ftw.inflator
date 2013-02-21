@@ -307,7 +307,7 @@ Creating / setting properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Properties can easily be created.
-If there already is a property (because the object already did exist), it is
+If there already is a property (because the object exists already), it is
 updated.
 
 Example:
