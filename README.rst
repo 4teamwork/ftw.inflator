@@ -229,7 +229,7 @@ JSON syntax list of hashes (dicts).
 Each hash creates a new object.
 Example creating a folder with title "Foo" at ``/Plone/foo``:
 
-.. code:: json
+.. code:: javascript
 
     [
         {
@@ -246,7 +246,7 @@ Tree structure example
 For nested structures it sometimes useful to define the JSON as tree.
 Using the tree structure it is not necessary to repeat the path of the parent:
 
-.. code:: json
+.. code:: javascript
 
     [
         {
@@ -282,7 +282,7 @@ This will make sure the language is properly configured.
 
 Example:
 
-.. code:: json
+.. code:: javascript
 
     [
         {
@@ -312,7 +312,7 @@ updated.
 
 Example:
 
-.. code:: json
+.. code:: javascript
 
     [
         {
@@ -332,7 +332,7 @@ Configuring constrain types
 For configuring the addable types on a folder, use the ``_constrain_types``
 keyword:
 
-.. code:: json
+.. code:: javascript
 
     [
         {
@@ -354,7 +354,7 @@ Provide additional interfaces
 By passing a list of dottednames as ``_interfaces`` those interfaces will
 automatically be provided (``alsoProvides``) by the created object:
 
-.. code:: json
+.. code:: javascript
 
     [
         {
@@ -378,7 +378,7 @@ Files and images
 File- and image-fields can easily be filled by using the ``:file`` postfix,
 providing a relative path to the file to "upload":
 
-.. code:: json
+.. code:: javascript
 
     [
         {
@@ -396,7 +396,7 @@ Workflow transitions
 With the ``_transitions`` keyword it is possible to execute a workflow
 transition upon content creation:
 
-.. code:: json
+.. code:: javascript
 
     [
         {
@@ -413,7 +413,7 @@ Placeful workflow policies
 When placeful workflow policies are installed it is possible to activate them
 on a folder using the ``_placefulworkflow`` keyword:
 
-.. code:: json
+.. code:: javascript
 
       [
           {
@@ -437,7 +437,7 @@ Values of type ``dict`` are converted to ``PersistentMapping``, those of
 type ``list`` are converted to ``PersistentList`` recursively.
 Example:
 
-.. code:: json
+.. code:: javascript
 
       [
           {
