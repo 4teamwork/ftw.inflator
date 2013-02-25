@@ -25,7 +25,6 @@ class IInflatorBundle(Interface):
         """Stores the arguments as attributes.
         """
 
-
     def install(app, site_id, title=None, language='en',
                 extension_profiles=None):
         """Installs a new plone site and returns it.
