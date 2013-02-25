@@ -17,6 +17,14 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <genericsetup:registerProfile
+        name="dx_creation"
+        title="ftw.inflator.tests:dx_creation"
+        directory="profiles/dx_creation"
+        description=""
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
     <include package="ftw.inflator" file="meta.zcml" />
     <inflator:bundle
         title="ftw.inflator example bundle one"

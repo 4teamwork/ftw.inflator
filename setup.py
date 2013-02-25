@@ -5,18 +5,22 @@ from setuptools import setup, find_packages
 version = '1.1.dev0'
 
 
-tests_require = [
+extras_require = {
+    'dexterity': [
+        'plone.app.dexterity',
+        'transmogrify.dexterity',
+        ]}
+
+
+extras_require['tests'] = tests_require = [
     'unittest2',
     'ftw.testing',
     'zope.configuration',
     'plone.testing',
     'plone.app.testing',
     'Products.CMFPlacefulWorkflow',
-    ]
+    ] + reduce(list.__add__, extras_require.values())
 
-extras_require = {
-    'tests': tests_require,
-    }
 
 setup(name='ftw.inflator',
       version=version,

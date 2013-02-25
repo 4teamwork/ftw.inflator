@@ -3,11 +3,16 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:transmogrifier="http://namespaces.plone.org/transmogrifier"
     xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="ftw.inflator">
 
     <include package="collective.transmogrifier" file="meta.zcml" />
     <include package="collective.transmogrifier" />
     <include package="plone.app.transmogrifier" />
+
+    <include
+        zcml:condition="installed transmogrify.dexterity"
+        package="transmogrify.dexterity" />
 
 
     <genericsetup:importStep
@@ -46,6 +51,11 @@
     <utility
         name="ftw.inflator.creation.fileinserter"
         component=".sections.files.FileInserter"
+        />
+
+    <utility
+        name="ftw.inflator.creation.dxschemaupdater"
+        component=".sections.schemaupdater.DxUpdateSection"
         />
 
     <utility
