@@ -54,6 +54,11 @@
         />
 
     <utility
+        name="ftw.inflator.creation.resolveuuid"
+        component=".sections.resolveuuid.ResolveUUID"
+        />
+
+    <utility
         name="ftw.inflator.creation.dxschemaupdater"
         component=".sections.schemaupdater.DxUpdateSection"
         />

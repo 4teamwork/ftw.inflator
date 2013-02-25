@@ -3,7 +3,10 @@
     {
         "_path": "foo/files",
         "_type": "Folder",
-        "title": "Files"
+        "title": "Files",
+        "_annotations": {
+            "relative-parent-uuid": "resolveUUID::..",
+            "absolute-parent-uuid": "resolveUUID::/foo"}
     },
 
     {

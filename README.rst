@@ -449,6 +449,32 @@ Example:
       ]
 
 
+UUID Lookup
+~~~~~~~~~~~
+
+Sometimes you need to have the UUID of another object.
+Since the UUID is generated randomly when creating the object you cannot
+predict it in a .json-file.
+The UUID lookup helps you here:
+
+.. code:: javascript
+
+
+      [
+          {
+              "_path": "foo",
+              "_type": "MyType",
+              "title": "Foo",
+              "relations": "resolveUUID::/bar"
+          }
+      ]
+
+Using the ``resolveUUID::path`` syntax the value is replaced with UUID of the
+object which has the ``path``.
+You can prefix the value with a `/` for making it relative to the site root,
+otherwise it is relative to the item it is defined in ("Foo" in the above
+example).
+
 
 Links
 -----

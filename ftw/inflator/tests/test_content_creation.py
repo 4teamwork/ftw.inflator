@@ -7,6 +7,7 @@ from persistent.mapping import PersistentMapping
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import applyProfile
+from plone.uuid.interfaces import IUUID
 from unittest2 import TestCase
 from zope.annotation.interfaces import IAnnotations
 
@@ -139,3 +140,13 @@ class TestContentCreation(TestCase):
     def test_intranet_translated_title(self):
         intranet = self.portal.get('foo').get('intranet')
         self.assertEqual(intranet.Title(), 'Intranet')
+
+    def test_resolve_uuid(self):
+        foo = self.portal.get('foo')
+        foo_uuid = IUUID(foo)
+
+        files = foo.get('files')
+        annotations = IAnnotations(files)
+
+        self.assertEquals(annotations.get('relative-parent-uuid'), foo_uuid)
+        self.assertEquals(annotations.get('absolute-parent-uuid'), foo_uuid)

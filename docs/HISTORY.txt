@@ -5,6 +5,9 @@ Changelog
 1.1 (unreleased)
 ----------------
 
+- Implement UUID lookup.
+  [jone]
+
 - Add Dexterity support to content creation. Use the `ftw.inflator[dexterity]` extras.
   [jone]
 
