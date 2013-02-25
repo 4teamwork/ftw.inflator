@@ -15,6 +15,7 @@
         title="ftw.inflator: content creation"
         description="Generic content creation from content_creation/*.json files."
         handler="ftw.inflator.creation.setuphandler.content_creation">
+        <depends name="typeinfo"/>
         <depends name="workflow"/>
     </genericsetup:importStep>
 
