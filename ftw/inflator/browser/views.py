@@ -32,17 +32,17 @@ class InflateView(AddPloneSite):
         return self.index()
 
     def get_site_id(self):
-        id = self.request.get('site_id', 'platform')
-        while id in self.context.objectIds():
+        id_ = self.request.get('site_id', 'platform')
+        while id_ in self.context.objectIds():
             try:
-                num = int(id[-1])
+                num = int(id_[-1])
             except ValueError:
-                id = id + str(1)
+                id_ = id_ + str(1)
             else:
                 num += 1
-                id = id[:-1] + str(num)
+                id_ = id_[:-1] + str(num)
 
-        return id
+        return id_
 
     def get_customization(self):
         return get_merged_customizations()

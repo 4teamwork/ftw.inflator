@@ -13,8 +13,10 @@ from zope.configuration import xmlconfig
 
 
 def clear_transmogrifier_registry():
+    # pylint: disable=W0212
     transmogrifier.configuration_registry._config_info = {}
     transmogrifier.configuration_registry._config_ids = []
+    # pylint: enable=W0212
 
 
 class MetaZCMLLayer(ComponentRegistryLayer):
