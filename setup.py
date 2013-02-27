@@ -65,6 +65,7 @@ setup(name='ftw.inflator',
         'Zope2',
 
         'plone.i18n',
+        'plone.uuid',
         'Products.ATContentTypes',
         'Products.CMFCore',
         'Products.CMFPlone',
