@@ -48,7 +48,7 @@ It leads to the site setup wizard where an ID and a bundle can be selected.
 The setup wizard allows to select one of a set of predefined bundles.
 See the bundle section for details on how to define bundles.
 
-.. image:: docs/inflate.png
+.. image:: https://raw.github.com/4teamwork/ftw.inflator/master/docs/inflate.png
 
 
 Wizard customizations
