@@ -1,3 +1,4 @@
+ # -*- coding: utf-8 -*-
 from collective.transmogrifier.interfaces import ISection
 from collective.transmogrifier.interfaces import ISectionBlueprint
 from ftw.inflator.creation.sections import translate
@@ -37,6 +38,26 @@ class TestTranslateBlueprint(MockTestCase):
             {'_id': u'intranet',
              'title': u'Intranet',
              'foo': [{'title': u'Intranet'}]}]
+
+        source = translate.Translate(transmogrifier, '', None, input)
+        output = list(source)
+
+        self.maxDiff = None
+        self.assertEqual(output, expected)
+
+    def test_translates_encoding(self):
+        transmogrifier = self.stub()
+        self.expect(transmogrifier.context.Language()).result('en')
+        self.replay()
+
+        # UTF-8 encoded value for the title.
+        input = [
+            {'_id:translate(ftw.inflator.tests)': 'burger',
+             'title:translate(ftw.inflator.tests)': 'B\xc3\xbcrger'}]
+
+        expected = [
+            {'_id': u'burger',
+             'title': u'Bürger'}]
 
         source = translate.Translate(transmogrifier, '', None, input)
         output = list(source)
