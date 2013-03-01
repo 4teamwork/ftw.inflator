@@ -1,4 +1,3 @@
- # -*- coding: utf-8 -*-
 from collective.transmogrifier.interfaces import ISection
 from collective.transmogrifier.interfaces import ISectionBlueprint
 from ftw.inflator.creation.sections import translate
@@ -57,7 +56,7 @@ class TestTranslateBlueprint(MockTestCase):
 
         expected = [
             {'_id': u'burger',
-             'title': u'Bürger'}]
+             'title': u'B\xfcrger'}]
 
         source = translate.Translate(transmogrifier, '', None, input)
         output = list(source)
