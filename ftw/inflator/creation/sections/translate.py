@@ -35,6 +35,8 @@ class Translate(object):
             return data
 
         for key, value in data.items():
+            if isinstance(value, str):
+                value = value.decode('utf-8')
             value = self.translate_recursive(value)
 
             match = TRANSLATABLE_KEY_EXPR.match(key)
