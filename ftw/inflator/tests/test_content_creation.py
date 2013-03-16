@@ -150,3 +150,14 @@ class TestContentCreation(TestCase):
 
         self.assertEquals(annotations.get('relative-parent-uuid'), foo_uuid)
         self.assertEquals(annotations.get('absolute-parent-uuid'), foo_uuid)
+
+    def test_image_object(self):
+        chuck = self.portal.get('foo').get('files').get('chuck-norris')
+        self.assertTrue(chuck,
+                        'Where is chuck norris? Image object not'
+                        ' found under /foo/files/chuck-norris')
+
+        self.assertEquals('Chuck Norris', chuck.Title())
+        self.assertTrue(chuck.getSize(), 'The chuck norris image seems to be missing')
+        self.assertEquals(chuck.getWidth(), 319)
+        self.assertEquals(chuck.getHeight(), 397)
