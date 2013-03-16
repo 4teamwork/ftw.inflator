@@ -161,3 +161,10 @@ class TestContentCreation(TestCase):
         self.assertTrue(chuck.getSize(), 'The chuck norris image seems to be missing')
         self.assertEquals(chuck.getWidth(), 319)
         self.assertEquals(chuck.getHeight(), 397)
+
+    def test_news_item_object(self):
+        item = self.portal.get('foo').get('in-other-news')
+        self.assertTrue(item, 'Missing News Item at foo/in-other-news')
+
+        self.assertEquals('In other news', item.Title(), 'Wrong News Item title')
+        self.assertTrue(item.getText(), 'News item has no text')
