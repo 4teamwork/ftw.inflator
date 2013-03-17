@@ -1,0 +1,12 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+    <!--
+         This ZCML is empty by intention.
+         Including this package automatically applies the
+         patches of the __init__ since it has to be imported.
+
+         This allows us to make sure that the patches are applied after
+         the underlying Products.CMFPlone patches.
+    -->
+
+</configure>

@@ -5,6 +5,10 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Make sure that the Products.CMFPlone ZMI patches are applied
+  prior to our patches.
+  [jone]
+
 - Support UTF-8 encoded strings as value for :translate().
   [treinhard]
 
