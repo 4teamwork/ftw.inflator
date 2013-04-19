@@ -491,3 +491,7 @@ Copyright
 This package is copyright by `4teamwork <http://www.4teamwork.ch/>`_.
 
 ``ftw.inflator`` is licensed under GNU General Public License, version 2.
+
+.. image:: https://cruel-carlota.pagodabox.com/b9502640a40a471ed35a9e575f0e3c3b
+   :alt: githalytics.com
+   :target: http://githalytics.com/4teamwork/ftw.inflator
