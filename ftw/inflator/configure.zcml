@@ -5,12 +5,17 @@
     xmlns:inflator="http://namespaces.zope.org/inflator"
     i18n_domain="ftw.inflator">
 
+    <!-- it is important to include Products.CMFPlone, so that the
+         ZCMI patches are applied in the right order. -->
+    <include package="Products.CMFPlone" />
+
     <i18n:registerTranslations directory="locales" />
 
     <include file="meta.zcml" />
 
     <include package=".browser" />
     <include package=".creation" />
+    <include package=".patches" />
 
     <genericsetup:registerProfile
         name="setup-language"
