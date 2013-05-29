@@ -43,3 +43,5 @@ def patch_ZMI_button():
     main._v_cooked = main.cook()
 
     return True
+
+apply_patches()
