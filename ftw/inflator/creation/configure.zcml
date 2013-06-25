@@ -39,6 +39,16 @@
         />
 
     <utility
+        name="ftw.inflator.multilingual.setup_languages"
+        component=".sections.multilingual.SetupLanguages"
+        />
+
+    <utility
+        name="ftw.inflator.multilingual.link_content"
+        component=".sections.multilingual.LinkMultilingualContent"
+        />
+
+    <utility
         name="ftw.inflator.creation.translate"
         component=".sections.translate.Translate"
         />

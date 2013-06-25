@@ -9,6 +9,13 @@ extras_require = {
     'dexterity': [
         'plone.app.dexterity',
         'transmogrify.dexterity',
+        ],
+
+    'multilingual': [
+        'plone.app.multilingual',
+        # XXX plone.app.multilingual does not run without
+        # plone.multilingualbehavior ??
+        'plone.multilingualbehavior',
         ]}
 
 

@@ -1,0 +1,15 @@
+[
+    {"_multilingual": [
+        "en",
+        "de"],
+
+     "_contents": [
+
+         {
+           "_id:translate(ftw.inflator.tests)": "accessibility",
+           "_type": "Document",
+           "title:translate(ftw.inflator.tests)": "Accessibility"
+         }
+
+     ]}
+]
