@@ -60,8 +60,7 @@ class JSONSource(object):
             if not os.path.isfile(path):
                 continue
 
-            __traceback_info__ = path
-            __traceback_info__
+            locals()['__traceback_info__'] = path
 
             with open(path) as file_:
                 data = json.loads(file_.read())
