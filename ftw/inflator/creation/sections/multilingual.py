@@ -3,6 +3,7 @@ from collective.transmogrifier.interfaces import ISection
 from collective.transmogrifier.interfaces import ISectionBlueprint
 from copy import deepcopy
 from ftw.inflator.creation.sections.base import ObjectUpdater
+from ftw.inflator.exceptions import MultilingalInflateException
 from plone.uuid.interfaces import IUUIDGenerator
 from zope.component import getUtility
 from zope.interface import classProvides
@@ -42,8 +43,9 @@ class SetupLanguages(object):
 
     def setup_languages(self, item):
         if not HAS_MULTILINGUAL:
-            # XXX improve exception
-            raise Exception('plone.app.multilingual is not installed')
+            raise MultilingalInflateException(
+                "Defined multilingal content but plone.app.multilingual is "
+                "not installed")
 
         self._validate_languages(item['_multilingual'])
 
@@ -63,10 +65,13 @@ class SetupLanguages(object):
     def _validate_languages(self, languages):
         portal_languages = getToolByName(self.context, 'portal_languages')
 
+        msg = ("Language '{}' is not configured. Configured languages "
+               "are: '{}'. Check if portal_languages.xml is available and "
+               "if it contains all required languages.")
         for lang_code in languages:
             if lang_code not in portal_languages.supported_langs:
-                # XXX inprove exception
-                raise Exception('lang not configured %s' % lang_code)
+                raise MultilingalInflateException(msg.format(lang_code,
+                                ','.join(portal_languages.supported_langs)))
 
     def _recursive_create_translation_group(self, items):
         uuid_generator = getUtility(IUUIDGenerator)

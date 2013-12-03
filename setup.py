@@ -13,9 +13,7 @@ extras_require = {
 
     'multilingual': [
         'plone.app.multilingual',
-        # XXX plone.app.multilingual does not run without
-        # plone.multilingualbehavior ??
-        'plone.multilingualbehavior',
+        'plone.multilingualbehavior',  # both are required
         ]}
 
 
