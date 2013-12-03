@@ -37,7 +37,6 @@ class SetupLanguages(object):
             if '_multilingual' in item:
                 for subitem in self.setup_languages(item):
                     yield subitem
-
             else:
                 yield item
 
@@ -83,7 +82,7 @@ class SetupLanguages(object):
         for item in items:
             item['_multilingual_settings']['language'] = lang_code
             if '_children' in item:
-                self._recursive_set_language(item['_children'])
+                self._recursive_set_language(item['_children'], lang_code)
 
 
 class LinkMultilingualContent(ObjectUpdater):
@@ -97,4 +96,4 @@ class LinkMultilingualContent(ObjectUpdater):
         IMutableTG(obj).set(data['translation_group_uuid'])
 
         manager = ITranslationManager(obj)
-        manager.add_translation(data['language'])
+        manager.register_translation(data['language'], obj)
