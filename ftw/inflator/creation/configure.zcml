@@ -22,6 +22,7 @@
         handler="ftw.inflator.creation.setuphandler.content_creation">
         <depends name="typeinfo"/>
         <depends name="workflow"/>
+        <depends name="languagetool"/>
     </genericsetup:importStep>
 
     <transmogrifier:registerConfig
