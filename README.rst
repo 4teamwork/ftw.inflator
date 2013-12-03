@@ -316,6 +316,51 @@ Example:
     ]
 
 
+Multilingual support
+~~~~~~~~~~~~~~~~~~~~
+
+When `plone.app.multilingual <https://pypi.python.org/pypi/plone.app.multilingual>`_ is installed
+translated content can be generated for each language.
+The translation is based on the `key:translate(domain)` syntax (see above) and can be translated
+in regular .po-files.
+
+Example:
+
+.. code:: javascript
+
+    [
+        {"_multilingual": [
+            "en",
+            "de"],
+
+         "_contents": [
+
+             {
+               "_id": "foo",
+               "_type": "Folder",
+               "title:translate(my.domain)": "Foo"
+             }
+
+         ]}
+    ]
+
+Make sure that each language in the "_multilingual" list is configured as supported
+language in the `portal_languages.xml`:
+
+.. code:: xml
+
+    <?xml version="1.0"?>
+    <object>
+        <default_language value="en"/>
+        <supported_langs>
+            <element value="en"/>
+            <element value="de"/>
+        </supported_langs>
+    </object>
+
+The default setup of `plone.app.multilingual` is used for setting up the language folders.
+
+
 
 Creating / setting properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -488,6 +533,7 @@ object which has the ``path``.
 You can prefix the value with a `/` for making it relative to the site root,
 otherwise it is relative to the item it is defined in ("Foo" in the above
 example).
+
 
 
 Links

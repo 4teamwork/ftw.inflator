@@ -1,3 +1,4 @@
+from Testing.ZopeTestCase.utils import setupCoreSessions
 from collective.transmogrifier import transmogrifier
 from ftw.inflator.patches import apply_patches
 from ftw.testing import ComponentRegistryLayer
@@ -114,6 +115,16 @@ class InflatorLayer(PloneSandboxLayer):
 
         xmlconfig.file('configure.zcml', ftw.inflator.tests,
                        context=configurationContext)
+
+        import plone.app.multilingual
+        xmlconfig.file('configure.zcml', plone.app.multilingual,
+                       context=configurationContext)
+
+        import plone.app.dexterity
+        xmlconfig.file('configure.zcml', plone.app.dexterity,
+                       context=configurationContext)
+
+        setupCoreSessions(app)
 
     def setUpPloneSite(self, portal):
         applyProfile(

@@ -20,24 +20,27 @@ class Translate(object):
 
     def __iter__(self):
         for item in self.previous:
-            item = self.translate_recursive(item)
+            item = self.translate_recursive(item, self.target_language)
             yield item
 
-    def translate_recursive(self, data):
+    def translate_recursive(self, data, language):
         if isinstance(data, list):
             new_data = []
             for item in data:
-                new_data.append(self.translate_recursive(item))
+                new_data.append(self.translate_recursive(item, language))
 
             return data
 
         if not isinstance(data, dict):
             return data
 
+        if '_multilingual_settings' in data:
+            language = data['_multilingual_settings']['language']
+
         for key, value in data.items():
             if isinstance(value, str):
                 value = value.decode('utf-8')
-            value = self.translate_recursive(value)
+            value = self.translate_recursive(value, language)
 
             match = TRANSLATABLE_KEY_EXPR.match(key)
             if not match:
@@ -46,7 +49,7 @@ class Translate(object):
 
             new_key, domain = match.groups()
             data[new_key] = translate(value, domain=domain,
-                                      target_language=self.target_language)
+                                      target_language=language)
             del data[key]
 
         return data

@@ -17,9 +17,14 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ftw.inflator.tests\n"
 
+msgid "Accessibility"
+msgstr "Accessibility"
+
+msgid "accessibility"
+msgstr "accessibility"
+
 msgid "intranet-id"
 msgstr "intranet"
 
 msgid "intranet-title"
 msgstr "Intranet"
-

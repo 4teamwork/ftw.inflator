@@ -1,0 +1,23 @@
+[
+  {
+    "_multilingual": ["en", "de"],
+
+    "_contents": [
+
+      {
+        "_id:translate(ftw.inflator.tests)": "accessibility",
+        "_type": "Folder",
+        "title:translate(ftw.inflator.tests)": "Accessibility",
+        "_transitions": "publish",
+        "_children": [
+          {
+            "_id:translate(ftw.inflator.tests)": "accessibility",
+            "_type": "Document",
+            "title:translate(ftw.inflator.tests)": "Accessibility",
+            "_transitions": "publish"
+          }
+        ]
+      }
+    ]
+  }
+]

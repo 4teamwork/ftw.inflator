@@ -27,10 +27,11 @@ msgstr ""
 "Domain: ftw.inflator.tests\n"
 EOF
 
-for msgid in $(grep -r ":translate(ftw.inflator.tests)" ../profiles | sed -e 's/.*: "\([^"]*\)",$/\1/g'); do
+for msgid in $(grep -r ":translate(ftw.inflator.tests)" ../profiles | sed -e 's/.*: "\([^"]*\)",*$/\1/g'); do
     echo "" >> ftw.inflator.tests.pot
     echo "msgid \"$msgid\"" >> ftw.inflator.tests.pot
     echo "msgstr \"\"" >> ftw.inflator.tests.pot
 done
 
 i18ndude sync --pot ftw.inflator.tests.pot en/LC_MESSAGES/ftw.inflator.tests.po
+i18ndude sync --pot ftw.inflator.tests.pot de/LC_MESSAGES/ftw.inflator.tests.po
