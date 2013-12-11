@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-1.1.3 (unreleased)
-------------------
+1.2 (2013-12-11)
+----------------
 
 - Implement plone.app.multilingual support for content creation.
   [jone]
