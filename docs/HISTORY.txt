@@ -5,7 +5,9 @@ Changelog
 1.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix unresolved generic setup import step dependencies.
+  "languagetool" is only available when plone.app.multilingual is installed.
+  [jone]
 
 
 1.2 (2013-12-11)

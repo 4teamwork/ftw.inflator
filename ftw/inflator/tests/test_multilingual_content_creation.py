@@ -50,3 +50,13 @@ class TestMultilingualContentCreation(TestCase):
         self.assertEquals(german_content,
                           manager.get_translation('de'),
                           'English and German content should be linked.')
+
+    def test_content_creation_import_step_depends_on_languagetool(self):
+        # The content creation import step needs to depend on the "languagetool"
+        # import step when plone.app.multilingual is installed.
+        # The "languagetool" import step is not Plone core.
+
+        setup_tool = getToolByName(self.portal, 'portal_setup')
+        import_step_name = 'ftw.inflator.content_creation'
+        metadata = setup_tool.getImportStepMetadata(import_step_name)
+        self.assertIn('languagetool', metadata.get('dependencies', ()))
