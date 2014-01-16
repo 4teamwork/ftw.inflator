@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.2.1 (unreleased)
+1.2.1 (2014-01-16)
 ------------------
 
 - Fix unresolved generic setup import step dependencies.
