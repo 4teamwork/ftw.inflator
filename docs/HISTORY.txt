@@ -5,7 +5,8 @@ Changelog
 1.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Implement support for setting properties on multiligual root folders.
+  [deif]
 
 
 1.2.1 (2014-01-16)
