@@ -45,7 +45,7 @@ setup(name='ftw.inflator',
         ],
 
       keywords='ftw inflator',
-      author='4teamwork GmbH',
+      author='4teamwork AG',
       author_email='mailto:info@4teamwork.ch',
       url='https://github.com/4teamwork/ftw.inflator',
 
