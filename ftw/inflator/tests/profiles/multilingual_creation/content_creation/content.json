@@ -1,9 +1,10 @@
 [
   {
     "_multilingual": ["en", "de"],
-
+    "_properties": {
+      "layout": ["string", "there"]
+    },
     "_contents": [
-
       {
         "_id:translate(ftw.inflator.tests)": "accessibility",
         "_type": "Folder",

@@ -59,8 +59,11 @@ class SetupLanguages(object):
             lang_contents = deepcopy(contents)
             self._recursive_set_language(lang_contents, lang_code)
 
-            yield {'_path': lang_code,
-                   '_children': lang_contents}
+            subitem = {'_path': lang_code,
+                       '_children': lang_contents}
+            if '_properties' in item:
+                subitem['_properties'] = deepcopy(item['_properties'])
+            yield subitem
 
     def _validate_languages(self, languages):
         portal_languages = getToolByName(self.context, 'portal_languages')

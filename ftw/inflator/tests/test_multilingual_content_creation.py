@@ -23,6 +23,10 @@ class TestMultilingualContentCreation(TestCase):
         applyProfile(self.portal, 'plone.app.multilingual:default')
         applyProfile(self.portal, 'ftw.inflator.tests:multilingual_creation')
 
+    def test_language_folder_properties_are_set(self):
+        obj = self.portal.get('de')
+        self.assertEqual(obj.getProperty('layout'), 'there')
+
     def test_sets_up_language_folders(self):
         self.assertTrue(self.portal.get('en'),
                         'Expected English language folder at /en')
