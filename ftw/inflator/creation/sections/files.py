@@ -1,4 +1,5 @@
 from OFS.Image import File
+from Products.CMFCore.utils import getToolByName
 from collective.transmogrifier.interfaces import ISection
 from collective.transmogrifier.interfaces import ISectionBlueprint
 from zope.interface import classProvides
@@ -17,6 +18,7 @@ class FileInserter(object):
         self.options = options
         self.previous = previous
         self.context = transmogrifier.context
+        self.ttool = getToolByName(self.context, 'portal_types')
 
     def __iter__(self):
         for item in self.previous:
@@ -31,6 +33,22 @@ class FileInserter(object):
         directory = self.transmogrifier.get('jsonsource').get('directory')
         path = os.path.join(directory, item.get(key))
         filename = os.path.basename(path)
-        file_ = open(path, 'rb')
+        try:
+            file_ = open(path, 'rb')
+            fti = self.ttool.get(item.get('_type'))
+            if fti and fti.__class__.__name__ == 'DexterityFTI':
+                self.add_dx_file(item, fieldname, filename, file_)
+            else:
+                self.add_at_file(item, fieldname, filename, file_)
+        finally:
+            file_.close()
+
+    def add_dx_file(self, item, fieldname, filename, file_):
+        item[fieldname] = file_.read()
+        # surprisingly this does not have a filename prefix/postfix so it
+        # might only work with one file.
+        item['_filename'] = filename
+
+    def add_at_file(self, item, fieldname, filename, file_):
         item[fieldname] = File(filename, filename, file_)
         setattr(item[fieldname], 'filename', filename)
