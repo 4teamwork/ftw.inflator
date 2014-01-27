@@ -1,23 +1,22 @@
 [
+  {
+    "_path": "my-dx",
+    "_type": "ExampleDxType",
+    "title": "My Dexterity Object",
 
-    {
-        "_path": "my-dx",
-        "_type": "ExampleDxType",
-        "title": "My Dexterity Object",
+    "_properties": {
+      "füü": ["string", "bär"]
+    },
 
-        "_properties": {
-            "füü": ["string", "bär"]
-        },
+    "_interfaces": ["ftw.inflator.tests.interfaces.IFoo"],
 
-        "_interfaces": [
-            "ftw.inflator.tests.interfaces.IFoo"
-        ],
+    "_annotations": {
+      "foo": {
+        "bar": [1, 2, "three"],
+        "baz": true
+      }
+    },
 
-        "_annotations": {
-            "foo": {
-                "bar": [1, 2, "three"],
-                "baz": true}}
-
-    }
-
+    "image:file": "files/chuck-norris.jpg"
+  }
 ]
