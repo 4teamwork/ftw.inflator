@@ -273,6 +273,11 @@ Using the tree structure it is not necessary to repeat the path of the parent:
                     "_id": "bar",
                     "_type": "Folder",
                     "title": "Bar"
+                },
+                {
+                    "_path": "bar/qux",
+                    "_type": "Folder",
+                    "title": "Bar"
                 }
 
             ]
@@ -280,8 +285,7 @@ Using the tree structure it is not necessary to repeat the path of the parent:
     ]
 
 Be sure that the root node has a `_path` and all nodes in a `_children` list
-have `_id` instead of `_path`.
-The path will then be automatically concatenated.
+have either an `_id` or a `_path`. The `_path` of a child node is considered to be relative to the parent node. The paths will then be automatically concatenated.
 
 
 Internationalization

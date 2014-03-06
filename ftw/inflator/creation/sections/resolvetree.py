@@ -25,9 +25,15 @@ class ResolveTree(object):
         yield item
 
         for child in children:
+            child_path = None
+            if '_id' in child:
+                child_path = child.pop('_id')
+            elif '_path' in child:
+                child_path = child.pop('_path').strip('/')
+
+            assert child_path, 'child _id or _path must be specified'
             child['_path'] = '/'.join((item['_path'].rstrip('/'),
-                                       child['_id']))
-            del child['_id']
+                                       child_path))
 
             for node in self._resolve(child):
                 yield node

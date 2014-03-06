@@ -18,6 +18,12 @@
             "_transitions": "publish"
           }
         ]
+      },
+      {
+        "_path:translate(ftw.inflator.tests)": "accessibility/folderwithpath",
+        "_type": "Folder",
+        "_transitions": "publish",
+        "title:translate(ftw.inflator.tests)": "Folder"
       }
     ]
   }

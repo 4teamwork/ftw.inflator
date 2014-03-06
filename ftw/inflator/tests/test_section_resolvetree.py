@@ -16,25 +16,32 @@ class TestResolveTreeBlueprint(TestCase):
         verifyClass(ISection, klass)
 
         self.assertTrue(ISectionBlueprint.providedBy(klass),
-                        'Class %s does not provide ISectionBlueprint.' % (
-                str(klass)))
+                        'Class %s does not provide ISectionBlueprint.' %
+                        str(klass))
         verifyObject(ISectionBlueprint, klass)
 
     def test_resolves_tree_structure(self):
-        input = [
-            {'_path': 'foo',
-             '_children': [
-
-                    {'_id': 'bar',
-                     'title': 'Bar',
-                     '_children': [
-                            {'_id': 'baz'}]}]}]
+        input = [{
+            '_path': 'foo',
+            '_children': [{
+                '_id': 'bar',
+                'title': 'Bar',
+                '_children': [{
+                    '_id': 'baz'}]
+            }, {
+                '_path': '/qux/there',
+                'title': 'Something'
+            }]
+        }]
 
         expected = [
             {'_path': 'foo'},
             {'_path': 'foo/bar',
              'title': 'Bar'},
-            {'_path': 'foo/bar/baz'}]
+            {'_path': 'foo/bar/baz'},
+            {'_path': 'foo/qux/there',
+             'title': 'Something'}
+        ]
 
         source = resolvetree.ResolveTree(None, '', None, input)
         output = list(source)
