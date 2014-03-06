@@ -23,6 +23,15 @@ msgstr ""
 msgid "intranet-title"
 msgstr ""
 
+msgid "folderwithpath"
+msgstr ""
+
+msgid "accessibility/folderwithpath"
+msgstr ""
+
+msgid "Folder"
+msgstr ""
+
 msgid "accessibility"
 msgstr ""
 

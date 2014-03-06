@@ -27,6 +27,21 @@ class TestMultilingualContentCreation(TestCase):
         obj = self.portal.get('de')
         self.assertEqual(obj.getProperty('layout'), 'there')
 
+    def test_content_creation_from_flat_translated_json(self):
+        parent = self.portal.get('en').get('accessibility')
+        folder = parent.get('folderwithpath')
+
+        self.assertIsNotNone(folder,
+                            'Missing en/accessibility/folderwithpath')
+        self.assertEquals('Folder', folder.Title())
+
+        parent = self.portal.get('de').get('barrierefreiheit')
+        folder = parent.get('ordnermitpfad')
+
+        self.assertIsNotNone(folder,
+                             'Missing de/barrierefreiheit/ordnermitpfad')
+        self.assertEquals('Ordner', folder.Title())
+
     def test_sets_up_language_folders(self):
         self.assertIsNotNone(self.portal.get('en'),
                         'Expected English language folder at /en')

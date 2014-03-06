@@ -20,11 +20,21 @@ msgstr ""
 msgid "Accessibility"
 msgstr "Accessibility"
 
+msgid "Folder"
+msgstr "Folder"
+
 msgid "accessibility"
 msgstr "accessibility"
+
+msgid "accessibility/folderwithpath"
+msgstr "accessibility/folderwithpath"
+
+msgid "folderwithpath"
+msgstr "folderwithpath"
 
 msgid "intranet-id"
 msgstr "intranet"
 
 msgid "intranet-title"
 msgstr "Intranet"
+
