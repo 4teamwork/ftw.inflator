@@ -28,27 +28,29 @@ class TestMultilingualContentCreation(TestCase):
         self.assertEqual(obj.getProperty('layout'), 'there')
 
     def test_sets_up_language_folders(self):
-        self.assertTrue(self.portal.get('en'),
+        self.assertIsNotNone(self.portal.get('en'),
                         'Expected English language folder at /en')
 
-        self.assertTrue(self.portal.get('de'),
+        self.assertIsNotNone(self.portal.get('de'),
                         'Expected German language folder at /de')
 
     def test_content_is_translated_into_respective_language(self):
         english_content = self.portal.get('en').get('accessibility')
-        self.assertTrue(english_content, 'Missing page /en/accessibility')
+        self.assertIsNotNone(english_content, 'Missing page /en/accessibility')
         self.assertEquals('Accessibility', english_content.Title())
 
         german_content = self.portal.get('de').get('barrierefreiheit')
-        self.assertTrue(german_content, 'Missing page /de/barrierefreiheit')
+        self.assertIsNotNone(german_content,
+                            'Missing page /de/barrierefreiheit')
         self.assertEquals('Barrierefreiheit', german_content.Title())
 
     def test_multilingual_content_is_linked(self):
         english_content = self.portal.get('en').get('accessibility')
-        self.assertTrue(english_content, 'Missing page /en/accessibility')
+        self.assertIsNotNone(english_content, 'Missing page /en/accessibility')
 
         german_content = self.portal.get('de').get('barrierefreiheit')
-        self.assertTrue(german_content, 'Missing page /de/barrierefreiheit')
+        self.assertIsNotNone(german_content,
+                             'Missing page /de/barrierefreiheit')
 
         manager = ITranslationManager(english_content)
         self.assertEquals(german_content,
@@ -56,8 +58,8 @@ class TestMultilingualContentCreation(TestCase):
                           'English and German content should be linked.')
 
     def test_content_creation_import_step_depends_on_languagetool(self):
-        # The content creation import step needs to depend on the "languagetool"
-        # import step when plone.app.multilingual is installed.
+        # The content creation import step needs to depend on the
+        # "languagetool" import step when plone.app.multilingual is installed.
         # The "languagetool" import step is not Plone core.
 
         setup_tool = getToolByName(self.portal, 'portal_setup')
