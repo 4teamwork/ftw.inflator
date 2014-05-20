@@ -101,4 +101,9 @@
         component=".sections.placefulworkflow.PlacefulworkflowUpdater"
         />
 
+    <utility
+        name="ftw.inflator.creation.block_local_roles"
+        component=".sections.local_roles.BlockLocalRoleInheritance"
+        />
+
 </configure>

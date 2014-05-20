@@ -27,6 +27,8 @@
             ]
         },
 
+        "_block-local-roles": true,
+
         "_children": [
 
             {
