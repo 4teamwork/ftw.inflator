@@ -224,7 +224,7 @@ Content creation features
 - set constraint types
 - set per-object provided interfaces
 - reindexing the catalog
-- define local roles with ``collective.blueprint.jsonmigrator.ac_local_roles``
+- define and block local roles
 
 Structure
 ~~~~~~~~~
@@ -543,6 +543,8 @@ example).
 Local roles example
 ~~~~~~~~~~~~~~~~~~~
 
+You can configure local roles and block local as following:
+
 .. code:: javascript
 
 
@@ -555,7 +557,8 @@ Local roles example
                   "admin": [
                       "Owner"
                   ]
-              }
+              },
+              "_block-local-roles": true
           }
       ]
 

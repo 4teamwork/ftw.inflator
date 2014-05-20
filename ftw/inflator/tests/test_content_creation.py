@@ -175,3 +175,10 @@ class TestContentCreation(TestCase):
         self.assertEqual(("Owner", "Contributor", "Editor",),
                          roles.get("admin"))
         self.assertEqual(("Editor",), roles.get("hans"))
+
+    def test_block_local_roles(self):
+        obj = self.portal.get('foo')
+        self.assertTrue(obj.__ac_local_roles_block__)
+
+        intranet = obj.get('intranet')
+        self.assertFalse(hasattr(intranet, '__ac_local_roles_block__'))
