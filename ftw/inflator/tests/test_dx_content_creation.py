@@ -86,3 +86,10 @@ class TestDXContentCreation(TestCase):
         self.assertFalse(isinstance({}, PersistentList))
         self.assertTrue(isinstance(annotations.get('foo').get('bar'),
                                    PersistentList))
+
+    def test_local_roles_are_created(self):
+        obj = self.portal.get('my-dx')
+        roles = dict(obj.get_local_roles())
+        self.assertEqual(("Owner", "Contributor", "Editor",),
+                         roles.get("admin"))
+        self.assertEqual(("Editor",), roles.get("hans"))

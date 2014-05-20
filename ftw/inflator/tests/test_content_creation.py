@@ -168,3 +168,10 @@ class TestContentCreation(TestCase):
 
         self.assertEquals('In other news', item.Title(), 'Wrong News Item title')
         self.assertTrue(item.getText(), 'News item has no text')
+
+    def test_local_roles_are_created(self):
+        obj = self.portal.get('foo')
+        roles = dict(obj.get_local_roles())
+        self.assertEqual(("Owner", "Contributor", "Editor",),
+                         roles.get("admin"))
+        self.assertEqual(("Editor",), roles.get("hans"))

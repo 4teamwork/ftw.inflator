@@ -224,6 +224,7 @@ Content creation features
 - set constraint types
 - set per-object provided interfaces
 - reindexing the catalog
+- define local roles with ``collective.blueprint.jsonmigrator.ac_local_roles``
 
 Structure
 ~~~~~~~~~
@@ -538,6 +539,27 @@ You can prefix the value with a `/` for making it relative to the site root,
 otherwise it is relative to the item it is defined in ("Foo" in the above
 example).
 
+
+Local roles example
+~~~~~~~~~~~~~~~~~~~
+
+.. code:: javascript
+
+
+      [
+          {
+              "_path": "foo",
+              "_type": "MyType",
+              "title": "Foo",
+              "_ac_local_roles": {
+                  "admin": [
+                      "Owner"
+                  ]
+              }
+          }
+      ]
+
+For details, see: https://github.com/collective/collective.blueprint.jsonmigrator
 
 
 Links

@@ -16,6 +16,17 @@
             "ftw.inflator.tests.interfaces.IFoo"
         ],
 
+        "_ac_local_roles": {
+            "admin": [
+                "Owner",
+                "Contributor",
+                "Editor"
+            ],
+            "hans": [
+                "Editor"
+            ]
+        },
+
         "_children": [
 
             {

@@ -5,7 +5,8 @@ Changelog
 1.3.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add support for local-role definitions.
+  [phgross, deif]
 
 
 1.3.2 (2014-03-10)
