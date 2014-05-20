@@ -17,6 +17,19 @@
       }
     },
 
+    "_ac_local_roles": {
+        "admin": [
+            "Owner",
+            "Contributor",
+            "Editor"
+        ],
+        "hans": [
+            "Editor"
+        ]
+    },
+
     "image:file": "files/chuck-norris.jpg"
+
+
   }
 ]
