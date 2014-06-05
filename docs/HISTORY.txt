@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-1.3.3 (unreleased)
-------------------
+1.4 (2014-06-05)
+----------------
 
 - Add local-role definitions and blocking local roles.
   [phgross, deif]
