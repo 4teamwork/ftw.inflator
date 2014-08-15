@@ -79,6 +79,8 @@ setup(name='ftw.inflator',
         'plone.app.transmogrifier',
         'collective.transmogrifier',
         'collective.blueprint.jsonmigrator',
+
+        'ftw.profilehook',
         ],
 
       tests_require=tests_require,
