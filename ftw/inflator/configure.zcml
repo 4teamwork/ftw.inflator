@@ -3,11 +3,13 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:inflator="http://namespaces.zope.org/inflator"
+    xmlns:profilehook="http://namespaces.zope.org/profilehook"
     i18n_domain="ftw.inflator">
 
     <!-- it is important to include Products.CMFPlone, so that the
          ZCMI patches are applied in the right order. -->
     <include package="Products.CMFPlone" />
+    <include package="ftw.profilehook" />
 
     <i18n:registerTranslations directory="locales" />
 
@@ -25,11 +27,9 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-    <genericsetup:importStep
-        name="ftw.inflator.setuphandlers.inflator_setup_handlers"
-        title="ftw.inflator setup handlers"
-        description="ftw.inflator tasks such as setting up the language"
-        handler="ftw.inflator.setuphandlers.inflator_setup_handlers"
+    <profilehook:hook
+        profile="ftw.inflator:setup-language"
+        handler=".hooks.setup_language"
         />
 
     <inflator:customize

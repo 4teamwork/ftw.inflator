@@ -59,10 +59,3 @@ def setup_language(portal):
     normalizer = queryUtility(IURLNormalizer, name=target_language)
     if normalizer is None:
         normalizer = queryUtility(IURLNormalizer, name=base_language)
-
-
-def inflator_setup_handlers(context):
-    site = context.getSite()
-
-    if context.readDataFile('inflator-setup-language.txt') is not None:
-        setup_language(site)
