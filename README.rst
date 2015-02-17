@@ -32,6 +32,18 @@ Installation
         ftw.inflator
 
 
+Dexterity support
+~~~~~~~~~~~~~~~~~
+
+For beeing able to create dexterity objects (Content Creation), install the `dexterity` extras:
+
+.. code:: ini
+
+    [instance]
+    eggs +=
+        ftw.inflator [dexterity]
+
+
 Compatibility
 -------------
 
