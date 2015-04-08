@@ -8,6 +8,9 @@ Changelog
 - Use ftw.profilehook instead of custom import steps (setuphandlers).
   [jone]
 
+- Add section to resolve objects by their path.
+  [deiferni]
+
 
 1.4 (2014-06-05)
 ----------------

@@ -541,12 +541,36 @@ The UUID lookup helps you here:
               "_path": "foo",
               "_type": "MyType",
               "title": "Foo",
-              "relations": "resolveUUID::/bar"
+              "relations": "resolveUUID::bar"
           }
       ]
 
 Using the ``resolveUUID::path`` syntax the value is replaced with UUID of the
 object which has the ``path``.
+You can prefix the value with a `/` for making it relative to the site root,
+otherwise it is relative to the item it is defined in ("Foo" in the above
+example).
+
+
+Path Lookup
+~~~~~~~~~~~
+
+Sometimes you need to resolve an already created object by its path.
+The resolve-path section helps you here:
+
+.. code:: javascript
+
+
+      [
+          {
+              "_path": "foo",
+              "_type": "MyType",
+              "title": "Foo",
+              "relations": "resolvePath::bar"
+          }
+      ]
+
+Using the ``resolvePath::path`` syntax the value is replaced with the resolved object.
 You can prefix the value with a `/` for making it relative to the site root,
 otherwise it is relative to the item it is defined in ("Foo" in the above
 example).
