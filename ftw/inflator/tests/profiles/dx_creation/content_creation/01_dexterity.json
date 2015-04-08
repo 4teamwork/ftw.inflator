@@ -1,5 +1,9 @@
 [
   {
+    "_path": "target",
+    "_type": "ExampleDxType",
+    "title": "relation target"
+  }, {
     "_path": "my-dx",
     "_type": "ExampleDxType",
     "title": "My Dexterity Object",
@@ -28,8 +32,7 @@
         ]
     },
 
-    "image:file": "files/chuck-norris.jpg"
-
-
+    "image:file": "files/chuck-norris.jpg",
+    "relation":  "resolvePath::/target"
   }
 ]

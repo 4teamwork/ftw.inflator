@@ -106,4 +106,9 @@
         component=".sections.local_roles.BlockLocalRoleInheritance"
         />
 
+    <utility
+        name="ftw.inflator.creation.resolvepath"
+        component=".sections.resolvepath.ResolvePath"
+        />
+
 </configure>
