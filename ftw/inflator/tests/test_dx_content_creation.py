@@ -93,3 +93,8 @@ class TestDXContentCreation(TestCase):
         self.assertEqual(("Owner", "Contributor", "Editor",),
                          roles.get("admin"))
         self.assertEqual(("Editor",), roles.get("hans"))
+
+    def test_paths_are_resolved(self):
+        obj = self.portal.get('my-dx')
+        target = self.portal.get('target')
+        self.assertEqual(obj.relation, target)
