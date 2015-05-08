@@ -604,9 +604,9 @@ For details, see: https://github.com/collective/collective.blueprint.jsonmigrato
 Links
 -----
 
-- Main github project repository: https://github.com/4teamwork/ftw.inflator
-- Issue tracker: https://github.com/4teamwork/ftw.inflator/issues
-- Package on pypi: http://pypi.python.org/pypi/ftw.inflator
+- Github: https://github.com/4teamwork/ftw.inflator
+- Issues: https://github.com/4teamwork/ftw.inflator/issues
+- Pypi: http://pypi.python.org/pypi/ftw.inflator
 - Continuous integration: https://jenkins.4teamwork.ch/search?q=ftw.inflator
 
 
