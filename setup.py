@@ -14,16 +14,24 @@ extras_require = {
     'multilingual': [
         'plone.app.multilingual',
         'plone.multilingualbehavior',  # both are required
+        ],
+
+    'export': [
+        'ftw.jsondump',
+        'ftw.zipexport',
         ]}
 
 
 extras_require['tests'] = tests_require = [
-    'unittest2',
-    'ftw.testing',
-    'zope.configuration',
-    'plone.testing',
-    'plone.app.testing',
     'Products.CMFPlacefulWorkflow',
+    'ftw.builder',
+    'ftw.testbrowser',
+    'ftw.testing',
+    'path.py',
+    'plone.app.testing',
+    'plone.testing',
+    'unittest2',
+    'zope.configuration',
     ] + reduce(list.__add__, extras_require.values())
 
 

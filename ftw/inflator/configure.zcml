@@ -4,6 +4,7 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:inflator="http://namespaces.zope.org/inflator"
     xmlns:profilehook="http://namespaces.zope.org/profilehook"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="ftw.inflator">
 
     <!-- it is important to include Products.CMFPlone, so that the
@@ -13,11 +14,13 @@
 
     <i18n:registerTranslations directory="locales" />
 
+    <include file="features.zcml" />
     <include file="meta.zcml" />
 
     <include package=".browser" />
     <include package=".creation" />
     <include package=".patches" />
+    <include package=".export" zcml:condition="have inflator:export" />
 
     <genericsetup:registerProfile
         name="setup-language"
