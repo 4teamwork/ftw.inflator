@@ -33,6 +33,8 @@
     },
 
     "image:file": "files/chuck-norris.jpg",
-    "relation":  "resolvePath::/target"
+    "relation": "resolvePath::/target",
+    "date": "2015-01-01",
+    "datetime": "2015-01-01 15:00:59"
   }
 ]

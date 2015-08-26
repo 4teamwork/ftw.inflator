@@ -2,6 +2,7 @@ from plone.directives.form import Schema
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.namedfile.field import NamedImage
 from z3c.relationfield.schema import RelationChoice
+from zope import schema
 from zope.interface import Interface
 
 
@@ -19,3 +20,13 @@ class IExampleDxType(Schema):
         title=u'Relation',
         source=ObjPathSourceBinder(),
         )
+
+    date = schema.Date(
+        title=u'Date',
+        required=False,
+    )
+
+    datetime = schema.Datetime(
+        title=u'Datetime',
+        required=False,
+    )
