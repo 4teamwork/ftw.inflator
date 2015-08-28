@@ -1,15 +1,19 @@
-from Testing.ZopeTestCase.utils import setupCoreSessions
 from collective.transmogrifier import transmogrifier
+from ftw.builder.testing import BUILDER_LAYER
+from ftw.builder.testing import functional_session_factory
+from ftw.builder.testing import set_builder_session_factory
 from ftw.inflator.patches import apply_patches
 from ftw.testing import ComponentRegistryLayer
+from ftw.testing.layer import COMPONENT_REGISTRY_ISOLATION
+from ftw.testing.layer import TEMP_DIRECTORY
+from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
-from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import SITE_OWNER_NAME, SITE_OWNER_PASSWORD
-from plone.app.testing import applyProfile
 from plone.app.testing.layers import PloneFixture
 from plone.testing import z2
+from Testing.ZopeTestCase.utils import setupCoreSessions
 from zope.configuration import xmlconfig
 
 
@@ -100,7 +104,9 @@ ZOPE_FUNCTIONAL_TESTING = z2.FunctionalTesting(
 
 class InflatorLayer(PloneSandboxLayer):
 
-    defaultBases = (PLONE_FIXTURE, )
+    defaultBases = (COMPONENT_REGISTRY_ISOLATION,
+                    BUILDER_LAYER,
+                    TEMP_DIRECTORY)
 
     def setUpZope(self, app, configurationContext):
         import Products.CMFPlacefulWorkflow
@@ -124,9 +130,18 @@ class InflatorLayer(PloneSandboxLayer):
         xmlconfig.file('configure.zcml', plone.app.dexterity,
                        context=configurationContext)
 
+        import ftw.jsondump
+        xmlconfig.file('configure.zcml', ftw.jsondump,
+                       context=configurationContext)
+
+        import ftw.zipexport
+        xmlconfig.file('configure.zcml', ftw.zipexport,
+                       context=configurationContext)
+
         setupCoreSessions(app)
 
     def setUpPloneSite(self, portal):
+        applyProfile(portal, 'ftw.inflator.export:default')
         applyProfile(
             portal, 'Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow')
 
@@ -139,4 +154,6 @@ INFLATOR_FIXTURE = InflatorLayer()
 INFLATOR_INTEGRATION_TESTING = IntegrationTesting(
     bases=(INFLATOR_FIXTURE, ), name="ftw.inflator:Integration")
 INFLATOR_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(INFLATOR_FIXTURE, ), name="ftw.inflator:Functional")
+    bases=(INFLATOR_FIXTURE,
+           set_builder_session_factory(functional_session_factory)),
+    name="ftw.inflator:Functional")

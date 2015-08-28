@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:meta="http://namespaces.zope.org/meta"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="ftw.inflator">
+
+    <configure zcml:condition="installed ftw.jsondump">
+        <configure zcml:condition="installed ftw.zipexport">
+            <meta:provides feature="inflator:export" />
+        </configure>
+    </configure>
+
+</configure>

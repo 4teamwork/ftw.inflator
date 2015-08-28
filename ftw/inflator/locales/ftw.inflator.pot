@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-02-01 16:26+0000\n"
+"POT-Creation-Date: 2015-05-28 13:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,20 +12,17 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: ftw.inflator\n"
 
-#: ./ftw/inflator/browser/overview.pt:31
+#: ./ftw/inflator/browser/overview.pt:29
 msgid "${product} is up and running."
 msgstr ""
 
-#: ./ftw/inflator/browser/inflate.pt:145
+#: ./ftw/inflator/browser/inflate.pt:144
 msgid "Bundle"
 msgstr ""
 
-#: ./ftw/inflator/browser/views.py:88
+#: ./ftw/inflator/browser/views.py:66
 msgid "Create a new ${product} site"
 msgstr ""
 
@@ -33,27 +30,43 @@ msgstr ""
 msgid "Install ${product}"
 msgstr ""
 
-#: ./ftw/inflator/browser/inflate.pt:149
+#: ./ftw/inflator/browser/inflate.pt:148
 msgid "Select a ${product} bundle."
 msgstr ""
 
-#: ./ftw/inflator/browser/inflate.pt:175
+#: ./ftw/inflator/browser/inflate.pt:174
 msgid "There are no bundles defined. Please consult the ${documentation}."
 msgstr ""
 
-#: ./ftw/inflator/browser/overview.pt:47
+#: ./ftw/inflator/browser/overview.pt:45
 msgid "View your ${product} site"
 msgstr ""
 
-#: ./ftw/inflator/browser/overview.pt:76
+#: ./ftw/inflator/browser/overview.pt:74
 msgid "You have multiple ${product} sites:"
 msgstr ""
 
-#: ./ftw/inflator/browser/overview.pt:122
+#: ./ftw/inflator/browser/overview.pt:120
 msgid "Your ${product} site has not been added yet:"
 msgstr ""
 
-#: ./ftw/inflator/browser/inflate.pt:175
+#. Default: "Export"
+#: ./ftw/inflator/export/templates/export-form.pt:34
+msgid "button_export"
+msgstr ""
+
+#. Default: "${warning} This exports the complete site structure. For big sites, this may take some time. The export produces a ZIP-file containing JSON-files, which can be used for inflator's content creation later."
+#: ./ftw/inflator/export/templates/export-form.pt:27
+msgid "export_warning"
+msgstr ""
+
+#: ./ftw/inflator/browser/inflate.pt:174
 msgid "ftw.inflator documentation"
 msgstr ""
+
+#. Default: "Warning:"
+#: ./ftw/inflator/export/templates/export-form.pt:27
+msgid "warning"
+msgstr ""
+
 

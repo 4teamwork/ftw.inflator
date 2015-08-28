@@ -1,0 +1,24 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="ftw.inflator">
+
+    <genericsetup:registerProfile
+        name="default"
+        title="ftw.inflator.export"
+        directory="profiles/default"
+        description="Export the site structure."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <browser:page
+        name="inflator-export"
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        class=".views.InflatorExport"
+        permission="cmf.ManagePortal"
+        template="templates/export-form.pt"
+        />
+
+</configure>

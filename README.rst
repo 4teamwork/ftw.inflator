@@ -18,6 +18,7 @@ Features
 - A generic setup site creation import step which can be used in the bundles
   for creating initial content. It can be used without using the setup wizard
   and bundle system.
+- Export of content for creating a content creation profile.
 
 
 Installation
@@ -599,6 +600,18 @@ You can configure local roles and block local as following:
       ]
 
 For details, see: https://github.com/collective/collective.blueprint.jsonmigrator
+
+
+Export
+------
+
+The ``ftw.inflator.export:default`` profile adds an entry to the Plone control panel,
+allowing to export the current content as ZIP with JSON-files.
+The ``content_creation`` folder in the ZIP can be placed in a Generic Setup profile,
+which will then create the content when installed.
+
+The export may be incomplete, especially for types with additional features, such as
+storing data in the annotations.
 
 
 Links
