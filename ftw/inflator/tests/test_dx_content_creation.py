@@ -1,6 +1,7 @@
+import datetime
 from Products.CMFCore.utils import getToolByName
 from ftw.inflator.testing import INFLATOR_FIXTURE
-from ftw.inflator.tests.interfaces import IFoo
+from ftw.inflator.tests.interfaces import IFoo, IExampleDxType
 from persistent.list import PersistentList
 from persistent.mapping import PersistentMapping
 from plone.app.testing import IntegrationTesting
@@ -98,3 +99,17 @@ class TestDXContentCreation(TestCase):
         obj = self.portal.get('my-dx')
         target = self.portal.get('target')
         self.assertEqual(obj.relation, target)
+
+    def test_date(self):
+        obj = self.portal.get('my-dx')
+        self.assertEqual(
+            datetime.date(2015, 1, 1),
+            IExampleDxType(obj).date
+        )
+
+    def test_datetime(self):
+        obj = self.portal.get('my-dx')
+        self.assertEqual(
+            datetime.datetime(2015, 1, 1, 15, 0, 59),
+            IExampleDxType(obj).datetime
+        )
