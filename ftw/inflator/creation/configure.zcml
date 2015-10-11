@@ -34,6 +34,13 @@
         configuration="content_creation.cfg"
         />
 
+    <transmogrifier:registerConfig
+        name="ftw.inflator.creation.single_item_content_creation"
+        title="ftw.inflator: single item content creation"
+        description=""
+        configuration="single_item_content_creation.cfg"
+        />
+
 
     <!-- transmogrifier sections -->
     <utility
