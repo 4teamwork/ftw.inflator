@@ -42,6 +42,11 @@
         />
 
     <utility
+        name="ftw.inflator.creation.singleitemsource"
+        component=".sections.singleitemsource.SingleItemSource"
+        />
+
+    <utility
         name="ftw.inflator.multilingual.setup_languages"
         component=".sections.multilingual.SetupLanguages"
         />
