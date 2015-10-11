@@ -601,6 +601,23 @@ You can configure local roles and block local as following:
 For details, see: https://github.com/collective/collective.blueprint.jsonmigrator
 
 
+Import single items
+~~~~~~~~~~~~~~~~~~~
+
+The inflator's transmogrifier config can be used in code for importing
+single items by using the ``single_item_content_creation`` configuration:
+
+.. code:: python
+
+    item = {'_path': 'foo',
+            '_type': 'Folder',
+            'title': 'Foo'}
+
+    mogrifier = Transmogrifier(portal)
+    mogrifier(u'ftw.inflator.creation.single_item_content_creation',
+              jsonsource=dict(item=item))
+
+
 Links
 -----
 

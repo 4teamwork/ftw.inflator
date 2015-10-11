@@ -5,7 +5,8 @@ Changelog
 1.5.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add transmogrifier config for creating single items.
+  [jone]
 
 
 1.5 (2015-04-22)
