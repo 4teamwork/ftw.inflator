@@ -34,11 +34,23 @@
         configuration="content_creation.cfg"
         />
 
+    <transmogrifier:registerConfig
+        name="ftw.inflator.creation.single_item_content_creation"
+        title="ftw.inflator: single item content creation"
+        description=""
+        configuration="single_item_content_creation.cfg"
+        />
+
 
     <!-- transmogrifier sections -->
     <utility
         name="ftw.inflator.creation.jsonsource"
         component=".sections.jsonsource.JSONSource"
+        />
+
+    <utility
+        name="ftw.inflator.creation.singleitemsource"
+        component=".sections.singleitemsource.SingleItemSource"
         />
 
     <utility
