@@ -4,8 +4,6 @@ from ftw.inflator.creation.sections import singleitemsource
 from unittest2 import TestCase
 from zope.interface.verify import verifyClass
 from zope.interface.verify import verifyObject
-import ftw.inflator.tests
-import os.path
 
 
 class TestSingleItemSource(TestCase):
