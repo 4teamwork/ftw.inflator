@@ -20,9 +20,9 @@ except pkg_resources.DistributionNotFound:
 else:
     HAS_MULTILINGUAL = True
     from plone.app.multilingual.browser.setup import SetupMultilingualSite
-    from plone.multilingual.interfaces import ILanguage
-    from plone.multilingual.interfaces import IMutableTG
-    from plone.multilingual.interfaces import ITranslationManager
+    from plone.app.multilingual.interfaces import IMutableTG
+    from plone.app.multilingual.interfaces import ITranslationManager
+    from Products.CMFPlone.interfaces import ILanguage
 
 
 class SetupLanguages(object):

@@ -1,7 +1,7 @@
 from Products.CMFCore.utils import getToolByName
 from ftw.inflator.testing import INFLATOR_FUNCTIONAL_TESTING
 from plone.app.testing import applyProfile
-from plone.multilingual.interfaces import ITranslationManager
+from plone.app.multilingual.interfaces import ITranslationManager
 from unittest2 import TestCase
 
 
