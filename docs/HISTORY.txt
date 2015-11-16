@@ -5,6 +5,9 @@ Changelog
 1.5.1 (unreleased)
 ------------------
 
+- Update imports for Plone 5
+  [erral]
+
 - Add transmogrifier config for creating single items.
   [jone]
 
