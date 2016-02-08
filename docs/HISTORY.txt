@@ -5,6 +5,9 @@ Changelog
 1.5.1 (unreleased)
 ------------------
 
+- Fix multilingual import error.
+  [elioschmutz]
+
 - Add transmogrifier config for creating single items.
   [jone]
 
