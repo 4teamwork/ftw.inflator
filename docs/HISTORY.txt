@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.6.1 (unreleased)
+1.7.0 (2016-03-15)
 ------------------
 
 - Content creation: log the progress. [jone]
