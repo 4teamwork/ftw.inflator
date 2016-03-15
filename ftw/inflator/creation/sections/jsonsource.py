@@ -1,6 +1,7 @@
 from collective.transmogrifier.interfaces import ISection
 from collective.transmogrifier.interfaces import ISectionBlueprint
 from collective.transmogrifier.utils import resolvePackageReferenceOrFile
+from ftw.inflator.creation.progresslogger import ProgressLogger
 from ftw.inflator.creation.sections.utils import recursive_encode
 from zope.interface import classProvides
 from zope.interface import implements
@@ -23,7 +24,8 @@ class JSONSource(object):
         for item in self.previous:
             yield item
 
-        for name in sorted(os.listdir(self.path)):
+        msg = 'Importing content_creation files with inflator.'
+        for name in ProgressLogger(msg, sorted(os.listdir(self.path))):
             if name.startswith('.') or not name.endswith('.json'):
                 continue
 
