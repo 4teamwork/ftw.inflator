@@ -5,7 +5,7 @@ Changelog
 1.6.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Content creation: log the progress. [jone]
 
 
 1.6.0 (2016-03-04)
