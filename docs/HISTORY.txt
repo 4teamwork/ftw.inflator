@@ -5,6 +5,8 @@ Changelog
 1.7.1 (unreleased)
 ------------------
 
+- Drop Plone 4.1 support. [jone]
+
 - Let ":filename" key postfix change the filename. [jone]
 
 

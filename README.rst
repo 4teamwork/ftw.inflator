@@ -48,11 +48,6 @@ Compatibility
 -------------
 
 
-Plone 4.1
-
-.. image:: https://jenkins.4teamwork.ch/job/ftw.inflator-master-test-plone-4.1.x.cfg/badge/icon
-   :target: https://jenkins.4teamwork.ch/job/ftw.inflator-master-test-plone-4.1.x.cfg
-
 Plone 4.2
 
 .. image:: https://jenkins.4teamwork.ch/job/ftw.inflator-master-test-plone-4.2.x.cfg/badge/icon
