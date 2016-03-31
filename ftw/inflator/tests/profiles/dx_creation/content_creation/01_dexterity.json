@@ -39,5 +39,18 @@
         "relation": "resolvePath::/target",
         "date": "2015-01-01",
         "datetime": "2015-01-01 15:00:59"
+      },
+
+      {
+        "_path": "richtext-inlined",
+        "_type": "ExampleDxType",
+        "richtext": "<p>This HTML is inlined.</p>"
+      },
+
+      {
+        "_path": "richtext-file-embedded",
+        "_type": "ExampleDxType",
+        "richtext:file": "files/richtext.html"
       }
+
 ]

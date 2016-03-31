@@ -1,3 +1,4 @@
+from plone.app.textfield import RichText
 from plone.directives.form import Schema
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.namedfile.field import NamedImage
@@ -30,3 +31,8 @@ class IExampleDxType(Schema):
         title=u'Datetime',
         required=False,
     )
+
+    richtext = RichText(
+        title=u'Richtext',
+        required=False,
+        allowed_mime_types=('text/html',))

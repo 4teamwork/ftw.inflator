@@ -63,6 +63,17 @@ class TestDXContentCreation(TestCase):
         self.assertEqual(obj_brain.portal_type, 'ExampleDxType')
         self.assertEqual(obj_brain.Title, 'My Dexterity Object')
 
+    def test_richtext_inline_inserted(self):
+        obj = self.portal.get('richtext-inlined')
+        self.assertEquals(
+            u'<p>This HTML is inlined.</p>',
+            IExampleDxType(obj).richtext.output)
+
+        obj = self.portal.get('richtext-file-embedded')
+        self.assertEquals(
+            u'<p>This HTML ist stored in a separate richtext.html file.</p>',
+            IExampleDxType(obj).richtext.output.strip())
+
     def test_properties(self):
         obj = self.portal.get('my-dx')
         self.assertEqual(obj.getProperty('f\xc3\xbc\xc3\xbc'), 'b\xc3\xa4r')
