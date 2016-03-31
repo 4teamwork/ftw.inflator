@@ -39,8 +39,8 @@ class FileInserter(object):
         else:
             filename = os.path.basename(path)
 
+        file_ = open(path, 'rb')
         try:
-            file_ = open(path, 'rb')
             fti = self.ttool.get(item.get('_type'))
             if fti and fti.__class__.__name__ == 'DexterityFTI':
                 self.add_dx_file(item, fieldname, filename, file_)
