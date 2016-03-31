@@ -51,6 +51,13 @@
         "_path": "richtext-file-embedded",
         "_type": "ExampleDxType",
         "richtext:file": "files/richtext.html"
+      },
+
+      {
+        "_path": "filename-changed",
+        "_type": "ExampleDxType",
+        "image:file": "files/chuck-norris.jpg",
+        "image:filename": "filename-has-changed.jpg"
       }
 
 ]

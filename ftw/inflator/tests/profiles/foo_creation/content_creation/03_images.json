@@ -3,6 +3,13 @@
     {"_path": "foo/files/chuck-norris",
      "_type": "Image",
      "title": "Chuck Norris",
-     "image:file": "files/chuck-norris.jpg"}
+     "image:file": "files/chuck-norris.jpg"},
+
+    {"_path": "foo/files/filename-changed",
+     "_type": "Image",
+     "title": "Chuck Norris",
+     "image:file": "files/chuck-norris.jpg",
+     "image:filename": "filename-has-changed.jpg"
+    }
 
 ]

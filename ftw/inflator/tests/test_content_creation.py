@@ -162,6 +162,11 @@ class TestContentCreation(TestCase):
         self.assertEquals(chuck.getWidth(), 319)
         self.assertEquals(chuck.getHeight(), 397)
 
+    def test_filename_can_be_changed(self):
+        obj = self.portal.get('foo').get('files').get('filename-changed')
+        self.assertEquals('filename-has-changed.jpg',
+                          obj.getImage().getFilename())
+
     def test_news_item_object(self):
         item = self.portal.get('foo').get('in-other-news')
         self.assertTrue(item, 'Missing News Item at foo/in-other-news')

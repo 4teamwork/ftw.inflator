@@ -32,7 +32,13 @@ class FileInserter(object):
         fieldname = key[:-len(':file')]
         directory = self.transmogrifier.get('jsonsource').get('directory')
         path = os.path.join(directory, item.get(key))
-        filename = os.path.basename(path)
+
+        filename_key = '{}:filename'.format(fieldname)
+        if filename_key in item:
+            filename = item[filename_key]
+        else:
+            filename = os.path.basename(path)
+
         try:
             file_ = open(path, 'rb')
             fti = self.ttool.get(item.get('_type'))

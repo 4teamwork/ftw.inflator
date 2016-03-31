@@ -465,6 +465,21 @@ providing a relative path to the file to "upload":
         }
     ]
 
+The filename can be changed (although this does not work with multiple files
+on the same Dexterity item):
+
+.. code:: javascript
+
+    [
+        {
+            "_path": "files/example-file",
+            "_type": "File",
+            "title": "example file",
+            "file:file": "files/lkdfahjkewrhiu.txt",
+            "file:filename": "important.txt"
+        }
+    ]
+
 
 Workflow transitions
 ~~~~~~~~~~~~~~~~~~~~

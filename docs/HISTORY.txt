@@ -5,7 +5,7 @@ Changelog
 1.7.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Let ":filename" key postfix change the filename. [jone]
 
 
 1.7.0 (2016-03-15)

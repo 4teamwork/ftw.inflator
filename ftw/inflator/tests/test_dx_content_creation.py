@@ -124,3 +124,8 @@ class TestDXContentCreation(TestCase):
             datetime.datetime(2015, 1, 1, 15, 0, 59),
             IExampleDxType(obj).datetime
         )
+
+    def test_filename_can_be_changed(self):
+        obj = self.portal.get('filename-changed')
+        image = IExampleDxType(obj).image
+        self.assertEquals('filename-has-changed.jpg', image.filename)
