@@ -113,9 +113,9 @@
                 </li>
                 </tal:many>
             </tal:block>
-            <li tal:condition="not:sites">
+            <li>
                 <span i18n:translate=""
-                      i18n:domain="ftw.inflator">
+                      i18n:domain="ftw.inflator" tal:condition="not:sites">
                     Your
                     <tal:product i18n:name="product"
                          tal:content="customization/product" />

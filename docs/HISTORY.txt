@@ -5,6 +5,8 @@ Changelog
 1.7.1 (unreleased)
 ------------------
 
+- Show install button even when there's already a site installed. [raphael-s]
+
 - Drop Plone 4.1 support. [jone]
 
 - Let ":filename" key postfix change the filename. [jone]
