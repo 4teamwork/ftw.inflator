@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.7.1 (unreleased)
+1.8.0 (2016-05-20)
 ------------------
 
 - Show install button even when there's already a site installed. [raphael-s]
