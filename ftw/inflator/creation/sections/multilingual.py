@@ -22,10 +22,10 @@ else:
     from plone.app.multilingual.browser.setup import SetupMultilingualSite
     try:
         # plone.app.multilingual >= 2.x
-        from plone.app.multilingual.interfaces import ILanguage
+        from Products.CMFPlone.interfaces import ILanguage
         from plone.app.multilingual.interfaces import IMutableTG
         from plone.app.multilingual.interfaces import ITranslationManager
-    except:
+    except ImportError:
         # plone.app.multilingual 1.x
         from plone.multilingual.interfaces import ILanguage
         from plone.multilingual.interfaces import IMutableTG

@@ -5,7 +5,8 @@ Changelog
 1.8.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix multilingual import error in Plone 5.  [Guido A.J. Stevens]
+
 
 
 1.8.0 (2016-05-20)
