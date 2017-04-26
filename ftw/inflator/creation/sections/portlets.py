@@ -1,6 +1,7 @@
 from collective.transmogrifier.interfaces import ISection
 from collective.transmogrifier.interfaces import ISectionBlueprint
 from ftw.inflator.creation.sections.base import ObjectUpdater
+from plone.portlets.interfaces import ILocalPortletAssignmentManager
 from plone.portlets.interfaces import IPortletAssignmentMapping
 from plone.portlets.interfaces import IPortletManager
 from zope.component import getMultiAdapter
@@ -38,3 +39,18 @@ class PortletUpdater(ObjectUpdater):
         portlet_factory = getUtility(IFactory, name=portlet_type)
         assignment = portlet_factory(**properties)
         mapping[portlet_id] = assignment
+
+    def set_blacklist(self, configuration, obj, manager):
+        assignable = getMultiAdapter((obj, manager),
+                                     ILocalPortletAssignmentManager)
+
+        for category, status in configuration.items():
+            if status.lower() == 'block':
+                assignable.setBlacklistStatus(category, True)
+            elif status.lower() == 'show':
+                assignable.setBlacklistStatus(category, False)
+            elif status.lower() == 'acquire':
+                assignable.setBlacklistStatus(category, None)
+            else:
+                raise ValueError(
+                    'Invalid blacklist status {!r}'.format(status))

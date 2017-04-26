@@ -5,6 +5,10 @@ from persistent.mapping import PersistentMapping
 from plone.app.testing import applyProfile
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
+from plone.portlets.constants import CONTEXT_CATEGORY
+from plone.portlets.constants import GROUP_CATEGORY
+from plone.portlets.constants import USER_CATEGORY
+from plone.portlets.interfaces import ILocalPortletAssignmentManager
 from plone.portlets.interfaces import IPortletAssignmentMapping
 from plone.portlets.interfaces import IPortletManager
 from plone.uuid.interfaces import IUUID
@@ -204,3 +208,13 @@ class TestContentCreation(TestCase):
         self.assertEquals(0, portlet.bottomLevel)
         self.assertEquals(False, portlet.includeTop)
         self.assertEquals(1, portlet.topLevel)
+
+    def test_set_blacklists_correctly(self):
+        obj = self.portal.get('foo')
+        manager = getUtility(IPortletManager, 'plone.leftcolumn')
+        assignable = getMultiAdapter((obj, manager),
+                                     ILocalPortletAssignmentManager)
+
+        self.assertTrue(assignable.getBlacklistStatus(CONTEXT_CATEGORY))
+        self.assertFalse(assignable.getBlacklistStatus(USER_CATEGORY))
+        self.assertIsNone(assignable.getBlacklistStatus(GROUP_CATEGORY))
