@@ -1,15 +1,19 @@
-from Products.ATContentTypes.lib import constraintypes
-from Products.CMFCore.utils import getToolByName
 from ftw.inflator.testing import INFLATOR_FIXTURE
 from ftw.inflator.tests.interfaces import IFoo
 from persistent.list import PersistentList
 from persistent.mapping import PersistentMapping
+from plone.app.testing import applyProfile
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
-from plone.app.testing import applyProfile
+from plone.portlets.interfaces import IPortletAssignmentMapping
+from plone.portlets.interfaces import IPortletManager
 from plone.uuid.interfaces import IUUID
+from Products.ATContentTypes.lib import constraintypes
+from Products.CMFCore.utils import getToolByName
 from unittest2 import TestCase
 from zope.annotation.interfaces import IAnnotations
+from zope.component import getMultiAdapter
+from zope.component import getUtility
 
 
 class FooCreationLayer(PloneSandboxLayer):
@@ -187,3 +191,16 @@ class TestContentCreation(TestCase):
 
         intranet = obj.get('intranet')
         self.assertFalse(hasattr(intranet, '__ac_local_roles_block__'))
+
+    def test_adding_portlets(self):
+        obj = self.portal.get('foo')
+        manager = getUtility(IPortletManager, 'plone.leftcolumn')
+        mapping = getMultiAdapter((obj, manager), IPortletAssignmentMapping)
+
+        self.assertEquals(1, len(mapping))
+
+        portlet = mapping.get('new_navigation')
+        self.assertEquals('New Navigation', portlet.name)
+        self.assertEquals(0, portlet.bottomLevel)
+        self.assertEquals(False, portlet.includeTop)
+        self.assertEquals(1, portlet.topLevel)
