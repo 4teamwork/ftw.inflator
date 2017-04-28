@@ -123,4 +123,9 @@
         component=".sections.resolvepath.ResolvePath"
         />
 
+    <utility
+        name="ftw.inflator.creation.portlets"
+        component=".sections.portlets.PortletUpdater"
+        />
+
 </configure>

@@ -528,6 +528,40 @@ Example:
       ]
 
 
+Portlets
+~~~~~~~~
+
+Portlets can easily be defined by using the ``_portlets`` key, expecting a dict (portlet_manager : configuration).
+It is possible to define the context portlets assignments (``assignments``) and set the inheritance settings (``blacklist_status``).
+
+.. code:: javascript
+
+      [
+          {
+              "_path": "foo",
+              "_type": "MyType",
+              "title": "Foo",
+              "_portlets": {
+                  "plone.leftcolumn": {
+                      "blacklist_status": {
+                          "context": "block",
+                          "user": "show",
+                          "group": "acquire"
+                      },
+                      "assignments": [
+                          {"id": "new_navigation",
+                          "portlet_type": "portlets.Navigation",
+                          "name": "New Navigation",
+                          "bottomLevel": 0,
+                          "includeTop": false,
+                          "topLevel": 1}
+                      ]
+                  }
+              }
+          }
+      ]
+
+
 UUID Lookup
 ~~~~~~~~~~~
 
