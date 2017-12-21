@@ -24,6 +24,7 @@ extras_require['tests'] = tests_require = [
     'plone.testing',
     'plone.app.testing',
     'Products.CMFPlacefulWorkflow',
+    'plone.app.contenttypes',
     ] + reduce(list.__add__, extras_require.values())
 
 

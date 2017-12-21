@@ -2,6 +2,8 @@ from Testing.ZopeTestCase.utils import setupCoreSessions
 from collective.transmogrifier import transmogrifier
 from ftw.inflator.patches import apply_patches
 from ftw.testing import ComponentRegistryLayer
+from pkg_resources import get_distribution
+from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
@@ -12,6 +14,8 @@ from plone.app.testing.layers import PloneFixture
 from plone.testing import z2
 from zope.configuration import xmlconfig
 
+
+IS_PLONE_5 = get_distribution('Plone').version >= '5'
 
 def clear_transmogrifier_registry():
     # pylint: disable=W0212
@@ -51,6 +55,7 @@ class ZopeLayer(PloneFixture):
 
     def setUpProducts(self, app):
         super(ZopeLayer, self).setUpProducts(app)
+        applyProfile(app, 'plone.app.contenttypes:default')
 
         configurationContext = self['configurationContext']
 
@@ -124,11 +129,22 @@ class InflatorLayer(PloneSandboxLayer):
         xmlconfig.file('configure.zcml', plone.app.dexterity,
                        context=configurationContext)
 
+        xmlconfig.string(
+            '<configure xmlns="http://namespaces.zope.org/zope">'
+            '  <include package="z3c.autoinclude" file="meta.zcml" />'
+            '  <includePlugins package="plone" />'
+            '  <includePluginsOverrides package="plone" />'
+            '</configure>',
+            context=configurationContext)
+
         setupCoreSessions(app)
 
     def setUpPloneSite(self, portal):
         applyProfile(
             portal, 'Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow')
+
+        if IS_PLONE_5:
+            applyProfile(portal, 'plone.app.contenttypes:default')
 
     def tearDown(self):
         super(InflatorLayer, self).tearDown()
