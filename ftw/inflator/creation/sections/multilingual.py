@@ -12,7 +12,7 @@ import pkg_resources
 
 
 try:
-    pkg_resources.get_distribution('plone.app.multilingual')
+    multilingual_version = pkg_resources.get_distribution('plone.app.multilingual').version
 
 except pkg_resources.DistributionNotFound:
     HAS_MULTILINGUAL = False
@@ -20,13 +20,18 @@ except pkg_resources.DistributionNotFound:
 else:
     HAS_MULTILINGUAL = True
     from plone.app.multilingual.browser.setup import SetupMultilingualSite
-    try:
-        # plone.app.multilingual >= 2.x
+
+    if multilingual_version > '3':
         from Products.CMFPlone.interfaces import ILanguage
         from plone.app.multilingual.interfaces import IMutableTG
         from plone.app.multilingual.interfaces import ITranslationManager
-    except ImportError:
-        # plone.app.multilingual 1.x
+
+    elif multilingual_version > '2':
+        from plone.app.multilingual.interfaces import ILanguage
+        from plone.app.multilingual.interfaces import IMutableTG
+        from plone.app.multilingual.interfaces import ITranslationManager
+
+    elif multilingual_version:
         from plone.multilingual.interfaces import ILanguage
         from plone.multilingual.interfaces import IMutableTG
         from plone.multilingual.interfaces import ITranslationManager
