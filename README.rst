@@ -48,7 +48,6 @@ Compatibility
 -------------
 
 
-- Plone 4.2
 - Plone 4.3
 
 

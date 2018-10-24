@@ -5,7 +5,7 @@ Changelog
 1.9.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Drop Plone 4.2 support [busykoala]
 
 
 1.9.0 (2018-05-14)
