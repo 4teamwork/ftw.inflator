@@ -55,8 +55,6 @@ class ZopeLayer(PloneFixture):
 
     def setUpProducts(self, app):
         super(ZopeLayer, self).setUpProducts(app)
-        applyProfile(app, 'plone.app.contenttypes:default')
-
         configurationContext = self['configurationContext']
 
         # Plone < 4.3
@@ -140,11 +138,11 @@ class InflatorLayer(PloneSandboxLayer):
         setupCoreSessions(app)
 
     def setUpPloneSite(self, portal):
-        applyProfile(
-            portal, 'Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow')
-
         if IS_PLONE_5:
             applyProfile(portal, 'plone.app.contenttypes:default')
+
+        applyProfile(
+            portal, 'Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow')
 
     def tearDown(self):
         super(InflatorLayer, self).tearDown()
