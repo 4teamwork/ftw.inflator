@@ -2,6 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="ftw.inflator">
 
     <browser:page
@@ -21,12 +22,23 @@
         />
 
     <browser:page
+        zcml:condition="not-have plone-5"
         for="OFS.interfaces.IApplication"
         name="plone-overview"
         class=".views.InflateOverview"
         permission="zope.Public"
         template="overview.pt"
         layer="ftw.inflator.interfaces.IInflatorLayer"
+        />
+
+    <browser:page
+        zcml:condition="have plone-5"
+        for="OFS.interfaces.IApplication"
+        name="plone-overview"
+        class=".views.InflateOverview"
+        permission="zope.Public"
+        template="overview.pt"
+        layer="plone.theme.interfaces.IDefaultPloneLayer"
         />
 
 </configure>
