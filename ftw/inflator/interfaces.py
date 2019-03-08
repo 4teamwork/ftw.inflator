@@ -4,6 +4,7 @@
 
 from Products.CMFPlone.factory import _DEFAULT_PROFILE
 from zope.interface import Interface
+from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 from zope.schema import Bool
 from zope.schema import List
 from zope.schema import TextLine
@@ -69,3 +70,8 @@ class IInflatorCustomization(Interface):
     image = TextLine(
         title=u'The resource name of the image',
         description=u'e.g. ++resources++the-image-1.jpg')
+
+
+class IInflatorLayer(IDefaultBrowserLayer):
+    """CMF default skin.
+    """
