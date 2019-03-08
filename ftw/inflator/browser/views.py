@@ -59,12 +59,12 @@ class InflateView(AddPloneSite):
         return map(option, enumerate(get_bundles()))
 
 
-# class InflateOverview(Overview):
-#
-#     def get_bundle_title(self):
-#         customization = get_merged_customizations()
-#         return _(u'Create a new ${product} site',
-#                  mapping={'product': customization.product})
-#
-#     def get_customization(self):
-#         return get_merged_customizations()
+class InflateOverview(Overview):
+
+    def get_bundle_title(self):
+        customization = get_merged_customizations()
+        return _(u'Create a new ${product} site',
+                 mapping={'product': customization.product})
+
+    def get_customization(self):
+        return get_merged_customizations()
