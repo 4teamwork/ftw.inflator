@@ -1,10 +1,13 @@
-from Products.CMFPlone.browser.admin import AddPloneSite
-from Products.CMFPlone.browser.admin import Overview
 from ftw.inflator import _
 from ftw.inflator.bundle import get_bundle_by_name
 from ftw.inflator.bundle import get_bundles
 from ftw.inflator.customization import get_merged_customizations
 from ftw.inflator.interfaces import EXTENSION_PROFILES
+from operator import itemgetter
+from plone.i18n.locales.interfaces import IContentLanguageAvailability
+from Products.CMFPlone.browser.admin import AddPloneSite
+from Products.CMFPlone.browser.admin import Overview
+from zope.component import queryUtility
 
 
 class InflateView(AddPloneSite):
@@ -57,6 +60,17 @@ class InflateView(AddPloneSite):
                 'index': index}
 
         return map(option, enumerate(get_bundles()))
+
+    def languages(self, default='en'):
+        util = queryUtility(IContentLanguageAvailability)
+        if '-' in default:
+            available = util.getLanguages(combined=True)
+        else:
+            available = util.getLanguages()
+        languages = [(code, v.get(u'native', v.get(u'name'))) for
+                     code, v in available.items()]
+        languages.sort(key=itemgetter(1))
+        return languages
 
 
 class InflateOverview(Overview):
