@@ -1,10 +1,11 @@
-from Products.CMFCore.utils import getToolByName
 from collective.transmogrifier.interfaces import ISection
 from collective.transmogrifier.interfaces import ISectionBlueprint
 from copy import deepcopy
+from ftw.inflator import IS_PLONE_5
 from ftw.inflator.creation.sections.base import ObjectUpdater
 from ftw.inflator.exceptions import MultilingalInflateException
 from plone.uuid.interfaces import IUUIDGenerator
+from Products.CMFCore.utils import getToolByName
 from zope.component import getUtility
 from zope.interface import classProvides
 from zope.interface import implements
@@ -75,13 +76,20 @@ class SetupLanguages(object):
     def _validate_languages(self, languages):
         portal_languages = getToolByName(self.context, 'portal_languages')
 
-        msg = ("Language '{}' is not configured. Configured languages "
-               "are: '{}'. Check if portal_languages.xml is available and "
-               "if it contains all required languages.")
+        if IS_PLONE_5:
+            msg = ("Language '{}' is not configured. Configured languages "
+                   "are: '{}'. Check if a registry.xml is available and "
+                   "if it contains all required languages.")
+        else:
+            msg = ("Language '{}' is not configured. Configured languages "
+                   "are: '{}'. Check if portal_languages.xml is available and "
+                   "if it contains all required languages.")
+
         for lang_code in languages:
             if lang_code not in portal_languages.supported_langs:
-                raise MultilingalInflateException(msg.format(lang_code,
-                                ','.join(portal_languages.supported_langs)))
+                raise MultilingalInflateException(msg.format(
+                    lang_code,
+                    ','.join(portal_languages.supported_langs)))
 
     def _recursive_create_translation_group(self, items):
         uuid_generator = getUtility(IUUIDGenerator)

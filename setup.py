@@ -9,12 +9,13 @@ extras_require = {
     'dexterity': [
         'plone.app.dexterity',
         'transmogrify.dexterity',
+        'plone.directives.form',
         ],
 
     'multilingual': [
         'plone.app.multilingual',
-        'plone.multilingualbehavior',  # both are required
-        ]}
+        ],
+}
 
 
 extras_require['tests'] = tests_require = [
@@ -68,9 +69,10 @@ setup(name='ftw.inflator',
         'ZODB3',
         'Zope2',
 
+        'plone.api',
         'plone.i18n',
         'plone.uuid',
-        'Products.ATContentTypes',
+
         'Products.CMFCore',
         'Products.CMFPlone',
         'Products.GenericSetup',

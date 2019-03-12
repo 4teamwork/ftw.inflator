@@ -1,7 +1,9 @@
-from Products.CMFCore.utils import getToolByName
+from ftw.inflator import IS_PLONE_5
 from ftw.inflator.testing import INFLATOR_FUNCTIONAL_TESTING
+from plone import api
+from plone.app.multilingual.interfaces import ITranslationManager
 from plone.app.testing import applyProfile
-from plone.multilingual.interfaces import ITranslationManager
+from Products.CMFCore.utils import getToolByName
 from unittest2 import TestCase
 
 
@@ -20,6 +22,13 @@ class TestMultilingualContentCreation(TestCase):
                                       'simple_publication_workflow')
 
         applyProfile(self.portal, 'ftw.inflator:setup-language')
+
+        if IS_PLONE_5:
+            # Plone 5 takes it languages from the registry, so we add it here manually
+            tool = api.portal.get_tool('portal_languages')
+            tool.addSupportedLanguage('de')
+            tool.addSupportedLanguage('en')
+
         applyProfile(self.portal, 'plone.app.multilingual:default')
         applyProfile(self.portal, 'ftw.inflator.tests:multilingual_creation')
 

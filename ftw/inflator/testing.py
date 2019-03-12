@@ -1,21 +1,18 @@
-from Testing.ZopeTestCase.utils import setupCoreSessions
 from collective.transmogrifier import transmogrifier
 from ftw.inflator.patches import apply_patches
 from ftw.testing import ComponentRegistryLayer
-from pkg_resources import get_distribution
+from ftw.testing import IS_PLONE_5
 from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import SITE_OWNER_NAME, SITE_OWNER_PASSWORD
-from plone.app.testing import applyProfile
 from plone.app.testing.layers import PloneFixture
 from plone.testing import z2
+from Testing.ZopeTestCase.utils import setupCoreSessions
 from zope.configuration import xmlconfig
 
-
-IS_PLONE_5 = get_distribution('Plone').version >= '5'
 
 def clear_transmogrifier_registry():
     # pylint: disable=W0212
