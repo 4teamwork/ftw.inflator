@@ -63,6 +63,14 @@ class ZopeLayer(PloneFixture):
         xmlconfig.file('configure.zcml', Products.CMFPlacefulWorkflow,
                        context=configurationContext)
 
+        if IS_PLONE_5:
+            xmlconfig.string('''
+            <configure>
+            <include package="plone.app.caching" />
+            <include package="plonetheme.barceloneta" />
+            </configure>''', context=configurationContext)
+
+
         z2.installProduct(app, 'Products.CMFPlacefulWorkflow')
 
         import Products.Five

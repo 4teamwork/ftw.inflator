@@ -2,6 +2,7 @@
 # E0211: Method has no argument
 # E0213: Method should have "self" as first argument
 
+from ftw.inflator import IS_PLONE_5
 from Products.CMFPlone.factory import _DEFAULT_PROFILE
 from zope.interface import Interface
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
@@ -11,9 +12,15 @@ from zope.schema import TextLine
 
 
 # these profiles will be installed automatically
-EXTENSION_PROFILES = (
-    'plonetheme.classic:default',
-    'plonetheme.sunburst:default',
+if IS_PLONE_5:
+    EXTENSION_PROFILES = (
+        'plone.app.caching:default',
+        'plonetheme.barceloneta:default',
+    )
+else:
+    EXTENSION_PROFILES = (
+        'plonetheme.classic:default',
+        'plonetheme.sunburst:default',
     )
 
 
