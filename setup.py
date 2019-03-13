@@ -15,6 +15,10 @@ extras_require = {
     'multilingual': [
         'plone.app.multilingual',
         ],
+
+    'plone4_multilingual': [
+        'plone.multilingual',
+        ],
 }
 
 
