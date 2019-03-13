@@ -49,6 +49,7 @@ Compatibility
 
 
 - Plone 4.3
+- Plone 5.1
 
 
 Setup wizard

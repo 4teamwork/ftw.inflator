@@ -5,6 +5,8 @@ Changelog
 1.9.1 (unreleased)
 ------------------
 
+- Plone 5.1 compatibility [mathias.leimgruber, jone, busykoala, njohner]
+
 - Drop Plone 4.2 support [busykoala]
 
 
