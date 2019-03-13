@@ -80,6 +80,8 @@ class ZopeLayer(PloneFixture):
         import ftw.inflator
         xmlconfig.file('configure.zcml', ftw.inflator,
                        context=configurationContext)
+        xmlconfig.file('overrides.zcml', ftw.inflator,
+                       context=configurationContext)
         xmlconfig.file('configure.zcml', ftw.inflator.tests,
                        context=configurationContext)
 

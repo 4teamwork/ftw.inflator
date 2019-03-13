@@ -1,9 +1,10 @@
 from ftw.inflator.testing import ZOPE_FUNCTIONAL_TESTING
 from ftw.testbrowser import browsing
+from plone import api
 from plone.app.testing import SITE_OWNER_NAME
 from plone.testing.z2 import zopeApp
-from Products.CMFCore.utils import getToolByName
 from unittest2 import TestCase
+from zope.component.hooks import setSite
 
 
 class TestInflateView(TestCase):
@@ -44,5 +45,6 @@ class TestInflateView(TestCase):
         site = self.app.get('platform')
         self.assertTrue(site)
 
-        language_tool = getToolByName(site, 'portal_languages')
+        setSite(site)
+        language_tool = api.portal.get_tool('portal_languages')
         self.assertEqual(language_tool.getDefaultLanguage(), 'de')

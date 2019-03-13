@@ -20,5 +20,4 @@ class TestInflateOverView(TestCase):
     def test_overview_view(self, browser):
         browser.login(SITE_OWNER_NAME).open('http://localhost/index_html')
         browser.click_on('Create a new Plone site')
-        self.assertEquals(browser.url,
-                          'http://localhost/@@inflate?')
+        self.assertTrue(browser.url.startswith('http://localhost/@@inflate'))
