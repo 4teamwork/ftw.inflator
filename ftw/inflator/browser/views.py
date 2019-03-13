@@ -5,9 +5,11 @@ from ftw.inflator.customization import get_merged_customizations
 from ftw.inflator.interfaces import EXTENSION_PROFILES
 from operator import itemgetter
 from plone.i18n.locales.interfaces import IContentLanguageAvailability
+from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFPlone.browser.admin import AddPloneSite
 from Products.CMFPlone.browser.admin import Overview
 from zope.component import queryUtility
+from zope.interface import alsoProvides
 
 
 class InflateView(AddPloneSite):
@@ -17,6 +19,9 @@ class InflateView(AddPloneSite):
     def __call__(self):
         form = self.request.form
         submitted = form.get('form.submitted', False)
+
+        # CSRF protect. DO NOT use auto CSRF protection for adding a site
+        alsoProvides(self.request, IDisableCSRFProtection)
 
         if submitted:
             site_id = form.get('site_id', 'platform')
