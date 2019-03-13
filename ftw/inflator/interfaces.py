@@ -14,6 +14,7 @@ from zope.schema import TextLine
 # these profiles will be installed automatically
 if IS_PLONE_5:
     EXTENSION_PROFILES = (
+        'plone.app.contenttypes:default',
         'plone.app.caching:default',
         'plonetheme.barceloneta:default',
     )
