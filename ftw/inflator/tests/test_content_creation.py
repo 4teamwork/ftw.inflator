@@ -1,5 +1,6 @@
 from ftw.inflator.testing import INFLATOR_FIXTURE
 from ftw.inflator.tests.interfaces import IFoo
+from ftw.testing import IS_PLONE_5
 from persistent.list import PersistentList
 from persistent.mapping import PersistentMapping
 from plone.app.testing import applyProfile
@@ -12,7 +13,6 @@ from plone.portlets.interfaces import ILocalPortletAssignmentManager
 from plone.portlets.interfaces import IPortletAssignmentMapping
 from plone.portlets.interfaces import IPortletManager
 from plone.uuid.interfaces import IUUID
-from Products.ATContentTypes.lib import constraintypes
 from Products.CMFCore.utils import getToolByName
 from unittest2 import TestCase
 from zope.annotation.interfaces import IAnnotations
@@ -20,13 +20,27 @@ from zope.component import getMultiAdapter
 from zope.component import getUtility
 
 
+if IS_PLONE_5:
+    from plone.app.dexterity.behaviors import constrains as constraintypes
+    from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
+else:
+    from Products.ATContentTypes.lib import constraintypes
+
+
 class FooCreationLayer(PloneSandboxLayer):
 
     defaultBases = (INFLATOR_FIXTURE, )
+
     def setUpPloneSite(self, portal):
         wftool = getToolByName(portal, 'portal_workflow')
         wftool.setChainForPortalTypes(['Folder'],
                                       'simple_publication_workflow')
+
+        if IS_PLONE_5:
+            folder_fti = portal.portal_types.Folder
+            folder_fti.behaviors = tuple(
+                list(folder_fti.behaviors) + ['plone.constraintypes']
+            )
 
         applyProfile(portal, 'ftw.inflator:setup-language')
         applyProfile(portal, 'ftw.inflator.tests:foo_creation')
@@ -88,17 +102,32 @@ class TestContentCreation(TestCase):
     def test_foo_folder_constraintypes(self):
         foo = self.portal.get('foo')
 
-        self.assertEqual(foo.getConstrainTypesMode(),
-                         constraintypes.ENABLED,
-                         'Constraint types are not enabled on folder foo')
+        if IS_PLONE_5:
+            constrains = ISelectableConstrainTypes(foo)
+            self.assertEqual(constrains.getConstrainTypesMode(),
+                             constraintypes.ENABLED,
+                             'Constraint types are not enabled on folder foo')
 
-        self.assertEqual(foo.getImmediatelyAddableTypes(),
-                         ('Folder',),
-                         'Immediately addable types are not configured well')
+            self.assertItemsEqual(constrains.getImmediatelyAddableTypes(),
+                                  ['Folder'],
+                                  'Immediately addable types are not configured well')
 
-        self.assertEqual(foo.getLocallyAllowedTypes(),
-                         ('Folder', 'Document'),
-                         'Locally addable types are not configured well')
+            self.assertItemsEqual(constrains.getLocallyAllowedTypes(),
+                                  ['Folder', 'Document'],
+                                  'Locally addable types are not configured well')
+
+        else:
+            self.assertEqual(foo.getConstrainTypesMode(),
+                             constraintypes.ENABLED,
+                             'Constraint types are not enabled on folder foo')
+
+            self.assertEqual(foo.getImmediatelyAddableTypes(),
+                             ('Folder',),
+                             'Immediately addable types are not configured well')
+
+            self.assertEqual(foo.getLocallyAllowedTypes(),
+                             ('Folder', 'Document'),
+                             'Locally addable types are not configured well')
 
     def test_foo_folder_interfaces(self):
         foo = self.portal.get('foo')
