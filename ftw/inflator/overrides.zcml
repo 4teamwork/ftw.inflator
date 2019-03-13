@@ -6,6 +6,15 @@
     i18n_domain="ftw.inflator">
 
     <browser:page
+        zcml:condition="not-have plone-5"
+        for="OFS.interfaces.IApplication"
+        name="plone-overview"
+        class=".browser.views.InflateOverview"
+        permission="zope.Public"
+        template="browser/overview.pt"
+        />
+
+    <browser:page
         zcml:condition="have plone-5"
         for="OFS.interfaces.IApplication"
         name="plone-overview"
