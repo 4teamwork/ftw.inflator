@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-1.9.1 (unreleased)
-------------------
+1.10.0 (2019-03-19)
+-------------------
 
 - Plone 5.1 compatibility [mathias.leimgruber, jone, busykoala, njohner]
 
