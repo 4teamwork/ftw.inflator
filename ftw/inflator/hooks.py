@@ -1,5 +1,7 @@
-from Products.CMFCore.utils import getToolByName
+from ftw.inflator import IS_PLONE_5
+from plone import api
 from plone.i18n.normalizer.interfaces import IURLNormalizer
+from Products.CMFCore.utils import getToolByName
 from zope.component import queryUtility
 from zope.i18n.locales import locales
 
@@ -30,12 +32,24 @@ def setup_language(portal):
 
     # As we have a sensible language code set now, we disable the
     # start neutral functionality
-    tool = getToolByName(portal, "portal_languages")
+    tool = api.portal.get_tool('portal_languages')
 
-    tool.manage_setLanguageSettings(language,
-        [language],
-        setUseCombinedLanguageCodes=use_combined,
-        startNeutral=False)
+    if IS_PLONE_5:
+        tool.addSupportedLanguage(language)
+
+        # Setting the combined language property is not yet available over the utility
+        from plone.registry.interfaces import IRegistry
+        from Products.CMFPlone.interfaces import ILanguageSchema
+        from zope.component import getUtility
+        settings = getUtility(IRegistry).forInterface(ILanguageSchema, prefix='plone')
+        settings.use_combined_language_codes = use_combined
+
+    else:
+        tool.manage_setLanguageSettings(
+            language,
+            [language],
+            setUseCombinedLanguageCodes=use_combined,
+            startNeutral=False)
 
     # Set the first day of the week, defaulting to Sunday, as the
     # locale data doesn't provide a value for English. European

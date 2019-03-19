@@ -2,6 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="ftw.inflator">
 
     <browser:page
@@ -18,15 +19,6 @@
         class=".views.InflateView"
         permission="zope2.ViewManagementScreens"
         template="inflate.pt"
-        />
-
-    <browser:page
-        for="OFS.interfaces.IApplication"
-        name="plone-overview"
-        class=".views.InflateOverview"
-        permission="zope.Public"
-        template="overview.pt"
-        layer="Products.CMFDefault.interfaces.ICMFDefaultSkin"
         />
 
 </configure>

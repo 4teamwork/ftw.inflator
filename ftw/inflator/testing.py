@@ -1,15 +1,16 @@
-from Testing.ZopeTestCase.utils import setupCoreSessions
 from collective.transmogrifier import transmogrifier
 from ftw.inflator.patches import apply_patches
 from ftw.testing import ComponentRegistryLayer
+from ftw.testing import IS_PLONE_5
+from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import SITE_OWNER_NAME, SITE_OWNER_PASSWORD
-from plone.app.testing import applyProfile
 from plone.app.testing.layers import PloneFixture
 from plone.testing import z2
+from Testing.ZopeTestCase.utils import setupCoreSessions
 from zope.configuration import xmlconfig
 
 
@@ -51,7 +52,6 @@ class ZopeLayer(PloneFixture):
 
     def setUpProducts(self, app):
         super(ZopeLayer, self).setUpProducts(app)
-
         configurationContext = self['configurationContext']
 
         # Plone < 4.3
@@ -63,6 +63,14 @@ class ZopeLayer(PloneFixture):
         xmlconfig.file('configure.zcml', Products.CMFPlacefulWorkflow,
                        context=configurationContext)
 
+        if IS_PLONE_5:
+            xmlconfig.string('''
+            <configure>
+            <include package="plone.app.caching" />
+            <include package="plonetheme.barceloneta" />
+            </configure>''', context=configurationContext)
+
+
         z2.installProduct(app, 'Products.CMFPlacefulWorkflow')
 
         import Products.Five
@@ -71,6 +79,8 @@ class ZopeLayer(PloneFixture):
 
         import ftw.inflator
         xmlconfig.file('configure.zcml', ftw.inflator,
+                       context=configurationContext)
+        xmlconfig.file('overrides.zcml', ftw.inflator,
                        context=configurationContext)
         xmlconfig.file('configure.zcml', ftw.inflator.tests,
                        context=configurationContext)
@@ -124,9 +134,20 @@ class InflatorLayer(PloneSandboxLayer):
         xmlconfig.file('configure.zcml', plone.app.dexterity,
                        context=configurationContext)
 
+        xmlconfig.string(
+            '<configure xmlns="http://namespaces.zope.org/zope">'
+            '  <include package="z3c.autoinclude" file="meta.zcml" />'
+            '  <includePlugins package="plone" />'
+            '  <includePluginsOverrides package="plone" />'
+            '</configure>',
+            context=configurationContext)
+
         setupCoreSessions(app)
 
     def setUpPloneSite(self, portal):
+        if IS_PLONE_5:
+            applyProfile(portal, 'plone.app.contenttypes:default')
+
         applyProfile(
             portal, 'Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow')
 

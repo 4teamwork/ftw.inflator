@@ -1,15 +1,16 @@
-import datetime
-from Products.CMFCore.utils import getToolByName
 from ftw.inflator.testing import INFLATOR_FIXTURE
 from ftw.inflator.tests.interfaces import IFoo, IExampleDxType
+from ftw.testing import IS_PLONE_5
 from persistent.list import PersistentList
 from persistent.mapping import PersistentMapping
+from plone.app.testing import applyProfile
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
-from plone.app.testing import applyProfile
+from Products.CMFCore.utils import getToolByName
 from unittest2 import TestCase
 from zope.annotation.interfaces import IAnnotations
 from zope.configuration import xmlconfig
+import datetime
 
 
 class DXCreationLayer(PloneSandboxLayer):
@@ -109,7 +110,12 @@ class TestDXContentCreation(TestCase):
     def test_paths_are_resolved(self):
         obj = self.portal.get('my-dx')
         target = self.portal.get('target')
-        self.assertEqual(obj.relation, target)
+
+        # This behaves different with plone4 and referncablebehavior
+        if IS_PLONE_5:
+            self.assertEqual(obj.relation.to_object, target)
+        else:
+            self.assertEqual(obj.relation, target)
 
     def test_date(self):
         obj = self.portal.get('my-dx')

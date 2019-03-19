@@ -1,7 +1,7 @@
 from ftw.inflator.testing import ZOPE_FUNCTIONAL_TESTING
-from plone.app.testing import SITE_OWNER_NAME, SITE_OWNER_PASSWORD
+from ftw.testbrowser import browsing
+from plone.app.testing import SITE_OWNER_NAME
 from plone.testing import zca
-from plone.testing.z2 import Browser
 from plone.testing.z2 import zopeApp
 from unittest2 import TestCase
 from zope.configuration import xmlconfig
@@ -21,27 +21,26 @@ class TestZMIButton(TestCase):
         with zopeApp() as app:
             self.app = app
 
-            self.browser = Browser(app)
-            self.browser.handleErrors = False
-            self.browser.addHeader('Authorization', 'Basic %s:%s' % (
-                    SITE_OWNER_NAME, SITE_OWNER_PASSWORD))
-
     def tearDown(self):
         zca.popGlobalRegistry()
         self.configurationContext = None
+        del self.app
 
     def load_zcml_string(self, zcml):
         xmlconfig.string(zcml, context=self.configurationContext)
 
-    def test_add_plone_site_button_still_tehere(self):
-        self.browser.open('http://localhost/manage_main')
-        self.assertTrue(self.browser.getControl('Add Plone Site'))
+    @browsing
+    def test_add_plone_site_button_still_tehere(self, browser):
+        browser.login(SITE_OWNER_NAME).open('http://localhost/manage_main')
+        self.assertTrue(browser.find_button_by_label('Add Plone Site'))
 
-    def test_default_inflator_install_plone_buttton(self):
-        self.browser.open('http://localhost/manage_main')
-        self.assertTrue(self.browser.getControl('Install Plone'))
+    @browsing
+    def test_default_inflator_install_plone_buttton(self, browser):
+        browser.login(SITE_OWNER_NAME).open('http://localhost/manage_main')
+        self.assertTrue(browser.find_button_by_label('Install Plone'))
 
-    def test_customized_inflator_install_buttton(self):
+    @browsing
+    def test_customized_inflator_install_buttton(self, browser):
         self.load_zcml_string('\n'.join((
                     '<configure xmlns:inflator="http://namespaces.zope.org/inflator"'
                     '           i18n_domain="my.package">',
@@ -50,5 +49,5 @@ class TestZMIButton(TestCase):
                     '</configure>'
                     )))
 
-        self.browser.open('http://localhost/manage_main')
-        self.assertTrue(self.browser.getControl('Install my product'))
+        browser.login(SITE_OWNER_NAME).open('http://localhost/manage_main')
+        self.assertTrue(browser.find_button_by_label('Install my product'))

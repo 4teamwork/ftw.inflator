@@ -1,10 +1,15 @@
 from ftw.inflator.testing import INFLATOR_FIXTURE
 from ftw.inflator.tests.interfaces import IFoo
+from ftw.testing import IS_PLONE_5
 from persistent.list import PersistentList
 from persistent.mapping import PersistentMapping
 from plone.app.testing import applyProfile
 from plone.app.testing import IntegrationTesting
+from plone.app.testing import login
 from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
 from plone.portlets.constants import CONTEXT_CATEGORY
 from plone.portlets.constants import GROUP_CATEGORY
 from plone.portlets.constants import USER_CATEGORY
@@ -12,7 +17,6 @@ from plone.portlets.interfaces import ILocalPortletAssignmentManager
 from plone.portlets.interfaces import IPortletAssignmentMapping
 from plone.portlets.interfaces import IPortletManager
 from plone.uuid.interfaces import IUUID
-from Products.ATContentTypes.lib import constraintypes
 from Products.CMFCore.utils import getToolByName
 from unittest2 import TestCase
 from zope.annotation.interfaces import IAnnotations
@@ -20,13 +24,27 @@ from zope.component import getMultiAdapter
 from zope.component import getUtility
 
 
+if IS_PLONE_5:
+    from plone.app.dexterity.behaviors import constrains as constraintypes
+    from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
+else:
+    from Products.ATContentTypes.lib import constraintypes
+
+
 class FooCreationLayer(PloneSandboxLayer):
 
     defaultBases = (INFLATOR_FIXTURE, )
+
     def setUpPloneSite(self, portal):
         wftool = getToolByName(portal, 'portal_workflow')
         wftool.setChainForPortalTypes(['Folder'],
                                       'simple_publication_workflow')
+
+        if IS_PLONE_5:
+            folder_fti = portal.portal_types.Folder
+            folder_fti.behaviors = tuple(
+                list(folder_fti.behaviors) + ['plone.constraintypes']
+            )
 
         applyProfile(portal, 'ftw.inflator:setup-language')
         applyProfile(portal, 'ftw.inflator.tests:foo_creation')
@@ -44,6 +62,8 @@ class TestContentCreation(TestCase):
     def setUp(self):
         super(TestContentCreation, self).setUp()
         self.portal = self.layer['portal']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        login(self.portal, TEST_USER_NAME)
 
     def test_foo_folder_type(self):
         foo = self.portal.get('foo')
@@ -88,17 +108,32 @@ class TestContentCreation(TestCase):
     def test_foo_folder_constraintypes(self):
         foo = self.portal.get('foo')
 
-        self.assertEqual(foo.getConstrainTypesMode(),
-                         constraintypes.ENABLED,
-                         'Constraint types are not enabled on folder foo')
+        if IS_PLONE_5:
+            constrains = ISelectableConstrainTypes(foo)
+            self.assertEqual(constrains.getConstrainTypesMode(),
+                             constraintypes.ENABLED,
+                             'Constraint types are not enabled on folder foo')
 
-        self.assertEqual(foo.getImmediatelyAddableTypes(),
-                         ('Folder',),
-                         'Immediately addable types are not configured well')
+            self.assertItemsEqual(constrains.getImmediatelyAddableTypes(),
+                                  ['Folder'],
+                                  'Immediately addable types are not configured well')
 
-        self.assertEqual(foo.getLocallyAllowedTypes(),
-                         ('Folder', 'Document'),
-                         'Locally addable types are not configured well')
+            self.assertItemsEqual(constrains.getLocallyAllowedTypes(),
+                                  ['Folder', 'Document'],
+                                  'Locally addable types are not configured well')
+
+        else:
+            self.assertEqual(foo.getConstrainTypesMode(),
+                             constraintypes.ENABLED,
+                             'Constraint types are not enabled on folder foo')
+
+            self.assertEqual(foo.getImmediatelyAddableTypes(),
+                             ('Folder',),
+                             'Immediately addable types are not configured well')
+
+            self.assertEqual(foo.getLocallyAllowedTypes(),
+                             ('Folder', 'Document'),
+                             'Locally addable types are not configured well')
 
     def test_foo_folder_interfaces(self):
         foo = self.portal.get('foo')
@@ -114,9 +149,15 @@ class TestContentCreation(TestCase):
         self.assertTrue(example_file)
         self.assertEqual(example_file.Title(), 'example file')
 
-        data = example_file.getField('file').get(example_file)
-        self.assertEqual(data.getFilename(), 'examplefile.txt')
-        self.assertEqual(data.getContentType(), 'text/plain')
+        if IS_PLONE_5:
+            data = example_file.file
+            self.assertEqual(data.filename, 'examplefile.txt')
+            self.assertEqual(data.contentType, 'text/plain')
+        else:
+            data = example_file.getField('file').get(example_file)
+            self.assertEqual(data.getFilename(), 'examplefile.txt')
+            self.assertEqual(data.getContentType(), 'text/plain')
+
         self.assertEqual(data.data, 'a simple text file')
 
     def test_intranet_placeful_workflow(self):
@@ -167,20 +208,35 @@ class TestContentCreation(TestCase):
 
         self.assertEquals('Chuck Norris', chuck.Title())
         self.assertTrue(chuck.getSize(), 'The chuck norris image seems to be missing')
-        self.assertEquals(chuck.getWidth(), 319)
-        self.assertEquals(chuck.getHeight(), 397)
+
+        if IS_PLONE_5:
+            self.assertEquals(chuck.image._width, 319)
+            self.assertEquals(chuck.image._height, 397)
+
+        else:
+            self.assertEquals(chuck.getWidth(), 319)
+            self.assertEquals(chuck.getHeight(), 397)
 
     def test_filename_can_be_changed(self):
         obj = self.portal.get('foo').get('files').get('filename-changed')
-        self.assertEquals('filename-has-changed.jpg',
-                          obj.getImage().getFilename())
+
+        if IS_PLONE_5:
+            self.assertEquals('filename-has-changed.jpg',
+                              obj.image.filename)            
+        else:
+            self.assertEquals('filename-has-changed.jpg',
+                              obj.getImage().getFilename())
 
     def test_news_item_object(self):
         item = self.portal.get('foo').get('in-other-news')
         self.assertTrue(item, 'Missing News Item at foo/in-other-news')
 
         self.assertEquals('In other news', item.Title(), 'Wrong News Item title')
-        self.assertTrue(item.getText(), 'News item has no text')
+
+        if IS_PLONE_5:
+            self.assertTrue(item.text.raw, 'News item has no text')
+        else:
+            self.assertTrue(item.getText(), 'News item has no text')
 
     def test_local_roles_are_created(self):
         obj = self.portal.get('foo')

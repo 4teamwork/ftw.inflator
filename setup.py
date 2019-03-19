@@ -9,38 +9,46 @@ extras_require = {
     'dexterity': [
         'plone.app.dexterity',
         'transmogrify.dexterity',
-        ],
+        'plone.directives.form',
+    ],
 
     'multilingual': [
         'plone.app.multilingual',
-        'plone.multilingualbehavior',  # both are required
-        ]}
+    ],
+
+    'plone4_multilingual': [
+        'plone.multilingual',
+    ],
+}
 
 
 extras_require['tests'] = tests_require = [
     'unittest2',
     'ftw.testing',
+    'ftw.testbrowser',
     'zope.configuration',
     'plone.testing',
     'plone.app.testing',
     'Products.CMFPlacefulWorkflow',
-    ] + reduce(list.__add__, extras_require.values())
+    'plone.app.contenttypes',
+] + reduce(list.__add__, extras_require.values())
 
 
 setup(name='ftw.inflator',
       version=version,
-      description='Plone site setup wizard with content creation and ' + \
-          'bundle system for predefined configurations.',
+      description='Plone site setup wizard with content creation and ' +
+      'bundle system for predefined configurations.',
 
-      long_description=open('README.rst').read() + '\n' + \
-          open(os.path.join('docs', 'HISTORY.txt')).read(),
+      long_description=open('README.rst').read() + '\n' +
+      open(os.path.join('docs', 'HISTORY.txt')).read(),
 
       classifiers=[
-        'Framework :: Plone',
-        'Framework :: Plone :: 4.3',
-        'Intended Audience :: Developers',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-        ],
+          'Framework :: Plone',
+          'Framework :: Plone :: 4.3',
+          'Framework :: Plone :: 5.1',
+          'Intended Audience :: Developers',
+          'Topic :: Software Development :: Libraries :: Python Modules',
+      ],
 
       keywords='ftw inflator',
       author='4teamwork AG',
@@ -54,32 +62,33 @@ setup(name='ftw.inflator',
       zip_safe=False,
 
       install_requires=[
-        'setuptools',
+          'setuptools',
 
-        'zope.annotation',
-        'zope.component',
-        'zope.configuration',
-        'zope.dottedname',
-        'zope.i18n',
-        'zope.i18nmessageid',
-        'zope.interface',
-        'zope.schema',
-        'ZODB3',
-        'Zope2',
+          'zope.annotation',
+          'zope.component',
+          'zope.configuration',
+          'zope.dottedname',
+          'zope.i18n',
+          'zope.i18nmessageid',
+          'zope.interface',
+          'zope.schema',
+          'ZODB3',
+          'Zope2',
 
-        'plone.i18n',
-        'plone.uuid',
-        'Products.ATContentTypes',
-        'Products.CMFCore',
-        'Products.CMFPlone',
-        'Products.GenericSetup',
+          'plone.api',
+          'plone.i18n',
+          'plone.uuid',
 
-        'plone.app.transmogrifier',
-        'collective.transmogrifier',
-        'collective.blueprint.jsonmigrator',
+          'Products.CMFCore',
+          'Products.CMFPlone',
+          'Products.GenericSetup',
 
-        'ftw.profilehook',
-        ],
+          'plone.app.transmogrifier',
+          'collective.transmogrifier',
+          'collective.blueprint.jsonmigrator',
+
+          'ftw.profilehook',
+      ],
 
       tests_require=tests_require,
       extras_require=extras_require,
