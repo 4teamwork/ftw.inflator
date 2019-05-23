@@ -1,7 +1,9 @@
 from collective.transmogrifier.interfaces import ISection
 from collective.transmogrifier.interfaces import ISectionBlueprint
 from copy import deepcopy
+from ftw.inflator import HAS_MULTILINGUAL
 from ftw.inflator import IS_PLONE_5
+from ftw.inflator import IS_PLONE_APP_MULTILINGUAL_2
 from ftw.inflator.creation.sections.base import ObjectUpdater
 from ftw.inflator.exceptions import MultilingalInflateException
 from plone.uuid.interfaces import IUUIDGenerator
@@ -9,24 +11,18 @@ from Products.CMFCore.utils import getToolByName
 from zope.component import getUtility
 from zope.interface import classProvides
 from zope.interface import implements
-import pkg_resources
 
 
-try:
-    pkg_resources.get_distribution('plone.app.multilingual')
-
-except pkg_resources.DistributionNotFound:
-    HAS_MULTILINGUAL = False
-
-else:
-    HAS_MULTILINGUAL = True
+if HAS_MULTILINGUAL:
     from plone.app.multilingual.browser.setup import SetupMultilingualSite
-    try:
-        # plone.app.multilingual >= 2.x
-        from Products.CMFPlone.interfaces import ILanguage
+    if IS_PLONE_5 or IS_PLONE_APP_MULTILINGUAL_2:
+        if IS_PLONE_5:
+            from Products.CMFPlone.interfaces import ILanguage
+        else:
+            from plone.app.multilingual.interfaces import ILanguage
         from plone.app.multilingual.interfaces import IMutableTG
         from plone.app.multilingual.interfaces import ITranslationManager
-    except ImportError:
+    else:
         # plone.app.multilingual 1.x
         from plone.multilingual.interfaces import ILanguage
         from plone.multilingual.interfaces import IMutableTG

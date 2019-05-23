@@ -1,4 +1,5 @@
 from collective.transmogrifier import transmogrifier
+from ftw.inflator import IS_PLONE_APP_MULTILINGUAL_2
 from ftw.inflator.patches import apply_patches
 from ftw.testing import ComponentRegistryLayer
 from ftw.testing import IS_PLONE_5
@@ -70,7 +71,6 @@ class ZopeLayer(PloneFixture):
             <include package="plonetheme.barceloneta" />
             </configure>''', context=configurationContext)
 
-
         z2.installProduct(app, 'Products.CMFPlacefulWorkflow')
 
         import Products.Five
@@ -119,6 +119,9 @@ class InflatorLayer(PloneSandboxLayer):
 
         z2.installProduct(app, 'Products.CMFPlacefulWorkflow')
 
+        if IS_PLONE_APP_MULTILINGUAL_2:
+            z2.installProduct(app, 'Products.DateRecurringIndex')
+
         import ftw.inflator
         xmlconfig.file('configure.zcml', ftw.inflator,
                        context=configurationContext)
@@ -145,7 +148,7 @@ class InflatorLayer(PloneSandboxLayer):
         setupCoreSessions(app)
 
     def setUpPloneSite(self, portal):
-        if IS_PLONE_5:
+        if IS_PLONE_5 or IS_PLONE_APP_MULTILINGUAL_2:
             applyProfile(portal, 'plone.app.contenttypes:default')
 
         applyProfile(

@@ -1,4 +1,5 @@
 from ftw.inflator import IS_PLONE_5
+from ftw.inflator import IS_PLONE_APP_MULTILINGUAL_2
 from ftw.inflator.testing import INFLATOR_FUNCTIONAL_TESTING
 from plone import api
 from plone.app.testing import applyProfile
@@ -6,9 +7,10 @@ from Products.CMFCore.utils import getToolByName
 from unittest2 import TestCase
 
 
-if IS_PLONE_5:
+if IS_PLONE_5 or IS_PLONE_APP_MULTILINGUAL_2:
     from plone.app.multilingual.interfaces import ITranslationManager
 else:
+    # plone.app.multilingual 1.x
     from plone.multilingual.interfaces import ITranslationManager
 
 

@@ -1,3 +1,4 @@
+from ftw.inflator import IS_PLONE_APP_MULTILINGUAL_2
 from ftw.inflator.testing import INFLATOR_FIXTURE
 from ftw.inflator.tests.interfaces import IFoo, IExampleDxType
 from ftw.testing import IS_PLONE_5
@@ -112,7 +113,7 @@ class TestDXContentCreation(TestCase):
         target = self.portal.get('target')
 
         # This behaves different with plone4 and referncablebehavior
-        if IS_PLONE_5:
+        if IS_PLONE_5 or IS_PLONE_APP_MULTILINGUAL_2:
             self.assertEqual(obj.relation.to_object, target)
         else:
             self.assertEqual(obj.relation, target)
