@@ -36,6 +36,11 @@ class TestMultilingualContentCreation(TestCase):
             tool.addSupportedLanguage('de')
             tool.addSupportedLanguage('en')
 
+        if IS_PLONE_5 or IS_PLONE_APP_MULTILINGUAL_2:
+            applyProfile(self.portal, 'ftw.inflator.tests:dx_multilingual_custom_folder')
+        else:
+            applyProfile(self.portal, 'ftw.inflator.tests:at_multilingual_custom_folder')
+
         applyProfile(self.portal, 'plone.app.multilingual:default')
         applyProfile(self.portal, 'ftw.inflator.tests:multilingual_creation')
 
@@ -97,3 +102,16 @@ class TestMultilingualContentCreation(TestCase):
         import_step_name = 'ftw.inflator.content_creation'
         metadata = setup_tool.getImportStepMetadata(import_step_name)
         self.assertIn('languagetool', metadata.get('dependencies', ()))
+
+    def test_use_custom_multilingual_folders(self):
+        obj = self.portal.get('de')
+
+        self.assertEqual('MultilingualCustomFolder', obj.portal_type)
+
+        if IS_PLONE_5:
+            self.assertEqual('MultilingualIndependentCustomFolder',
+                             obj.restrictedTraverse('Assets').portal_type)
+
+        if IS_PLONE_APP_MULTILINGUAL_2:
+            self.assertEqual('MultilingualIndependentCustomFolder',
+                             obj.restrictedTraverse('media').portal_type)

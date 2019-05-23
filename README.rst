@@ -365,6 +365,20 @@ language in the `portal_languages.xml`:
 
 The default setup of `plone.app.multilingual` is used for setting up the language folders.
 
+`plone.app.multilingual` is using a special portal type for the language root folders and for the language independent folders. Sometimes it is useful to have a custom portal type as root and language independent folders. You can choose custom types through the `_folder_type` and `_folder_type_language_independent` properties:
+
+
+.. code:: javascript
+
+    [
+        {"_multilingual": [
+            "en",
+            "de"],
+         "_folder_type": "my.custom.type",
+         "_folder_type_language_independent": "my.custom.type",
+         "_contents": []
+        }
+    ]
 
 
 Creating / setting properties

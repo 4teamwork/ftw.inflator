@@ -33,6 +33,22 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <genericsetup:registerProfile
+        name="dx_multilingual_custom_folder"
+        title="ftw.inflator.tests:dx_multilingual_custom_folder"
+        directory="profiles/dx_multilingual_custom_folder"
+        description=""
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:registerProfile
+        name="at_multilingual_custom_folder"
+        title="ftw.inflator.tests:at_multilingual_custom_folder"
+        directory="profiles/at_multilingual_custom_folder"
+        description=""
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
     <include package="ftw.inflator" file="meta.zcml" />
     <inflator:bundle
         title="ftw.inflator example bundle one"

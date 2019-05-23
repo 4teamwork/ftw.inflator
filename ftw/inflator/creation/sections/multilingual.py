@@ -54,6 +54,28 @@ class SetupLanguages(object):
         self._validate_languages(item['_multilingual'])
 
         multilingual_setup = SetupMultilingualSite()
+
+        if IS_PLONE_5 or IS_PLONE_APP_MULTILINGUAL_2:
+            if '_folder_type_language_independent' in item:
+                multilingual_setup.folder_type_language_independent = \
+                    item['_folder_type_language_independent']
+
+        if '_folder_type' in item:
+            multilingual_setup.folder_type = item['_folder_type']
+
+        if IS_PLONE_5:
+            # plone.app.multilingual 5.x is setting up the languagefolders
+            # automatically after installing the product.
+            # There is no possiblity to hook in this process. To be able to
+            # use our own types anyway, we remove the creted language-folders,
+            # and run our won setup with custom configuration.
+            #
+            # See https://github.com/plone/plone.app.multilingual/blob/5.2.x/src/plone/app/multilingual/setuphandlers.py#L33
+            catalog = getToolByName(self.context, 'portal_catalog')
+            for brain in catalog(portal_type="LRF"):
+                obj = brain.getObject()
+                obj.aq_parent.manage_delObjects([obj.getId()])
+
         multilingual_setup.setupSite(self.context)
 
         contents = deepcopy(item['_contents'])

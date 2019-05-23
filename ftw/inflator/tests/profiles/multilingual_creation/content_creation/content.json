@@ -4,6 +4,8 @@
     "_properties": {
       "layout": ["string", "there"]
     },
+    "_folder_type": "MultilingualCustomFolder",
+    "_folder_type_language_independent": "MultilingualIndependentCustomFolder",
     "_contents": [
       {
         "_id:translate(ftw.inflator.tests)": "accessibility",

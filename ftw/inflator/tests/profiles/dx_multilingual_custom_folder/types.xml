@@ -1,0 +1,4 @@
+<object name="portal_types">
+    <object name="MultilingualCustomFolder" meta_type="Dexterity FTI" />
+    <object name="MultilingualIndependentCustomFolder" meta_type="Dexterity FTI" />
+</object>
