@@ -1,3 +1,4 @@
+from ftw.inflator import IS_PLONE_APP_MULTILINGUAL_2
 from ftw.inflator.testing import INFLATOR_FIXTURE
 from ftw.inflator.tests.interfaces import IFoo
 from ftw.testing import IS_PLONE_5
@@ -24,7 +25,7 @@ from zope.component import getMultiAdapter
 from zope.component import getUtility
 
 
-if IS_PLONE_5:
+if IS_PLONE_5 or IS_PLONE_APP_MULTILINGUAL_2:
     from plone.app.dexterity.behaviors import constrains as constraintypes
     from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 else:
@@ -40,7 +41,7 @@ class FooCreationLayer(PloneSandboxLayer):
         wftool.setChainForPortalTypes(['Folder'],
                                       'simple_publication_workflow')
 
-        if IS_PLONE_5:
+        if IS_PLONE_5 or IS_PLONE_APP_MULTILINGUAL_2:
             folder_fti = portal.portal_types.Folder
             folder_fti.behaviors = tuple(
                 list(folder_fti.behaviors) + ['plone.constraintypes']
@@ -108,7 +109,7 @@ class TestContentCreation(TestCase):
     def test_foo_folder_constraintypes(self):
         foo = self.portal.get('foo')
 
-        if IS_PLONE_5:
+        if IS_PLONE_5 or IS_PLONE_APP_MULTILINGUAL_2:
             constrains = ISelectableConstrainTypes(foo)
             self.assertEqual(constrains.getConstrainTypesMode(),
                              constraintypes.ENABLED,
@@ -149,7 +150,7 @@ class TestContentCreation(TestCase):
         self.assertTrue(example_file)
         self.assertEqual(example_file.Title(), 'example file')
 
-        if IS_PLONE_5:
+        if IS_PLONE_5 or IS_PLONE_APP_MULTILINGUAL_2:
             data = example_file.file
             self.assertEqual(data.filename, 'examplefile.txt')
             self.assertEqual(data.contentType, 'text/plain')
@@ -207,22 +208,24 @@ class TestContentCreation(TestCase):
                         ' found under /foo/files/chuck-norris')
 
         self.assertEquals('Chuck Norris', chuck.Title())
-        self.assertTrue(chuck.getSize(), 'The chuck norris image seems to be missing')
 
-        if IS_PLONE_5:
+        if IS_PLONE_5 or IS_PLONE_APP_MULTILINGUAL_2:
+            self.assertTrue(chuck.image.getSize(),
+                            'The chuck norris image seems to be missing')
             self.assertEquals(chuck.image._width, 319)
             self.assertEquals(chuck.image._height, 397)
 
         else:
+            self.assertTrue(chuck.getSize(), 'The chuck norris image seems to be missing')
             self.assertEquals(chuck.getWidth(), 319)
             self.assertEquals(chuck.getHeight(), 397)
 
     def test_filename_can_be_changed(self):
         obj = self.portal.get('foo').get('files').get('filename-changed')
 
-        if IS_PLONE_5:
+        if IS_PLONE_5 or IS_PLONE_APP_MULTILINGUAL_2:
             self.assertEquals('filename-has-changed.jpg',
-                              obj.image.filename)            
+                              obj.image.filename)
         else:
             self.assertEquals('filename-has-changed.jpg',
                               obj.getImage().getFilename())
@@ -233,7 +236,7 @@ class TestContentCreation(TestCase):
 
         self.assertEquals('In other news', item.Title(), 'Wrong News Item title')
 
-        if IS_PLONE_5:
+        if IS_PLONE_5 or IS_PLONE_APP_MULTILINGUAL_2:
             self.assertTrue(item.text.raw, 'News item has no text')
         else:
             self.assertTrue(item.getText(), 'News item has no text')
