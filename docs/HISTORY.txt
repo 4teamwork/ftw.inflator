@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.10.1 (unreleased)
+1.11.0 (2019-06-13)
 -------------------
 
 - Implement possibility to override the default plone.app.multilingual root and
