@@ -1,0 +1,3 @@
+<object name="portal_types">
+    <object name="MultilingualCustomFolder" meta_type="Factory-based Type Information with dynamic views" />
+</object>
