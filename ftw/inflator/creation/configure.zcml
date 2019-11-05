@@ -8,7 +8,7 @@
 
     <include package="collective.transmogrifier" file="meta.zcml" />
     <include package="collective.transmogrifier" />
-    <include package="collective.blueprint.jsonmigrator" />
+    <include package="collective.jsonmigrator" />
     <include package="plone.app.transmogrifier" />
 
     <include

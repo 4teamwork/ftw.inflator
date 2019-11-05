@@ -649,7 +649,7 @@ You can configure local roles and block local as following:
           }
       ]
 
-For details, see: https://github.com/collective/collective.blueprint.jsonmigrator
+For details, see: https://collectivejsonmigrator.readthedocs.io/en/latest/ac_local_roles.html
 
 
 Import single items
