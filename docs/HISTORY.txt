@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.11.1 (unreleased)
+1.12.0 (2019-11-08)
 -------------------
 
 - Replace discontinued collective.blueprint.jsonmigrator with collective.jsonmigrator. [djowett-ftw]
