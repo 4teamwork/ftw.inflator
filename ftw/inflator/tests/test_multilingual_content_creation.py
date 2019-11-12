@@ -4,7 +4,7 @@ from ftw.inflator.testing import INFLATOR_FUNCTIONAL_TESTING
 from plone import api
 from plone.app.testing import applyProfile
 from Products.CMFCore.utils import getToolByName
-from unittest2 import TestCase
+from unittest import TestCase
 
 
 if IS_PLONE_5 or IS_PLONE_APP_MULTILINGUAL_2:

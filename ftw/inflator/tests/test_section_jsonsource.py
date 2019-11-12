@@ -1,7 +1,7 @@
 from collective.transmogrifier.interfaces import ISection
 from collective.transmogrifier.interfaces import ISectionBlueprint
 from ftw.inflator.creation.sections import jsonsource
-from unittest2 import TestCase
+from unittest import TestCase
 from zope.interface.verify import verifyClass
 from zope.interface.verify import verifyObject
 import ftw.inflator.tests

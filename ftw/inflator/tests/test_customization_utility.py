@@ -1,6 +1,6 @@
 from ftw.inflator.customization import InflatorCustomization
 from ftw.inflator.interfaces import IInflatorCustomization
-from unittest2 import TestCase
+from unittest import TestCase
 from zope.interface.verify import verifyClass
 
 

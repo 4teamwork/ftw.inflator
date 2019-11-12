@@ -1,6 +1,6 @@
 from collective.transmogrifier.transmogrifier import Transmogrifier
 from ftw.inflator.testing import INFLATOR_INTEGRATION_TESTING
-from unittest2 import TestCase
+from unittest import TestCase
 
 
 class TestSingleItemContentCreation(TestCase):

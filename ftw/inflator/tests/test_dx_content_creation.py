@@ -8,7 +8,7 @@ from plone.app.testing import applyProfile
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
 from Products.CMFCore.utils import getToolByName
-from unittest2 import TestCase
+from unittest import TestCase
 from zope.annotation.interfaces import IAnnotations
 from zope.configuration import xmlconfig
 import datetime

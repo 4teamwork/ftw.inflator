@@ -23,7 +23,6 @@ extras_require = {
 
 
 extras_require['tests'] = tests_require = [
-    'unittest2',
     'ftw.testing',
     'ftw.testbrowser',
     'zope.configuration',

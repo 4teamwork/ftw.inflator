@@ -1,7 +1,7 @@
 from ftw.inflator.creation.progresslogger import ProgressLogger
 from StringIO import StringIO
 from time import sleep
-from unittest2 import TestCase
+from unittest import TestCase
 import logging
 
 
