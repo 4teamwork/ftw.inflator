@@ -1,7 +1,7 @@
 from Products.CMFPlone.factory import _DEFAULT_PROFILE
 from ftw.inflator.bundle import InflatorBundle
 from ftw.inflator.interfaces import IInflatorBundle
-from unittest2 import TestCase
+from unittest import TestCase
 from zope.interface.verify import verifyClass
 
 

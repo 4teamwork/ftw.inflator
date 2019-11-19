@@ -25,8 +25,7 @@ class TestTranslateBlueprint(MockTestCase):
 
     def test_translates(self):
         transmogrifier = self.stub()
-        self.expect(transmogrifier.context.Language()).result('en')
-        self.replay()
+        transmogrifier.context.Language.return_value = 'en'
 
         input = [
             {'_id:translate(ftw.inflator.tests)': 'intranet-id',
@@ -46,8 +45,7 @@ class TestTranslateBlueprint(MockTestCase):
 
     def test_translates_encoding(self):
         transmogrifier = self.stub()
-        self.expect(transmogrifier.context.Language()).result('en')
-        self.replay()
+        transmogrifier.context.Language.return_value = 'en'
 
         # UTF-8 encoded value for the title.
         input = [

@@ -2,7 +2,7 @@ from ftw.inflator.testing import ZOPE_FUNCTIONAL_TESTING
 from ftw.testbrowser import browsing
 from plone.app.testing import SITE_OWNER_NAME
 from plone.testing.z2 import zopeApp
-from unittest2 import TestCase
+from unittest import TestCase
 
 
 class TestInflateOverView(TestCase):

@@ -19,9 +19,8 @@ class TestNoDexteritySupportUpdateSection(MockTestCase):
     def test_yields_non_dexterity_types(self):
         portal_types = self.stub()
         fti = ArchetypesFTI()
-        self.expect(portal_types.get('SomeType')).result(fti)
+        portal_types.get.return_value = fti
         self.mock_tool(portal_types, 'portal_types')
-        self.replay()
 
         item = {'_type': 'SomeType'}
         updater = schemaupdater.NoDexteritySupportUpdateSection(
@@ -32,9 +31,8 @@ class TestNoDexteritySupportUpdateSection(MockTestCase):
     def test_raises_on_dexterity_types(self):
         portal_types = self.stub()
         fti = DexterityFTI()
-        self.expect(portal_types.get('OtherType')).result(fti)
+        portal_types.get.return_value = fti
         self.mock_tool(portal_types, 'portal_types')
-        self.replay()
 
         item = {'_type': 'OtherType'}
         updater = schemaupdater.NoDexteritySupportUpdateSection(

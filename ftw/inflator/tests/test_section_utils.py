@@ -1,5 +1,5 @@
 from ftw.inflator.creation.sections.utils import recursive_encode
-from unittest2 import TestCase
+from unittest import TestCase
 
 
 class TestRecursiveEncode(TestCase):

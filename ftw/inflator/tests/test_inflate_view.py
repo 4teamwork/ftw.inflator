@@ -3,7 +3,7 @@ from ftw.testbrowser import browsing
 from plone import api
 from plone.app.testing import SITE_OWNER_NAME
 from plone.testing.z2 import zopeApp
-from unittest2 import TestCase
+from unittest import TestCase
 from zope.component.hooks import setSite
 
 
