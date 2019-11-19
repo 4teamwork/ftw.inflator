@@ -23,7 +23,6 @@ class TestInterfacesUpdater(MockTestCase):
 
     def test_interface_not_reprovided(self):
         obj = self.providing_stub([IFoo])
-        self.replay()
 
         data = ['ftw.inflator.tests.interfaces.IFoo']
         self.updater.update(obj, data)

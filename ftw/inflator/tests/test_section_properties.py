@@ -12,19 +12,15 @@ class TestPropertiesUpdater(MockTestCase):
             transmogrifier, '', options, [])
 
     def test_create_properties(self):
-        obj = self.mocker.mock()
-        self.expect(obj.getProperty('foo')).result(None)
-        self.expect(obj._setProperty('foo', 'bar', 'string'))
-        self.replay()
+        obj = self.mock()
+        obj.getProperty.return_value = None
 
         data = {'foo': ['string', 'bar']}
         self.updater.update(obj, data)
 
     def test_update_properties(self):
-        obj = self.mocker.mock()
-        self.expect(obj.getProperty('foo')).result('something')
-        self.expect(obj._updateProperty('foo', 'bar'))
-        self.replay()
+        obj = self.mock()
+        obj.getProperty.return_value = 'something'
 
         data = {'foo': ['string', 'bar']}
         self.updater.update(obj, data)
