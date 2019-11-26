@@ -5,6 +5,7 @@ Changelog
 1.12.1 (unreleased)
 -------------------
 
+- Remove old generic setup dependency for Products.PloneLanguageTool. [jone]
 - Fix tests for ftw.testing >= 2.0. [buchi]
 
 
