@@ -5,6 +5,7 @@ Changelog
 1.12.1 (unreleased)
 -------------------
 
+- Fix Generic Setup import step registration to not cause unresolved dependencies. [jone]
 - Fix tests for ftw.testing >= 2.0. [buchi]
 
 

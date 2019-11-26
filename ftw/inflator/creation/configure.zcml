@@ -15,17 +15,27 @@
         zcml:condition="installed transmogrify.dexterity"
         package="transmogrify.dexterity" />
 
-
-    <genericsetup:importStep
-        name="ftw.inflator.content_creation"
-        title="ftw.inflator: content creation"
-        description="Generic content creation from content_creation/*.json files."
-        handler="ftw.inflator.creation.setuphandler.content_creation">
+    <configure zcml:condition="not-installed plone.app.multilingual">
+      <genericsetup:importStep
+          name="ftw.inflator.content_creation"
+          title="ftw.inflator: content creation"
+          description="Generic content creation from content_creation/*.json files."
+          handler="ftw.inflator.creation.setuphandler.content_creation">
         <depends name="typeinfo"/>
         <depends name="workflow"/>
-        <depends name="languagetool"
-                 zcml:condition="installed plone.app.multilingual"/>
-    </genericsetup:importStep>
+      </genericsetup:importStep>
+    </configure>
+    <configure zcml:condition="installed plone.app.multilingual">
+      <genericsetup:importStep
+          name="ftw.inflator.content_creation"
+          title="ftw.inflator: content creation"
+          description="Generic content creation from content_creation/*.json files."
+          handler="ftw.inflator.creation.setuphandler.content_creation">
+        <depends name="typeinfo"/>
+        <depends name="workflow"/>
+        <depends name="languagetool"/>
+      </genericsetup:importStep>
+    </configure>
 
     <transmogrifier:registerConfig
         name="ftw.inflator.creation.content_creation_config"

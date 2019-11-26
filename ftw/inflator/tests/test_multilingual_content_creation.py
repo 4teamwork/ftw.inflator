@@ -101,7 +101,8 @@ class TestMultilingualContentCreation(TestCase):
         setup_tool = getToolByName(self.portal, 'portal_setup')
         import_step_name = 'ftw.inflator.content_creation'
         metadata = setup_tool.getImportStepMetadata(import_step_name)
-        self.assertIn('languagetool', metadata.get('dependencies', ()))
+        self.assertEqual({'languagetool', 'typeinfo', 'workflow'},
+                         set(metadata.get('dependencies', ())))
 
     def test_use_custom_multilingual_folders(self):
         obj = self.portal.get('de')
