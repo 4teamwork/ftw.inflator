@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.12.1 (unreleased)
+1.12.1 (2019-11-26)
 -------------------
 
 - Remove old generic setup dependency for Products.PloneLanguageTool. [jone]
