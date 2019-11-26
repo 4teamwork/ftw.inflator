@@ -23,8 +23,6 @@
         handler="ftw.inflator.creation.setuphandler.content_creation">
         <depends name="typeinfo"/>
         <depends name="workflow"/>
-        <depends name="languagetool"
-                 zcml:condition="installed plone.app.multilingual"/>
     </genericsetup:importStep>
 
     <transmogrifier:registerConfig
