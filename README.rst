@@ -398,6 +398,14 @@ Example:
             "_type": "Folder",
             "title": "Foo",
             "_properties": {
+                "default_page": ["string", "bar"]
+            }
+        },
+	{
+            "_path": "foo2",
+            "_type": "Folder",
+            "title": "Foo 2",
+            "_properties": {
                 "layout": ["string", "folder_listing_view"]
             }
         }
